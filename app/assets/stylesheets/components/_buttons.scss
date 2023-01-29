@@ -1,0 +1,22 @@
+.white-outlined-big-btn {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 7px;
+    width: 100px !important;
+    height: 35px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    font-family: 'Powerr';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  &:hover {
+    background-color: white;
+    color: #207B6E;
+    border: 1px solid #207B6E;
+  }
+}
