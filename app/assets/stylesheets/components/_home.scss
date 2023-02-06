@@ -1,0 +1,42 @@
+.container-body {
+  background: #207B6E;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 100vw;
+}
+
+.slide1 p {
+  font-family: 'Powerr';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #FBFBFB;
+  width: 195px;
+}
+
+.container-filter:before{
+  background: #207B6E;
+  content: '';
+  /* width: 100%; */
+  opacity: 0.4;
+  /* display: block; */
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+// LOGO ANIMATION //
+@keyframes appear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.logo-home {
+  animation: appear 3s;
+  animation-fill-mode: forwards;
+}

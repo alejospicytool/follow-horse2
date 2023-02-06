@@ -1,16 +1,82 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-// Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+  //   font-family: "Powerr";
+  //   src: font-url('FontFile.eot');
+  //   src:
+  //     font-url('FontFile.eot?#iefix') format('embedded-opentype'),
+  //      font-url('FontFile.woff') format('woff'),
+  // }
+
+  @font-face {
+    font-family: "Powerr";
+    src:  font-url('PowerrThin-2OXy8') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  @font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrExtraLight-8MWBD') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrLight-Yz8wj') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrRegular-MVzle') format('truetype');
+  font-weight: normal;
+  font-style: 400;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrMedium-rgVwO') format('truetype');
+  font-weight: normal;
+  font-style: 500;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrSemiBold-K75eo') format('truetype');
+  font-weight: normal;
+  font-style: 600;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrBold-Rpz8M') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrExtraBold-BWymV') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Powerr";
+  src:  font-url('PowerrBlack-1GLyL') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+$my-font: "Powerr";
+
+// Define fonts for body and headers
+$body-font: 'Roboto', sans-serif;
+$headers-font: $my-font, "Helvetica", "sans-serif";

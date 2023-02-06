@@ -1,0 +1,26 @@
+<div class="container-body flex-column" >
+  <%= image_tag 'follow-horse-logo.png', class:"logo-home" %>
+</div>
+
+<%# ----BUTTONS----- %>
+
+<div class="d-flex justify-content-around d-none" style="align-items: center; position: absolute; bottom: 50px; width: 100%;">
+  <%= link_to 'Saltar', new_user_session_path, style:"text-decoration: none !important; color: #FFFFFF; text-transform: uppercase; font-family: 'Powerr';", id: "login-btn" %>
+  <%= link_to 'Siguiente', slide1_path, class: "white-outlined-big-btn", id: "siguiente-btn" %>
+</div>
+
+<script>
+
+function simulateClick() {
+  document.getElementById("siguiente-btn").click();
+}
+
+const siguiente = () => {
+  setTimeout(() => {
+    simulateClick()
+  }, 5000);
+  }
+
+siguiente()
+
+</script>

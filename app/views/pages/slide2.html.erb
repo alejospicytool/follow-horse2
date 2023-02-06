@@ -1,0 +1,14 @@
+<div class="container-body container-filter d-flex flex-column justify-content-start" style="background-image: url('<%= image_path 'caballo-slide-3.png' %>')">
+  <%= image_tag 'logo-chico.png', style: "margin-top: 65px; z-index: 1;" %>
+  <div class="slide1 d-flex flex-column justify-content-center align-items-center" style="margin-top: 28px; width: 373px; height: 390px;">
+    <p style="z-index: 1; width: 261px">Comunicate con el comprador y negocia el mejor acuerdo</p>
+    <%= image_tag 'dots-slide3.png', style:"z-index: 1;" %>
+  </div>
+</div>
+
+<%# ----BUTTONS----- %>
+
+<div class="d-flex justify-content-around" style="align-items: center; position: absolute; bottom: 50px; width: 100%; padding: 0 14px;">
+  <%= link_to 'Saltar', new_user_session_path, style:"text-decoration: none !important; color: #FFFFFF; text-transform: uppercase; font-family: 'Powerr';", id: "login-btn" %>
+  <%= link_to 'Siguiente', slide3_path, class: "white-outlined-big-btn", id: "login-btn" %>
+</div>

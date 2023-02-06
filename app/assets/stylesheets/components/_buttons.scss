@@ -1,0 +1,66 @@
+.white-outlined-big-btn {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 7px;
+    width: 100px !important;
+    height: 35px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    font-family: 'Powerr';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  &:hover {
+    background-color: white;
+    color: #207B6E;
+    border: 1px solid #207B6E;
+  }
+}
+
+.form-button {
+  background: #727272;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  font-family: 'Powerr';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  text-transform: uppercase;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #FFFFFF;
+  text-decoration: none;
+  // padding: 7px;
+  width: 328px;
+  height: 40px;
+  &:hover {
+    background-color: #207B6E;
+    color: white;
+  }
+}
+
+.form-button-outline {
+  background: #FFFFFF;
+  border-radius: 25px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #207B6E;
+  border: 1px solid #207B6E;
+  text-decoration: none;
+  width: 328px;
+  height: 40px;
+  &:hover {
+    border: 1px solid  #727272;
+    color:  #727272;
+  }
+}

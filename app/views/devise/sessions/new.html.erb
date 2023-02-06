@@ -1,20 +1,52 @@
-<h2>Log in</h2>
+<div class="container mt-0 mb-0" style="background: #FFFFFF;">
+  <div class="d-flex flex-column align-items-center justify-content-center mt-4 mb-3">
+    <%= image_tag 'logo-chico-color.png', class:"mb-2" %>
+    <h2>Inicia sesión</h2>
+  </div>
+  <p>Ingresa tu email y contraseña</p>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email,
+                  label: false,
+                  placeholder: "Email",
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" },
+                  class: "log-in-input",
+                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px;"} %>
+      <%= f.input :password,
+                  required: false,
+                  label: false,
+                  placeholder: "Contraseña",
+                  input_html: { autocomplete: "current-password" },
+                  class: "log-in-input",
+                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px;"},
+                  hint: "La contraseña debe tener 8 caracteres como mínimo",
+                  hint_html: {style: "font-weight: 400; font-size: 12px; color: #727272;"} %>
+      <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      <%= link_to "¿Olvidaste tu contraseña?", new_password_path('user'), :class => "login-link", style: "font-weight: 600; font-size: 14px; line-height: 16px; text-decoration: none; color: #207B6E;" %>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <div class="form-actions d-flex justify-content-center">
+      <%= f.button :submit, "Iniciar Sesion", class: "form-button mt-4 mb-4" %>
+    </div>
+  <% end %>
+
+  <div class="form-actions d-flex justify-content-center">
+    <span style="font-weight: 400; font-size: 16px;">¿No tienes una cuenta?
+      <%= link_to "Registrate", new_registration_path('user'), :class => "login-link", style: "color: #207B6E; text-decoration: none;" %>
+    </span>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+  <%#= render "devise/shared/links" %>
 
-<%= render "devise/shared/links" %>
+  <span class="d-block text-center my-3 text-muted">— o — </span>
+  <div class="form-actions d-flex flex-column align-items-center justify-content-center">
+    <button class="form-button-outline">
+      <i class="fa-brands fa-google" style="margin-right: 5px; font-size: 16px;"></i>Continuar con Google
+      </button>
+    <button class="form-button-outline mt-2">
+    <i class="fa-brands fa-square-facebook" style="margin-right: 5px; font-size: 18px;"></i>Continuar con Facebook
+    </button>
+  </div>
+</div>
