@@ -10,6 +10,8 @@ require "open-uri"
 
 puts "Destryoing horses"
 Horse.destroy_all
+puts "Destroyed Horses"
+puts "Destryoing users"
 User.destroy_all
 puts "Destroyed Users"
 
@@ -43,7 +45,22 @@ puts "Created users"
 
 puts "Creating horses"
 
-horse1 = Horse.new(name: "luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "122", gender: "M", user_id: User.last.id)
-file = URI.open("https://ca.slack-edge.com/T02NE0241-U03PTAN9ARE-e0ff21331654-512")
+horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: User.last.id)
+file = URI.open("https://unsplash.com/es/fotos/Y5iPU37b7Zs")
 horse1.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse1.save!
+
+horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "100", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: User.last.id)
+file = URI.open("https://unsplash.com/es/fotos/0F9oVQ3x2ak")
+horse2.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse2.save!
+
+horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "200", birthday: "22/10/2018", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: User.last.id)
+file = URI.open("https://unsplash.com/es/fotos/9h_bJdGqzCk")
+horse3.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse3.save!
+
+horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "150", birthday: "22/10/2021", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: User.last.id)
+file = URI.open("https://unsplash.com/es/fotos/7FC4WpyYcfQ")
+horse4.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse4.save!
