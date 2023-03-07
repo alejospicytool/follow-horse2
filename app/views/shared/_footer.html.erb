@@ -1,0 +1,35 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="d-flex w-100 justify-content-around footer">
+    <div class="text-center">
+      <%= link_to home_path do %>
+        <%= image_tag('home.png') %>
+        <p>Inicio</p>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to search_path do %>
+        <%= image_tag('search.png') %>
+        <p>Buscar</p>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to add_path do %>
+        <%= image_tag('agregar.png') %>
+        <p>Añadir</p>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to '#' do %>
+        <%= image_tag('mensajes.png') %>
+        <p>Mensajes</p>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to profile_index_path do %>
+        <%= image_tag('perfil.png') %>
+        <p>Mi Perfil</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>
