@@ -1,0 +1,6 @@
+<% @horses.each do |horse| %>
+<%= link_to horse_path(horse.id) do%>
+<%= horse.name %>
+<%= horse.birthday %>
+<% end %>
+<% end %>

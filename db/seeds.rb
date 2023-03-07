@@ -8,6 +8,8 @@
 
 require "open-uri"
 
+puts "Destryoing horses"
+Horse.destroy_all
 User.destroy_all
 puts "Destroyed Users"
 
@@ -38,3 +40,10 @@ user5.photo.attach(io: file, filename: "piova.png", content_type: "image/png")
 user5.save!
 
 puts "Created users"
+
+puts "Creating horses"
+
+horse1 = Horse.new(name: "luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "122", gender: "M", user_id: User.last.id)
+file = URI.open("https://ca.slack-edge.com/T02NE0241-U03PTAN9ARE-e0ff21331654-512")
+horse1.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse1.save!
