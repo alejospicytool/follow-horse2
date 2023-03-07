@@ -1,4 +1,3 @@
-<p>Home Page</p>
  <% if params[:registro] == "ok" %>
   <!-- Modal confirmacion registro -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" rol="dialog">
@@ -17,9 +16,17 @@
       </div>
     </div>
   </div>
+<% end %>
+
+<div class="container" style="height: 83vh;">
+  <p>Home Page</p>
+</div>
+
+
+
+
   <script>
      $(document).ready(function(){
         $("#exampleModal").modal('show');
     });
   </script>
- <% end %>
