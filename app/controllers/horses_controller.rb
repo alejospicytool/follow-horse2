@@ -1,10 +1,11 @@
 class HorsesController < ApplicationController
   before_action :set_horse, only: %i[show edit update delete destroy]
   def index
-    @horses = Horse.where(user: current_user)
+    @horses = Horse.all
   end
 
   def show
+    @horses = Horse.all
   end
 
   def new

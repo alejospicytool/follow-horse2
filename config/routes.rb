@@ -10,4 +10,15 @@ Rails.application.routes.draw do
   get 'slide1', to: 'pages#slide1', as: 'slide1'
   get 'slide2', to: 'pages#slide2', as: 'slide2'
   get 'slide3', to: 'pages#slide3', as: 'slide3'
+
+  resources :horses
+  resources :auctions
+
+  get 'search', to: 'pages#search', as: 'search'
+  get 'add', to: 'pages#add', as: 'add'
+  get 'profile', to: 'profile#index', as: 'profile_index'
+  get 'profile_favourite', to: 'profile#favourite', as: 'profile_favourite'
+  get 'profile_notification', to: 'profile#notification', as: 'profile_notification'
+  get 'profile_publication', to: 'profile#publication', as: 'profile_publication'
+
 end
