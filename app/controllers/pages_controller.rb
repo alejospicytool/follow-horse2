@@ -18,5 +18,28 @@ class PagesController < ApplicationController
   end
 
   def home
+    @section_title = "Inicio"
+    @navbar_brand = 'true'
+    @search = 'true'
+    @user = current_user
+    @horses = Horse.all
+  end
+
+  def search
+    @section_title = "Categorias"
+    @navbar_brand = 'true'
+    @search = 'true'
+  end
+
+  def add
+    @section_title = "Añadir publicación"
+    @navbar_brand = 'true'
+    @search = 'true'
+  end
+
+  private
+
+  def home_params
+    params.require(:horse).permit(photos: [])
   end
 end
