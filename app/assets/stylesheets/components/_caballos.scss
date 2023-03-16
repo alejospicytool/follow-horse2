@@ -1,0 +1,118 @@
+// HORSES SHOW
+
+.horses-show .titulo {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+  color: #2B3336;
+}
+
+.horses-show .text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.horses-show .subtitle {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.detalles  {
+  border-bottom: 2px solid rgba(131, 131, 131, 0.7);
+  border-top: 2px solid rgba(131, 131, 131, 0.7);
+}
+
+.pedigree, .user {
+  border-bottom: 2px solid rgba(131, 131, 131, 0.7);
+}
+
+.horses-show .sub-subtitle {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.horses-show .link {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #207B6E;
+  text-decoration: underline;
+}
+
+.publicaciones .subtitle {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+   letter-spacing: 0.15px;
+  color: #838383;
+}
+
+.horses-show .card-content a {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #207B6E;
+  text-decoration: none !important;
+}
+
+.horses-show .consultar {
+  position: fixed;
+  background: #F9F9F9;
+  border: 1px solid rgba(131, 131, 131, 0.2);
+  box-shadow: 0px -2px 9px rgba(0, 0, 0, 0.15);
+  bottom: 3.75rem;
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.consultar button {
+  background: #CEAC35;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  font-family: 'Powerr';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px;
+  width: 10.125rem;
+}
+
+.consultar img {
+  margin-right: 5px;
+}
+
+.horses-show .container {
+  margin-bottom: 9.375rem;
+}

@@ -7,11 +7,14 @@ class AuctionsController < ApplicationController
   def show
     @user = current_user
     @auction = Auction.find(params[:id])
+    @auctions = Auction.where(user: current_user)
+    @section_title = "Remates"
   end
 
   def new
     @auction = Auction.new
     @user = current_user
+    @section_title = "Añadir Remate"
   end
 
   def create

@@ -1,12 +1,29 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <div class="d-flex align-items-center">
-      <%= link_to onboarding_path, class: "navbar-brand" do %>
-        <%= image_tag 'follow-horse-logo-sin-texto.png' %>
+
+      <% if @navbar_brand %>
+        <%= link_to onboarding_path, class: "navbar-brand" do %>
+          <%= image_tag 'follow-horse-logo-sin-texto.png' %>
+        <% end %>
+      <% else %>
+        <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
       <% end %>
-      <p class="navbar-title">Inicio</p>
+
+      <% if @section_title %>
+        <p class="navbar-title"><%= @section_title %></p>
+      <% end %>
     </div>
 
-    <%= image_tag('search.png') %>
+    <% if @search %>
+      <%= image_tag('search.png') %>
+    <% elsif @filtros %>
+      <%= image_tag('filtros.png') %>
+    <% elsif @share_like %>
+      <div>
+        <%= image_tag('favorite-white.png', style: 'margin-right: 10px;') %>
+        <%= image_tag('share-white.png') %>
+      </div>
+    <% end %>
   </div>
 </div>
