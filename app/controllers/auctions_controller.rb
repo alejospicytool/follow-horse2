@@ -1,7 +1,12 @@
 class AuctionsController < ApplicationController
   before_action :set_auction, only: %i[show edit update delete destroy]
   def index
-    @auctions = Auction.where(user: current_user)
+    @auctions = Auction.all
+  end
+
+  def show
+    @user = current_user
+    @auction = Auction.find(params[:id])
   end
 
   def new
@@ -43,6 +48,6 @@ class AuctionsController < ApplicationController
   end
 
   def auction_params
-    params.require(:auction).permit(:name, :location, :date, :photo)
+    params.require(:auction).permit(:name, :location, :date, :start, :finish)
   end
 end

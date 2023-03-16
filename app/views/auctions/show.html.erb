@@ -1,0 +1,18 @@
+<div class="container justify-content-center d-flex">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= @auction.name %></h5>
+      <p class="card-text">Dia de la subasta: <%= @auction.date %></p>
+      <p class="card-text">Ubicacion: <%= @auction.location %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Horario de comienzo: <%= @auction.start %></li>
+      <li class="list-group-item">Horario de termino: <%= @auction.finish %></li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+</div>
