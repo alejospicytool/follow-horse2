@@ -1,4 +1,14 @@
-<!-- Content -->
-<div class="remates-index container mt-3">
-  <p>Remates index view</p>
-</div>
+
+<% @auctions.each do |auction| %>
+  <div class="card">
+    <h5 class="card-header"><%= auction.name %></h5>
+    <div class="card-body">
+      <h5 class="card-title"><%= auction.date %></h5>
+      <p class="card-text"><%= auction.location %></p>
+      <p class="card-text"><%= auction.start %></p>
+      <p class="card-text"><%= auction.finish %></p>
+      <a href="#" class="btn btn-primary"><%= link_to "Ver Subasta", auction_path(auction) %></a>
+    </div>
+  </div>
+<% end %>
+
