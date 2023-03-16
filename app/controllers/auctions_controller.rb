@@ -2,11 +2,13 @@ class AuctionsController < ApplicationController
   before_action :set_auction, only: %i[show edit update delete destroy]
   def index
     @auctions = Auction.where(user: current_user)
+    @section_title = "Remates"
   end
 
   def new
     @auction = Auction.new
     @user = current_user
+    @section_title = "Añadir Remate"
   end
 
   def create

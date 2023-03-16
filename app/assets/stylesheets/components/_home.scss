@@ -1,3 +1,13 @@
+// GENERAL STYLE //
+
+body {
+  margin-bottom: 5.25rem !important;
+}
+
+a {
+  text-decoration: none;
+}
+
 .container-body {
   background: #207B6E;
   height: 100vh;
@@ -39,4 +49,55 @@
 .logo-home {
   animation: appear 3s;
   animation-fill-mode: forwards;
+}
+
+// LOWER MENU //
+.lower-menu li {
+  background: #E7F3EF;
+  height: 3rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(32, 123, 110, 0.5);
+}
+
+.lower-menu li a div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.lower-menu li a {
+  width: 100%;
+}
+
+.lower-menu li img {
+  height: 0.688rem;
+  margin-right: 0.313rem;
+}
+
+.lower-menu span {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: #2B3336;
+}
+
+.link-bold{
+  border-bottom: none !important;
+  text-align: center;
+}
+
+.link-bold span {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: #207B6E;
 }

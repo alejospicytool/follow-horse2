@@ -2,15 +2,20 @@ class HorsesController < ApplicationController
   before_action :set_horse, only: %i[show edit update delete destroy]
   def index
     @horses = Horse.all
+    @section_title = "Caballos"
+    @filtros = 'true'
   end
 
   def show
     @horses = Horse.all
+    @horse = Horse.find(params[:id])
+    @share_like = 'true'
   end
 
   def new
     @horse = Horse.new
     @user = current_user
+    @section_title = "Añadir caballo"
   end
 
   def create
@@ -47,6 +52,6 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:name, :pedigree, :age, :description, :photo)
+    params.require(:horse).permit(:name, :pedigree, :age, :description, photos: [])
   end
 end
