@@ -45,12 +45,12 @@ puts "Created users"
 
 puts "Creating horses"
 
-horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: User.last.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
+horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: User.first.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
 file = URI.open("https://www.robertogarrudo.com/blog/wp-content/uploads/2014/10/412_79231_6753136_997956.jpg")
 horse1.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse1.save!
 
-horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "100", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: User.last.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
+horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "100", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: User.first.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
 file = URI.open("https://conceptodefinicion.de/wp-content/uploads/2019/05/Caballo-.jpg")
 horse2.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse2.save!
@@ -64,3 +64,51 @@ horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "150", 
 file = URI.open("https://madridhipica.com/wp-content/uploads/2022/06/Caballos-de-sangre-caliente-y-de-sangre-fria.jpg")
 horse4.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse4.save!
+
+puts "Creating auctions"
+
+auction1 = Auction.new(
+  name: "Remate Haras Victoria",
+  location: "Buenos Aires",
+  date: Date.new(2023, 05, 27),
+  user_id: User.first.id, start: DateTime.new(2023, 5, 27, 4, 0, 0),
+  finish: DateTime.new(2023, 5, 27, 5, 0, 0)
+)
+file = URI.open("https://mir-s3-cdn-cf.behance.net/projects/404/e4104d112052313.Y3JvcCwxNjYzLDEzMDAsMCwxMjM.png")
+auction1.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction1.save!
+
+auction2 = Auction.new(
+  name: "Haras Remate AlBar",
+  location: "Capitan Sarmiento",
+  date: Date.new(2023, 04, 27),
+  user_id: User.first.id, start: DateTime.new(2023, 4, 27, 4, 0, 0),
+  finish: DateTime.new(2023, 4, 27, 5, 0, 0)
+)
+file = URI.open("https://www.guerra-creativa.com/img/uploads/designs/850x566/bimzp3p0.jpg")
+auction2.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction2.save!
+
+auction3 = Auction.new(
+  name: "Haras Selva de Pedra",
+  location: "Rio Cuarto",
+  date: Date.new(2023, 03, 27),
+  user_id: User.last.id, start: DateTime.new(2023, 3, 27, 4, 0, 0),
+  finish: DateTime.new(2023, 3, 27, 5, 0, 0)
+)
+file = URI.open("https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2018%2F03%2F07%2F20%2FLogo-234918_70207_204757969_278263886.jpg")
+auction3.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction3.save!
+
+auction4 = Auction.new(
+  name: "Haras San Pablo",
+  location: "Pergamino",
+  date: Date.new(2023, 06, 27),
+  user_id: User.last.id, start: DateTime.new(2023, 6, 27, 4, 0, 0),
+  finish: DateTime.new(2023, 6, 27, 5, 0, 0)
+)
+file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
+auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction4.save!
+
+puts "Created auctions"
