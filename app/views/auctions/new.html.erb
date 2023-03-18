@@ -1,10 +1,13 @@
 <div class="container">
   <%= simple_form_for (@auction) do |f|%>
-    <%= f.input :name, label: "Titulo para la subasta" %>
-    <%= f.input :location,  label: "Lugar de la subasta"%>
-    <%= f.input :date, label: "Fecha de la subasta" %>
-    <%= f.input :start, label: "Comienzo de la subasta" %>
-    <%= f.input :finish, label: "Fin de la subasta" %>
-    <%= f.submit "Crear Subasta", class: "btn btn-primary" %>
+    <%= f.input :name, label: "Nombre remate:", input_html: {class: "form-input"}, label_html: {class: "label-input"}, placeholder: "Escribe aqui" %>
+    <%= f.input :photo, as: :file, label:"Imagen", placeholder: "Click aqui para subir una imagen", input_html: {class: "form-input"}, label_html: {class: "label-input"}%>
+    <%= f.input :location,  label: "Ubicacion", placeholder: "Seleccionar ubicacion", input_html: {class: "form-input"}, label_html: {class: "label-input"}%>
+    <%= f.input :start, label: "Fecha de comienzo:", as: :datetime, html5: true, input_html: {class: "form-input"}, label_html: {class: "label-input"}, wrapper_html: {class: "d-flex align-items-center justify-content-between", style: "margin-top: 26px;"} %>
+    <%= f.input :finish, label: "Fecha de finalizacion:", as: :datetime, html5: true, input_html: {class: "form-input"}, label_html: {class: "label-input"}, wrapper_html: {class: "d-flex align-items-center justify-content-between", style: "margin-top: 26px;"}  %>
+    <%= f.input :condiciones, label: "Condiciones", placeholder: "Click aqui para adjuntar archivo", input_html: {class: "form-input"}, label_html: {class: "label-input"} %>
+    <div class="d-flex justify-content-center">
+      <%= f.submit "Crear Subasta", class: "btn-submit mt-4" %>
+    </div>
   <% end %>
 </div>

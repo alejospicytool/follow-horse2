@@ -1,0 +1,12 @@
+<%# Setear @sub_links => desde controller %>
+<div class="sub-links-section">
+  <% if @sub_links %>
+    <% @sub_links.each do |sublink| %>
+      <div class="col-6 sub-link <%= sublink[:path].include?(request.fullpath) ? 'sub-link-active' : '' %>" >
+        <%= link_to sublink[:path] do %>
+          <%= sublink[:title].upcase %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
