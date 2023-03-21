@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
   get 'search', to: 'pages#search', as: 'search'
   get 'add', to: 'pages#add', as: 'add'
-  get 'profile', to: 'profile#index', as: 'profile_index'
-  get 'profile', to: 'profile#show', as: 'profile_show'
+  get 'profile', to: 'pages#profile_index', as: 'profile_index'
+  get '/profile/:id', to: 'pages#profile_show', as: 'profile_show'
   get 'profile_favourite', to: 'profile#favourite', as: 'profile_favourite'
   get 'profile_notification', to: 'profile#notification', as: 'profile_notification'
   get 'profile_publication', to: 'profile#publication', as: 'profile_publication'
