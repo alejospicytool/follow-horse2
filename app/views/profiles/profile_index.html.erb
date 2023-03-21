@@ -1,0 +1,45 @@
+<!-- Content -->
+<div class="container-categorias container-filter">
+  <div class="background d-flex align-items-center justify-content-center" style="background-image: url('<%= image_path 'profile-background.png' %>');">
+
+    <ul style="z-index: 10;">
+      <li>
+        <span>Mis datos</span>
+        <%= image_tag('arrow-right-white.png') %>
+      </li>
+      <li>
+        <%= link_to profile_favourite_path do %>
+          <span>Favoritos</span>
+          <%= image_tag('arrow-right-white.png') %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to profile_notification_path do %>
+          <span>Notificaciones</span>
+          <%= image_tag('arrow-right-white.png') %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to profile_publication_path do %>
+          <span>Mis publicaciones</span>
+          <%= image_tag('arrow-right-white.png') %>
+        <% end %>
+      </li>
+      <li>
+        <span>Ayuda</span>
+        <%= image_tag('arrow-right-white.png') %>
+      </li>
+      <li>
+        <%= button_to(destroy_user_session_path, method: :delete) do %>
+          <span>Cerrar Sesion</span>
+          <%= image_tag('arrow-right-white.png') %>
+        <% end %>
+      </li>
+    </ul>
+
+
+
+
+
+  </div>
+</div>

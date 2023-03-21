@@ -1,7 +1,11 @@
 <!-- Content -->
 <div class="horses-show">
   <div class="foto w-100 h-100 mb-3">
-    <%= cl_image_tag @auction.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% if @auction.photo.key %>
+      <%= cl_image_tag @auction.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% else %>
+      <%= image_tag('caballo.png', class: "w-100", style: "height: 18.75rem;") %>
+    <% end %>
   </div>
 
   <div class="container px-4">
