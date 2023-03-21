@@ -9,7 +9,13 @@
   <div class="cards mb-4">
     <% @horses.each do |horse| %>
       <div class="card w-100 mb-3">
+
+        <% if horse.photos.any? %>
         <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+        <% else %>
+        <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+        <% end %>
+
           <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
         </div>
 
@@ -52,7 +58,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to auctions_path do %>
+        <%= link_to active_auctions_path do %>
           <div>
             <span>Remates</span>
             <%= image_tag('arrow-link-right.png') %>
@@ -75,8 +81,8 @@
   <%= render 'modal-registro' %>
 <% end %>
 
-  <script>
-     $(document).ready(function(){
-        $("#exampleModal").modal('show');
-    });
-  </script>
+<script>
+  //   $(document).ready(function(){
+  //     $("#exampleModal").modal('show');
+  // });
+</script>

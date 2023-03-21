@@ -2,5 +2,31 @@
   background: rgba(94, 153, 112, 0.06) !important;
   border-radius: 4px !important;
   border-bottom: 2px solid #207B6E !important;
-  height: 56px;
+  height: 3.5rem;
+}
+
+.form-input {
+  border-bottom: 4px solid #207B6E;
+  height: 2.313rem;
+  border-radius: 4px;
+  background: rgba(94, 153, 112, 0.06);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #2B3336;
+}
+
+.label-input {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #2B3336;
+}
+
+.auction_start div, .auction_finish div {
+  width: 55%;
 }

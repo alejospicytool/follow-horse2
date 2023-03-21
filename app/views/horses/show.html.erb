@@ -1,7 +1,11 @@
 <!-- Content -->
 <div class="horses-show">
   <div class="foto w-100 h-100 mb-3">
-    <%= cl_image_tag @horse.photos.last.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% if @horse.photos.last %>
+      <%= cl_image_tag @horse.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% else %>
+      <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
+    <% end %>
   </div>
 
   <div class="container px-4">
@@ -42,7 +46,12 @@
       <% @horses.last(2).each do |horse| %>
 
         <div class="card w-100 mb-3 mt-3">
+          <% if horse.photos.last %>
           <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+          <% else %>
+          <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: gray; background-size: cover;">
+          <% end %>
+
             <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
           </div>
 

@@ -1,4 +1,22 @@
 <!-- Content -->
-<div class="search container mt-3">
-  <p>Search view</p>
+<div class="container-categorias container-filter">
+  <div class="background d-flex align-items-center justify-content-center" style="background-image: url('<%= image_path 'background-categorias.png' %>');">
+
+    <div class="d-flex flex-column">
+      <%= link_to horses_path, style:"z-index: 10;" do %>
+        <button class="btn-search mb-5 d-flex justify-content-around align-items-center">
+          <%= image_tag('caballo-icon.png') %>
+          <span>Caballos</span>
+          <%= image_tag('arrow-right-white.png') %>
+        </button>
+      <% end %>
+      <%= link_to active_auctions_path, style:"z-index: 10;" do %>
+        <button class="btn-search d-flex justify-content-around align-items-center">
+          <%= image_tag('remates-icon.png', style: "margin-left: 0.75rem;") %>
+          <span>Remates</span>
+          <%= image_tag('arrow-right-white.png') %>
+        </button>
+      <% end %>
+    </div>
+  </div>
 </div>
