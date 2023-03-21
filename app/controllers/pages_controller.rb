@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :onboarding, :slide1, :slide2, :slide3 ]
+  before_action :set_user, only: %i[show]
 
   def onboarding
     @disable_nav = true
@@ -37,7 +38,19 @@ class PagesController < ApplicationController
     @search = 'true'
   end
 
+  def profile_index
+    @user = current_user
+  end
+
+  def profile_show
+    @user = User.find(params[:id])
+  end
+
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def home_params
     params.require(:horse).permit(photos: [])
