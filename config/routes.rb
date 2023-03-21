@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   # Profile views
   get 'profile', to: 'profiles#profile_index', as: 'profile_index'
-  get 'profile', to: 'profiles#show', as: 'profile_show'
+  get 'profile/:id', to: 'profiles#show', as: 'profile_show'
   get 'profile/favourite', to: 'profiles#favourite', as: 'profile_favourite'
   get 'profile/notification', to: 'profiles#notification', as: 'profile_notification'
   get 'profile/publication', to: 'profiles#publication', as: 'profile_publication'

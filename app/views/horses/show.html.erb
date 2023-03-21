@@ -1,8 +1,8 @@
 <!-- Content -->
 <div class="horses-show">
   <div class="foto w-100 h-100 mb-3">
-    <% if @horse.photos.last %>
-      <%= cl_image_tag @horse.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% if @horse.photos %>
+      <%= cl_image_tag @horse.photos.last.key, class: "w-100", style: "height: 18.75rem;" %>
     <% else %>
       <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
     <% end %>
