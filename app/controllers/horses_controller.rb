@@ -8,8 +8,11 @@ class HorsesController < ApplicationController
   end
 
   def show
-    @horses = Horse.all
+    @user_id = current_user.id
     @horse = Horse.find(params[:id])
+    @horses = Horse.all.select do |horse|
+      @horse.id != horse.id
+    end
     @share_like = 'true'
   end
 
