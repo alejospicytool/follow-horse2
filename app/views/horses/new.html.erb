@@ -59,7 +59,7 @@
     <%= f.input :photos, as: :file,
       label:"Imagen:",
       placeholder: "Click aqui para subir una imagen",
-      input_html: {class: "form-input"},
+      input_html: {class: "form-input", multiple: true},
       label_html: {class: "label-input"}%>
     <%= f.input :video,
       label:"Video:",
