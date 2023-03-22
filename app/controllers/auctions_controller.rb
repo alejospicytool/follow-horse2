@@ -50,8 +50,16 @@ class AuctionsController < ApplicationController
   end
 
   def destroy
-    @auction.destroy
-    redirect_to auctions_path, status: :see_other
+    @auction = Auction.find(params[:id])
+    if @auction.destroy
+      if params[:mis_publicaciones]
+        redirect_to profile_publication_remates_path, notice: "Se elimino correctamente la publicacion"
+      else
+        redirect_to auctions_path, notice: "Se elimino correctamente la publicacion"
+      end
+    else
+      render 'mis_publicaciones/remates', alert: "No se pudo eliminar la publicacion, intente nuevamente"
+    end
   end
 
   def sub_links
