@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   get 'slide3', to: 'pages#slide3', as: 'slide3'
 
   # Horses routes
-  resources :horses
+  get 'horses', to: 'horses#index'
+  get 'horses/new', to: 'horses#new', as: 'horse_new'
+  get 'horses/:id', to: 'horses#show', as: "horse_show"
+  post 'horses/create', to: 'horses#create'
+  get 'horses/:id/edit', to: 'horses#edit'
+  put 'horses/:id', to: 'horses#update'
+  delete 'horses/:id', to: 'horses#destroy', as: :horses_destroy
 
   # Auctions routes
   get 'active_auctions', to: 'auctions#active_auctions', as: 'active_auctions'
@@ -22,6 +28,7 @@ Rails.application.routes.draw do
   get 'autions/:id', to: 'auctions#show', as: 'auction'
   get 'autions/:id/edit', to: 'auctions#edit'
   put 'autions/:id', to: 'auctions#create'
+  delete 'auctions/:id', to: 'auctions#destroy', as: :auction_destroy
 
   # Lotes views
   get 'auctions/:id/lotes', to: 'lotes#index'
@@ -36,10 +43,10 @@ Rails.application.routes.draw do
   get 'add', to: 'pages#add', as: 'add'
 
   # Profile views
-  get 'profile', to: 'profiles#profile_index', as: 'profile_index'
-  get 'profile/:id', to: 'profiles#show', as: 'profile_show'
-  get 'profile/favourite', to: 'profiles#favourite', as: 'profile_favourite'
-  get 'profile/notification', to: 'profiles#notification', as: 'profile_notification'
-  get 'profile/publication', to: 'profiles#publication', as: 'profile_publication'
-
+  get 'perfiles', to: 'profiles#profile_index', as: 'profile_index'
+  get 'perfiles/:id', to: 'profiles#show', as: 'profile_show'
+  get 'favoritos', to: 'profiles#favourite', as: 'profile_favourite'
+  get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
+  get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
+  get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
 end
