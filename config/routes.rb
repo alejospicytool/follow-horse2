@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#onboarding", as: 'onboarding'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
   # Defines the root path route ("/")
 
   # Home routes
@@ -45,7 +44,8 @@ Rails.application.routes.draw do
   # Profile views
   get 'perfiles', to: 'profiles#profile_index', as: 'profile_index'
   get 'perfiles/:id', to: 'profiles#show', as: 'profile_show'
-  get 'favoritos', to: 'profiles#favourite', as: 'profile_favourite'
+  get 'favoritos/caballos', to: 'profiles#favourite_caballos', as: 'profile_favourite_caballos'
+  get 'favoritos/remates', to: 'profiles#favourite_remates', as: 'profile_favourite_remates'
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
