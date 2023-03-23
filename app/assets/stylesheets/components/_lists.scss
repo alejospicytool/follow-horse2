@@ -1,3 +1,46 @@
 ul {
   list-style-type: none;
 }
+
+// INDEX PERFILES STYLE
+.profile-index {
+  margin-top: 4rem;
+  z-index: 10;
+}
+
+.profile-index li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  height: 3.75rem;
+}
+
+.profile-index li a div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.profile-index li a {
+  width: 100%;
+}
+
+.profile-index li img {
+  height: 0.688rem;
+  margin-right: 0.313rem;
+}
+
+.profile-index span {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+
+.profile-index form {
+  width: 100%;
+}
