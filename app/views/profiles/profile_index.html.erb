@@ -1,45 +1,62 @@
 <!-- Content -->
 <div class="container-categorias container-filter">
-  <div class="background d-flex align-items-center justify-content-center" style="background-image: url('<%= image_path 'profile-background.png' %>');">
+  <div class="background d-flex justify-content-center" style="background-image: url('<%= image_path 'profile-background.png' %>');">
 
-    <ul style="z-index: 10;">
-      <li>
-        <span>Mis datos</span>
-        <%= image_tag('arrow-right-white.png') %>
-      </li>
-      <li>
-        <%= link_to profile_favourite_url do %>
-          <span>Favoritos</span>
+    <div class="profile-index w-100">
+      <ul class="p-0">
+        <li class="py-4">
+          <%= link_to edit_user_registration_path, class:"d-flex justify-content-between align-items-center" do %>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= image_tag('mis_datos.svg', style: "height: 22px; margin-right: 14px;") %>
+              <span>Mis datos</span>
+            </div>
+            <%= image_tag('arrow-right-white.png') %>
+          <% end %>
+        </li>
+        <li class="py-4">
+          <%= link_to profile_favourite_caballos_url, class:"d-flex justify-content-between align-items-center" do %>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= image_tag('mis_favoritos.svg', style: "height: 22px; margin-right: 14px;") %>
+              <span>Favoritos</span>
+            </div>
+            <%= image_tag('arrow-right-white.png') %>
+          <% end %>
+        </li>
+        <li class="py-4">
+          <%= link_to profile_notification_path, class:"d-flex justify-content-between align-items-center" do %>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= image_tag('mis_notificaciones.svg', style: "height: 22px; margin-right: 14px;") %>
+              <span>Notificaciones</span>
+            </div>
+            <%= image_tag('arrow-right-white.png') %>
+          <% end %>
+        </li>
+        <li class="py-4">
+          <%= link_to profile_publication_caballos_path, class:"d-flex justify-content-between align-items-center" do %>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= image_tag('mis_publicaciones.svg', style: "height: 22px; margin-right: 14px;") %>
+              <span>Mis publicaciones</span>
+            </div>
+            <%= image_tag('arrow-right-white.png') %>
+          <% end %>
+        </li>
+        <li class="d-flex justify-content-between py-4">
+          <div class="d-flex justify-content-start align-items-center">
+            <%= image_tag('ayuda.svg', style: "height: 22px; margin-right: 14px;") %>
+            <span>Ayuda</span>
+          </div>
           <%= image_tag('arrow-right-white.png') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to profile_notification_path do %>
-          <span>Notificaciones</span>
-          <%= image_tag('arrow-right-white.png') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to profile_publication_caballos_path do %>
-          <span>Mis publicaciones</span>
-          <%= image_tag('arrow-right-white.png') %>
-        <% end %>
-      </li>
-      <li>
-        <span>Ayuda</span>
-        <%= image_tag('arrow-right-white.png') %>
-      </li>
-      <li>
-        <%= button_to(destroy_user_session_path, method: :delete) do %>
-          <span>Cerrar Sesion</span>
-          <%= image_tag('arrow-right-white.png') %>
-        <% end %>
-      </li>
-    </ul>
-
-
-
-
-
+        </li>
+        <li class="py-4">
+          <%= button_to(destroy_user_session_path, method: :delete, class:"d-flex justify-content-between m-0 w-100 align-items-center border-0 bg-transparent p-0", input_html: {class: "w-100"}) do %>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= image_tag('cerrar_sesion.svg', style: "height: 22px; margin-right: 14px;") %>
+              <span>Cerrar Sesion</span>
+            </div>
+            <%= image_tag('arrow-right-white.png') %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

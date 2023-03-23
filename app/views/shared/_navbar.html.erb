@@ -7,7 +7,9 @@
           <%= image_tag 'follow-horse-logo-sin-texto.png' %>
         <% end %>
       <% else %>
-        <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+        <%= link_to :back, class: "d-flex align-items-center" do %>
+          <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+        <% end %>
       <% end %>
 
       <% if @section_title %>

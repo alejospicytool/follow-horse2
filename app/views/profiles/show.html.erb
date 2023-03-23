@@ -1,50 +1,104 @@
-<div class="my-profile" >
-  <div class="w-100 h-100 mb-3">
-    <%= cl_image_tag @user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+<!-- Content -->
+<div class="horses-show" style="margin-top: 3.75rem;">
+  <div class="foto w-100 h-100 mb-3">
+    <% if current_user.photo %>
+      <%= cl_image_tag current_user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% else %>
+      <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
+    <% end %>
   </div>
-  <div>
-    <%= @user.nombre %><br>
-    <%= @user.direccion %>
-  </div>
-  <div class="container">
+
+  <div class="info">
+
+    <div class="horse-titulo container px-4 d-flex flex-column mb-4">
+      <span class="titulo mb-1"><%= current_user.nombre %> <%= current_user.apellido %></span>
+      <span class= "text"><%= current_user.direccion %></span>
+    </div>
+
     <div id="accordion">
-      <div class="card">
+      <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important; border-top: 0.5px solid #5E9970 !important;">
         <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Info de Contacto
-            </button>
-          </h5>
+          <button class="btn btn-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none; color: #494949;">
+            <h5 class="mb-0">Info de Contacto</h5>
+            <%= image_tag('arrow-down.svg') %>
+          </button>
         </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
-          <div class="card-body">
-            <%= @user.description %><br>
-            <%= @user.phone %><br>
-            <%= @user.email %><br>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+          <div class="card-body mb-3 container" style="margin-top: 15px !important;">
+
+            <div class="detalles d-flex flex-column py-3">
+              <span class= "subtitle">Telefono: <span class= "text"><%= @user.phone %> </span></span>
+              <span class= "subtitle">Email: <span class= "text"><%= @user.email %> </span></span>
+            </div>
+
+            <div class="pedigree d-flex flex-column py-3">
+              <span class= "subtitle">Establecimiento: <span class= "text"><%= @user.establishment %> </span></span>
+              <span class= "subtitle">Edad: <span class= "text"><%= @user.age %>años </span></span>
+            </div>
+
+            <div class="pedigree d-flex flex-column py-3">
+              <span class= "subtitle">Descripcion: <span class= "text"><%= @user.description %> </span></span>
+            </div>
+
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important;">
         <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Publicaciones realizadas
-            </button>
-          </h5>
+          <button class="btn btn-link collapsed d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none; color: #494949;">
+            <h5 class="mb-0">Publicaciones realizadas</h5>
+            <%= image_tag('arrow-down.svg') %>
+          </button>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
           <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="cards mb-4 mt-2">
+              <% @horses.each do |horse| %>
+                <div class="card w-100 mb-3">
+
+                  <% if horse.photos.any? %>
+                  <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+                  <% else %>
+                  <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+                  <% end %>
+
+                    <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+                  </div>
+
+                  <div class="card-content">
+                    <div class="p-2 d-flex">
+                      <div class="col-4">
+                      </div>
+                      <div class="col-4 d-flex justify-content-center link align-items-center">
+                        <%= link_to horse_show_path(horse.id) do %>
+                          <span>VER MAS</span>
+                        <% end %>
+                      </div>
+                      <div class="col-4 d-flex justify-content-end align-items-center">
+                        <div>
+                          <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                          <%= image_tag('share.png') %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  $('#myCollapsible').collapse({
-  toggle: false
-  })
-</script>
+  <div class="d-flex justify-content-center mt-5 mb-4">
+    <button class= "btn-submit mt-2">ENVIAR MENSAJE</button>
+  </div>
+
+  <div class="d-flex justify-content-center mt-3 mb-5">
+    <%= image_tag('instagram.svg', style: "margin-right: 15px;") %>
+    <%= image_tag('facebook.svg', style: "margin-right: 15px;") %>
+    <%= image_tag('whatsapp.svg') %>
+  </div>
+</div>

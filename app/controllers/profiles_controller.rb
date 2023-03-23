@@ -8,11 +8,20 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @horses = Horse.where(user_id: current_user)
+    @section_title = current_user.nombre + " " + current_user.apellido
   end
 
-  def favourite
+  def favourite_caballos
     @section_title = "Favoritos"
+    @horses = Horse.all.where(user_id: current_user)
   end
+
+  def favourite_remates
+    @section_title = "Favoritos"
+    @auctions = Auction.all.where(user_id: current_user)
+  end
+
 
   def notification
     @section_title = "Notificaciones"
@@ -29,9 +38,14 @@ class ProfilesController < ApplicationController
   end
 
   def sub_links
-    @sub_links = [
+    @sub_links_publicaciones = [
       { title: "Caballos", path: profile_publication_caballos_path },
       { title: "Remates", path: profile_publication_remates_path }
+    ]
+
+    @sub_links_favoritos = [
+      { title: "Caballos", path: profile_favourite_caballos_path },
+      { title: "Remates", path: profile_favourite_remates_path }
     ]
   end
 
