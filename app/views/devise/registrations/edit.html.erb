@@ -1,38 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render 'shared/navbar' %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+  <div class="foto d-flex justify-content-center align-items-center mb-4" style="position: relative;">
+    <% if @user.photo %>
+      <%= cl_image_tag @user.photo.key, class: "mis-datos-img" %>
+    <% else %>
+      <%= image_tag('caballo.jpeg', class: "mis-datos-img") %>
     <% end %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <%= image_tag('foto-icon.svg', style: "position: absolute; height: 2.75rem; top: 115px; right: 80px;") %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="title mb-4">
+    <h5 class="section-title mb-0"><%= @user.nombre.capitalize %> <%= @user.apellido.capitalize %></h5>
+    <span class=""><%= @user.email %></span>
   </div>
-<% end %>
 
-<h3>Cancel my account</h3>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-<div class="d-flex align-items-center">
-  <div>Unhappy?</div>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+    <div class="form-inputs">
+      <%#= f.input :email, required: true, autofocus: true %>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
+
+      <%= f.input :age,
+                  label: "Edad:",
+                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
+                  label_html: {class: "label-input"},
+                  placeholder: "Escribe aqui" %>
+
+      <%= f.input :establishment,
+                  label: "Establecimiento:",
+                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
+                  label_html: {class: "label-input"},
+                  placeholder: "Escribe aqui" %>
+
+      <%= f.input :phone,
+                  label: "Telefono:",
+                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
+                  label_html: {class: "label-input"},
+                  placeholder: "Escribe aqui" %>
+
+      <%= f.input :direccion,
+                  label: "Direccion:",
+                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
+                  label_html: {class: "label-input"},
+                  placeholder: "Escribe aqui" %>
+
+      <%= f.input :description,
+                  label: "Sobre mi:",
+                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
+                  label_html: {class: "label-input"},
+                  placeholder: "Escribe aqui" %>
+
+      <%= f.input :password,
+                  hint: "Dejar en blanco si no se quiere actualizar",
+                  required: false,
+                  input_html: { autocomplete: "Nueva Contraseña", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: {class: "label-input"} %>
+
+      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "Nueva Contraseña", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: {class: "label-input"} %>
+
+      <%= f.input :current_password,
+                  hint: "Necesitamos que ingreses tu contraseña para confirmar los cambios",
+                  required: true,
+                  input_html: { autocomplete: "Contraseña actual", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: {class: "label-input"} %>
+    </div>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= f.button :submit, "ACTUALIZAR", class: "btn-submit mt-2" %>
+    </div>
+
+  <% end %>
+
+  <div class="d-flex align-items-center justify-content-center">
+    <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+  </div>
 </div>
 
-<%= link_to "Back", :back %>
+<%= render 'shared/footer' %>
