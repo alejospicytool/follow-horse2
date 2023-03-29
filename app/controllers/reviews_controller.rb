@@ -4,14 +4,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
     @review = Review.new(review_params)
     @review.writer_id = current_user.id
+    @review.user = @user
     if @review.save
-      user = User.find(@review.user_id)
-      user.update_rating
-      redirect_to user_path(@review.user)
+      redirect_to profile_show_path(@user)
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = "Something went wrong."
+      render "profiles/show", status: :unprocessable_entity
     end
   end
 
@@ -34,6 +35,18 @@ class ReviewsController < ApplicationController
       redirect_to user_path(@review.user), notice: "Se elimino correctamente la review"
     else
       render 'user/show', alert: "No se pudo eliminar la review, intente nuevamente"
+    end
+  end
+
+  def approve
+    review = Review.find(params[:id])
+    review.approve = true
+    user = User.find(review.user_id)
+    if review.save
+      user.update_rating
+      redirect_to profile_show_path(user)
+    else
+      redirecto_to home_path, alert: "No se pudo eliminar la review, intente nuevamente"
     end
   end
 

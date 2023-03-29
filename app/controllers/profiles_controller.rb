@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
     @horses = Horse.where(user_id: current_user)
     @section_title = current_user.nombre + " " + current_user.apellido
+    @review = Review.new
   end
 
   def favourite_caballos

@@ -1,8 +1,8 @@
 <!-- Content -->
 <div class="horses-show" style="margin-top: 3.75rem;">
   <div class="foto w-100 h-100 mb-3">
-    <% if current_user.photo %>
-      <%= cl_image_tag current_user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+    <% if @user.photo %>
+      <%= cl_image_tag @user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
     <% else %>
       <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
     <% end %>
@@ -11,8 +11,10 @@
   <div class="info">
 
     <div class="horse-titulo container px-4 d-flex flex-column mb-4">
-      <span class="titulo mb-1"><%= current_user.nombre %> <%= current_user.apellido %></span>
-      <span class= "text"><%= current_user.direccion %></span>
+      <span class="titulo mb-1"><%= @user.nombre %> <%= @user.apellido %></span>
+      <span class= "text"><%= @user.direccion %></span>
+      <span class= "text"><%= user_rating %><i class="fas fa-star review-star-icon"></i></span>
+
     </div>
 
     <div id="accordion">
@@ -102,3 +104,50 @@
     <%= image_tag('whatsapp.svg') %>
   </div>
 </div>
+
+<% if current_user.admin == true %>
+    <% @user.reviews.each do |review| %>
+      <li class="list-group-item">
+        <div class="comment-text">
+          <small >
+            <% review.rating.times do %>
+              <i class="fas fa-star review-star-icon"></i>
+            <% end %>
+          <%= review.rating %>/5</small>
+          <p>
+            <%= review.comment %>
+          </p>
+          <a href="/approve_review/<%=review.id%>">Aprobado</a>
+        </div>
+      </li>
+    <% end %>
+    <% end %>
+
+<% if current_user.admin == false %>
+    <% @user.reviews.where(approve: true).each do |review| %>
+      <li class="list-group-item">
+        <div class="comment-text">
+          <small >
+            <% review.rating.times do %>
+              <i class="fas fa-star review-star-icon"></i>
+            <% end %>
+          <%= review.rating %>/5</small>
+          <p>
+            <%= review.comment %>
+          </p>
+        </div>
+      </li>
+    <% end %>
+    <% end %>
+
+<%= simple_form_for([@user, @review],
+    data: {insert_in_list_target: "form",
+    action: "submit->insert-in-list#send"
+    }) do |f| %>
+
+    <%= f.input :comment, as: :text %>
+  <div class="d-flex justify-content-between">
+    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+    <%= f.submit class:"btn btn-outline-dark review-button profile-rounded"%>
+  </div>
+<% end %>
