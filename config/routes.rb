@@ -44,9 +44,15 @@ Rails.application.routes.draw do
   # Profile views
   get 'perfiles', to: 'profiles#profile_index', as: 'profile_index'
   get 'perfiles/:id', to: 'profiles#show', as: 'profile_show'
+  resources :users do
+    resources :reviews, only: :create
+    end
   get 'favoritos/caballos', to: 'profiles#favourite_caballos', as: 'profile_favourite_caballos'
   get 'favoritos/remates', to: 'profiles#favourite_remates', as: 'profile_favourite_remates'
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
+
+  get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
+  get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
 end

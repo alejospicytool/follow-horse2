@@ -16,7 +16,7 @@ class User < ApplicationRecord
     reviews.each do |review|
       sum += review.rating
     end
-    self.rating = sum / reviews.count
+    self.rating = sum.to_f / reviews.count
     self.save
   end
 end

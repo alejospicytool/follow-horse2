@@ -1,10 +1,8 @@
 <!-- Content -->
-<div class="horses-index container mt-3">
-
-  <div class="cards mb-4">
+<div class="horses-index container mt-3 ">
+  <div class="cards mb-4 col-sm-12 col-md-6 col-lg-4">
     <% @horses.each do |horse| %>
       <div class="card w-100 mb-3">
-
         <% if horse.photos.any? %>
           <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
         <% else %>
