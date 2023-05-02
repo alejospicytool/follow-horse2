@@ -2,16 +2,33 @@ class HorsesController < ApplicationController
   before_action :set_horse, only: %i[show edit update delete destroy]
 
   def index
-    @horses = Horse.all
+    @horses = Horse.all.select do |horse|
+      horse.user.id != current_user.id
+    end
     @section_title = "Caballos"
     @filtros = 'true'
   end
 
+  def potros
+    @horses_user = Horse.select do |horse|
+      horse.user.id != current_user.id
+    end
+    @horses = @horses_user.select do |horse|
+      horse.age <= 1
+    end
+    @section_title = "Potros"
+    @filtros = 'true'
+  end
+
   def show
+    @section_title = @horse.name
     @user_id = current_user.id
     @horse = Horse.find(params[:id])
-    @horses = Horse.all.select do |horse|
-      @horse.id != horse.id
+    @horses_user = Horse.select do |horse|
+      horse.user.id != current_user.id
+    end
+    @horses = @horses_user.select do |horse|
+      horse.id != params[:id].to_i
     end
     @share_like = 'true'
   end
