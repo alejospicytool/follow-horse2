@@ -24,7 +24,14 @@
     <% elsif @share_like %>
       <div>
         <%= image_tag('favorite-white.png', style: 'margin-right: 10px;') %>
-        <%= image_tag('share-white.png') %>
+          <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)%>">
+            <%= button_to image_tag('share.png'), "", data: {
+              action: "click->share#share"
+            } %>
+            <%= content_tag(:p, "", class:"result", data: {
+              share_target: "result"
+            }) %>
+          </div>
       </div>
     <% end %>
   </div>
