@@ -2,34 +2,35 @@
 
 <!-- Content -->
 <div class="auctions-index container" style="margin-top: 8rem !important;">
-
-  <div class="cards mb-4">
+  <div class="cards mb-4 row">
     <% @auctions.each do |auction| %>
-      <div class="card w-100 mb-3">
-      <% if auction.photo.key %>
-        <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path auction.photo.key %>'); background-size: cover;">
-          <div class="nombre m-0 w-100"><span><%= auction.name %></span></div>
-        </div>
-      <% else %>
-        <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-color: gray; background-size: cover;">
-          <div class="nombre m-0 w-100"><span><%= auction.name %></span></div>
-        </div>
-      <% end %>
+      <div class="col-sm-6 col-lg-4 col-sm-12">
+        <div class="card w-100 mb-3">
+          <% if auction.photo.key %>
+            <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path auction.photo.key %>'); background-size: cover;">
+              <div class="nombre m-0 w-100"><span><%= auction.name %></span></div>
+            </div>
+          <% else %>
+            <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-color: gray; background-size: cover;">
+              <div class="nombre m-0 w-100"><span><%= auction.name %></span></div>
+            </div>
+          <% end %>
 
-        <div class="card-content">
-          <div class="p-2 d-flex">
-            <div class="col-4">
-              <span class="en-vivo">EN VIVO</span>
-            </div>
-            <div class="col-4 d-flex justify-content-center link align-items-center">
-              <%= link_to auction_path(auction.id) do %>
-                <span>VER MAS</span>
-              <% end %>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-              <div>
-                <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                <%= image_tag('share.png') %>
+          <div class="card-content">
+            <div class="p-2 d-flex">
+              <div class="col-4">
+                <span class="en-vivo">EN VIVO</span>
+              </div>
+              <div class="col-4 d-flex justify-content-center link align-items-center">
+                <%= link_to auction_path(auction.id) do %>
+                  <span>VER MAS</span>
+                <% end %>
+              </div>
+              <div class="col-4 d-flex justify-content-end align-items-center">
+                <div>
+                  <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                  <%= image_tag('share.png') %>
+                </div>
               </div>
             </div>
           </div>
@@ -37,5 +38,4 @@
       </div>
     <% end %>
   </div>
-
 </div>
