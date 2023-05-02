@@ -5,6 +5,11 @@
       input_html: {class: "form-input"},
       label_html: {class: "label-input"},
       placeholder: "Escribe aqui" %>
+    <%= f.input :link_auction,
+      label: "Link del remate",
+      placeholder: "Agrega un link del remate",
+      input_html: {class: "form-input"},
+      label_html: {class: "label-input"} %>
     <%= f.input :photo, as: :file,
       label:"Imagen",
       placeholder: "Click aqui para subir una imagen",
@@ -30,7 +35,7 @@
       style: "margin-top: 26px;"} %>
     <%= f.input :condiciones,
       label: "Condiciones",
-      placeholder: "Click aqui para adjuntar archivo",
+      placeholder: "Agrega un link a las condiciones",
       input_html: {class: "form-input"},
       label_html: {class: "label-input"} %>
     <div class="d-flex justify-content-center">

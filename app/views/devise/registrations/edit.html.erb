@@ -1,15 +1,19 @@
 <%= render 'shared/navbar' %>
 
-<div class="container">
+<div class="container col-sm-8 col-lg-6 col-sm-12">
 
-  <div class="foto d-flex justify-content-center align-items-center mb-4" style="position: relative;">
-    <% if @user.photo %>
-      <%= cl_image_tag @user.photo.key, class: "mis-datos-img" %>
-    <% else %>
-      <%= image_tag('caballo.jpeg', class: "mis-datos-img") %>
-    <% end %>
+  <div class="foto d-flex justify-content-center align-items-center mb-4">
+    <div style="position: relative; width: 35%" class="d-flex justify-content-center align-items-center">
+      <% if @user.photo %>
+        <%= cl_image_tag @user.photo.key, class: "mis-datos-img" %>
+      <% else %>
+        <%= image_tag('caballo.jpeg', class: "mis-datos-img") %>
+      <% end %>
 
-    <%= image_tag('foto-icon.svg', style: "position: absolute; height: 2.75rem; top: 115px; right: 80px;") %>
+      <div class="d-flex align-items-end justify-content-end" style="height: 142px;">
+        <%= image_tag('foto-icon.svg', style: "position: absolute;") %>
+      </div>
+    </div>
   </div>
 
   <div class="title mb-4">

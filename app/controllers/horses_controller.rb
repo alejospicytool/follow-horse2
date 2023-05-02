@@ -2,32 +2,37 @@ class HorsesController < ApplicationController
   before_action :set_horse, only: %i[show edit update delete destroy]
 
   def index
-    @horses = Horse.all
+    @horses = Horse.all.where.not(user_id: current_user.id)
     @section_title = "Caballos"
     @filtros = 'true'
   end
 
-  def show
-    @user_id = current_user.id
-    @horse = Horse.find(params[:id])
-    @horses = Horse.all.select do |horse|
-      @horse.id != horse.id
+  def potros
+    @horses_user = Horse.all.where.not(user_id: current_user.id)
+    @horses = @horses_user.select do |horse|
+      horse.age <= 1
     end
+    @section_title = "Potros"
+    @filtros = 'true'
+  end
+
+  def show
+    @section_title = @horse.name
+    @horse = Horse.find(params[:id])
+    @horses = Horse.all.where.not(user_id: current_user.id).where.not(id: params[:id].to_i)
     @share_like = 'true'
   end
 
   def new
     @horse = Horse.new
-    @user = current_user
     @section_title = "Añadir caballo"
     @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
     @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
   end
 
   def create
-    @user = current_user
     @horse = Horse.create(horse_params)
-    @horse.user = @user
+    @horse.user = current_user
     if @horse.save
       redirect_to horses_path
     else
