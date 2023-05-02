@@ -1,153 +1,189 @@
 <!-- Content -->
-<div class="horses-show" style="margin-top: 3.75rem;">
-  <div class="foto w-100 h-100 mb-3">
-    <% if @user.photo %>
-      <%= cl_image_tag @user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
-    <% else %>
-      <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
-    <% end %>
-  </div>
+<div class="horses-show d-flex flex-column align-items-center">
+  <div class="col-lg-6 col-sm-10 col-md-8 col-12" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 
-  <div class="info">
-
-    <div class="horse-titulo container px-4 d-flex flex-column mb-4">
-      <span class="titulo mb-1"><%= @user.nombre %> <%= @user.apellido %></span>
-      <span class= "text"><%= @user.direccion %></span>
-      <span class= "text"><%= user_rating %><i class="fas fa-star review-star-icon"></i></span>
-
+    <div class="foto w-100 h-100 mb-3">
+      <% if @user.photo %>
+        <%= cl_image_tag @user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+      <% else %>
+        <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
+      <% end %>
     </div>
 
-    <div id="accordion">
-      <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important; border-top: 0.5px solid #5E9970 !important;">
-        <div class="card-header" id="headingOne">
-          <button class="btn btn-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none; color: #494949;">
-            <h5 class="mb-0">Info de Contacto</h5>
-            <%= image_tag('arrow-down.svg') %>
-          </button>
+    <div class="info">
+      <div class="horse-titulo container px-4 d-flex flex-column mb-4 py-0">
+        <div class="d-flex justify-content-between">
+          <span class="titulo mb-1"><%= @user.nombre %> <%= @user.apellido %></span>
+          <span class= "text d-flex align-items-center">
+            <strong><%= user_rating %></strong>
+            <% if user_rating != "Sin reseñas recibidas" %>
+              <i class="fas fa-star review-star-icon" style="margin-left: 3px; color: #e67e22;margin-bottom: 4px;"></i>
+            <% end %>
+          </span>
         </div>
+        <span class= "text"><%= @user.direccion %></span>
+      </div>
+      <div id="accordion">
+        <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important; border-top: 0.5px solid #5E9970 !important;">
+          <div class="card-header" id="headingOne">
+            <button class="btn btn-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none; color: #494949;">
+              <h5 class="mb-0">Info de Contacto</h5>
+              <%= image_tag('arrow-down.svg') %>
+            </button>
+          </div>
 
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
-          <div class="card-body mb-3 container" style="margin-top: 15px !important;">
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+            <div class="card-body mb-3 container py-0 px-5" style="margin-top: 10px !important;">
 
-            <div class="detalles d-flex flex-column py-3">
-              <span class= "subtitle">Telefono: <span class= "text"><%= @user.phone %> </span></span>
-              <span class= "subtitle">Email: <span class= "text"><%= @user.email %> </span></span>
+              <div class="detalles d-flex flex-column py-3" style="border-top: none;">
+                <span class= "subtitle">Telefono: <span class= "text"><%= @user.phone %> </span></span>
+                <span class= "subtitle">Email: <span class= "text"><%= @user.email %> </span></span>
+              </div>
+
+              <div class="pedigree d-flex flex-column py-3">
+                <span class= "subtitle">Establecimiento: <span class= "text"><%= @user.establishment %> </span></span>
+                <span class= "subtitle">Edad: <span class= "text"><%= @user.age %>años </span></span>
+              </div>
+
+              <div class="pedigree d-flex flex-column py-3" style="border-bottom: none;">
+                <span class= "subtitle">Descripcion: <span class= "text"><%= @user.description %> </span></span>
+              </div>
+
             </div>
-
-            <div class="pedigree d-flex flex-column py-3">
-              <span class= "subtitle">Establecimiento: <span class= "text"><%= @user.establishment %> </span></span>
-              <span class= "subtitle">Edad: <span class= "text"><%= @user.age %>años </span></span>
-            </div>
-
-            <div class="pedigree d-flex flex-column py-3">
-              <span class= "subtitle">Descripcion: <span class= "text"><%= @user.description %> </span></span>
-            </div>
-
           </div>
         </div>
-      </div>
-      <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important;">
-        <div class="card-header" id="headingTwo">
-          <button class="btn btn-link collapsed d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none; color: #494949;">
-            <h5 class="mb-0">Publicaciones realizadas</h5>
-            <%= image_tag('arrow-down.svg') %>
-          </button>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-          <div class="card-body">
-            <div class="cards mb-4 mt-2">
-              <% @horses.each do |horse| %>
-                <div class="card w-100 mb-3">
+        <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important;">
+          <div class="card-header" id="headingTwo">
+            <button class="btn btn-link collapsed d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none; color: #494949;">
+              <h5 class="mb-0">Publicaciones realizadas</h5>
+              <%= image_tag('arrow-down.svg') %>
+            </button>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+            <div class="card-body px-5">
+              <div class="cards mb-4 mt-2">
+                <% @horses.each do |horse| %>
+                  <div class="card w-100 mb-3">
 
-                  <% if horse.photos.any? %>
-                  <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
-                  <% else %>
-                  <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
-                  <% end %>
+                    <% if horse.photos.any? %>
+                    <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+                    <% else %>
+                    <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+                    <% end %>
 
-                    <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
-                  </div>
+                      <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+                    </div>
 
-                  <div class="card-content">
-                    <div class="p-2 d-flex">
-                      <div class="col-4">
-                      </div>
-                      <div class="col-4 d-flex justify-content-center link align-items-center">
-                        <%= link_to horse_show_path(horse.id) do %>
-                          <span>VER MAS</span>
-                        <% end %>
-                      </div>
-                      <div class="col-4 d-flex justify-content-end align-items-center">
-                        <div>
-                          <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                          <%= image_tag('share.png') %>
+                    <div class="card-content">
+                      <div class="p-2 d-flex">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-4 d-flex justify-content-center link align-items-center">
+                          <%= link_to horse_show_path(horse.id) do %>
+                            <span>VER MAS</span>
+                          <% end %>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end align-items-center">
+                          <div>
+                            <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                            <%= image_tag('share.png') %>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important;">
+          <div class="card-header" id="headingOne">
+            <button class="btn btn-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" style="text-decoration: none; color: #494949;">
+              <h5 class="mb-0">Reseñas</h5>
+              <%= image_tag('arrow-down.svg') %>
+            </button>
+          </div>
+
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+            <div class="card-body mb-3 container py-0 px-4" style="margin-top: 20px !important;">
+
+              <% if current_user.admin == true %>
+                <ul style="padding: 0;" class="px-2">
+                  <% @user.reviews.each do |review| %>
+                    <li class="list-group-item mb-3">
+                      <div class="comment-text" style="border-bottom: 2px solid rgba(131, 131, 131, 0.7); padding-bottom: 15px;">
+                        <small >
+                          <% review.rating.times do %>
+                            <i class="fas fa-star review-star-icon"></i>
+                          <% end %>
+                        <%= review.rating %>/5</small><br>
+                        <span> <%= review.comment %> </span><br>
+                        <% if review.approve == true %>
+                          <%= link_to disapprove_review_path(review_id: review.id) do  %>
+                            <span>Aprobado</span>
+                          <% end %>
+                        <% else %>
+                          <%= link_to approve_review_path(review_id: review.id) do  %>
+                            <span>No aprobado</span>
+                          <% end %>
+                        <% end %>
+
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+
+              <% if current_user.admin == false %>
+                <ul style="padding: 0;" class="px-2">
+                  <% @user.reviews.where(approve: true).each do |review| %>
+                    <li class="list-group-item mb-3">
+                      <div class="comment-text" style="border-bottom: 2px solid rgba(131, 131, 131, 0.7); padding-bottom: 15px;">
+                        <small >
+                          <% review.rating.times do %>
+                            <i class="fas fa-star review-star-icon"></i>
+                          <% end %>
+                        <%= review.rating %>/5</small><br>
+                        <span> <%= review.comment %> </span>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+
+              <div class="horse-titulo container px-2 d-flex flex-column mb-5 py-0">
+                <%= simple_form_for([@user, @review],
+                    data: {insert_in_list_target: "form",
+                    action: "submit->insert-in-list#send"
+                    }) do |f| %>
+                  <div class="d-flex justify-content-between">
+                    <%= f.input :rating, collection: (1..5).to_a, label: "Califica tu experiencia", input_html: {data: {controller: "star-rating"}} %>
+                  </div>
+                  <%= f.input :comment, as: :text, label: "Commentario" %>
+                  <div class="d-flex justify-content-center w-100">
+                    <%= f.submit "Publicar Reseña", class:"btn-submit" %>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <div class="d-flex justify-content-center mt-5 mb-4">
-    <button class= "btn-submit mt-2">ENVIAR MENSAJE</button>
-  </div>
+    <div class="d-flex justify-content-center mt-5 mb-4">
+      <button class= "btn-submit mt-2">ENVIAR MENSAJE</button>
+    </div>
 
-  <div class="d-flex justify-content-center mt-3 mb-5">
-    <%= image_tag('instagram.svg', style: "margin-right: 15px;") %>
-    <%= image_tag('facebook.svg', style: "margin-right: 15px;") %>
-    <%= image_tag('whatsapp.svg') %>
+    <div class="d-flex justify-content-center mt-3 mb-5">
+      <%= image_tag('instagram.svg', style: "margin-right: 15px;") %>
+      <%= image_tag('facebook.svg', style: "margin-right: 15px;") %>
+      <%= image_tag('whatsapp.svg') %>
+    </div>
+
   </div>
 </div>
-
-<% if current_user.admin == true %>
-    <% @user.reviews.each do |review| %>
-      <li class="list-group-item">
-        <div class="comment-text">
-          <small >
-            <% review.rating.times do %>
-              <i class="fas fa-star review-star-icon"></i>
-            <% end %>
-          <%= review.rating %>/5</small>
-          <p>
-            <%= review.comment %>
-          </p>
-          <a href="/approve_review/<%=review.id%>">Aprobado</a>
-        </div>
-      </li>
-    <% end %>
-    <% end %>
-
-<% if current_user.admin == false %>
-    <% @user.reviews.where(approve: true).each do |review| %>
-      <li class="list-group-item">
-        <div class="comment-text">
-          <small >
-            <% review.rating.times do %>
-              <i class="fas fa-star review-star-icon"></i>
-            <% end %>
-          <%= review.rating %>/5</small>
-          <p>
-            <%= review.comment %>
-          </p>
-        </div>
-      </li>
-    <% end %>
-    <% end %>
-
-<%= simple_form_for([@user, @review],
-    data: {insert_in_list_target: "form",
-    action: "submit->insert-in-list#send"
-    }) do |f| %>
-
-    <%= f.input :comment, as: :text %>
-  <div class="d-flex justify-content-between">
-    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
-    <%= f.submit class:"btn btn-outline-dark review-button profile-rounded"%>
-  </div>
-<% end %>
