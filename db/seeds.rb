@@ -77,7 +77,9 @@ auction1 = Auction.new(
   location: "Buenos Aires",
   date: Date.new(2023, 05, 27),
   user_id: user1.id, start: DateTime.new(2023, 5, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 5, 27, 5, 0, 0)
+  finish: DateTime.new(2023, 5, 27, 5, 0, 0),
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
 file = URI.open("https://mir-s3-cdn-cf.behance.net/projects/404/e4104d112052313.Y3JvcCwxNjYzLDEzMDAsMCwxMjM.png")
 auction1.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
@@ -88,7 +90,9 @@ auction2 = Auction.new(
   location: "Capitan Sarmiento",
   date: Date.new(2023, 04, 27),
   user_id: user1.id, start: DateTime.new(2023, 4, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 4, 27, 5, 0, 0)
+  finish: DateTime.new(2023, 4, 27, 5, 0, 0),
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
 file = URI.open("https://www.guerra-creativa.com/img/uploads/designs/850x566/bimzp3p0.jpg")
 auction2.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
@@ -99,7 +103,9 @@ auction3 = Auction.new(
   location: "Rio Cuarto",
   date: Date.new(2023, 03, 27),
   user_id: user5.id, start: DateTime.new(2023, 3, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 3, 27, 5, 0, 0)
+  finish: DateTime.new(2023, 3, 27, 5, 0, 0),
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
 file = URI.open("https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2018%2F03%2F07%2F20%2FLogo-234918_70207_204757969_278263886.jpg")
 auction3.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
@@ -110,7 +116,9 @@ auction4 = Auction.new(
   location: "Pergamino",
   date: Date.new(2023, 06, 27),
   user_id: user5.id, start: DateTime.new(2023, 6, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 6, 27, 5, 0, 0)
+  finish: DateTime.new(2023, 6, 27, 5, 0, 0),
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
 file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
 auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
