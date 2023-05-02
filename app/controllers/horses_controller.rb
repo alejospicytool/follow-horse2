@@ -10,7 +10,7 @@ class HorsesController < ApplicationController
   def potros
     @horses_user = Horse.all.where.not(user_id: current_user.id)
     @horses = @horses_user.select do |horse|
-      horse.age <= 1
+      horse.age <= 4
     end
     @section_title = "Potros"
     @filtros = 'true'
