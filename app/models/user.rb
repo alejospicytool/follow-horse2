@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :horses, dependent: :destroy
   has_many :auctions, dependent: :destroy
-  has_many :favourites, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :bids, dependent: :destroy
   has_one_attached :photo, dependent: :destroy

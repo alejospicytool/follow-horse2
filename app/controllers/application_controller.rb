@@ -19,4 +19,10 @@ class ApplicationController < ActionController::Base
   def after_update_path_for(resource)
     edit_user_registration_path(resource)
   end
+
+  def favorite_text
+    return @favorite_exists ? "fav" : "nofav"
+  end
+
+  helper_method :favorite_text
 end

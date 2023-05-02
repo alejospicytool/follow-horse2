@@ -47,11 +47,12 @@ Rails.application.routes.draw do
   resources :users do
     resources :reviews, only: :create
     end
-  get 'favoritos/caballos', to: 'profiles#favourite_caballos', as: 'profile_favourite_caballos'
-  get 'favoritos/remates', to: 'profiles#favourite_remates', as: 'profile_favourite_remates'
+  get 'favoritos/caballos', to: 'profiles#favorite_caballos', as: 'profile_favorite_caballos'
+  get 'favoritos/remates', to: 'profiles#favorite_remates', as: 'profile_favorite_remates'
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
+  post 'favorite/:horse', to: 'favorites#update', as: 'favorite'
 
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'

@@ -13,12 +13,12 @@ class ProfilesController < ApplicationController
     @review = Review.new
   end
 
-  def favourite_caballos
+  def rite_caballos
     @section_title = "Favoritos"
     @horses = Horse.all.where(user_id: current_user)
   end
 
-  def favourite_remates
+  def favorite_remates
     @section_title = "Favoritos"
     @auctions = Auction.all.where(user_id: current_user)
   end
@@ -45,8 +45,8 @@ class ProfilesController < ApplicationController
     ]
 
     @sub_links_favoritos = [
-      { title: "Caballos", path: profile_favourite_caballos_path },
-      { title: "Remates", path: profile_favourite_remates_path }
+      { title: "Caballos", path: profile_favorite_caballos_path },
+      { title: "Remates", path: profile_favorite_remates_path }
     ]
   end
 

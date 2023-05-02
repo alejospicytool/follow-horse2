@@ -10,6 +10,7 @@ class HorsesController < ApplicationController
   def show
     @user_id = current_user.id
     @horse = Horse.find(params[:id])
+    @favorite_exists = Favorite.where(horse: @horse, user: current_user) == [] ? false : true
     @horses = Horse.all.select do |horse|
       @horse.id != horse.id
     end
