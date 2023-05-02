@@ -43,36 +43,40 @@
       <div class="publicaciones mt-3">
         <span class="subtitle">Publicaciones relacionadas</span>
 
-        <% @horses.last(2).each do |horse| %>
+        <% if @horses.last(2) != [] %>
+          <% @horses.last(2).each do |horse| %>
+            <div class="card w-100 mb-3 mt-3">
+              <% if horse.photos.last %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+              <% else %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: gray; background-size: cover;">
+              <% end %>
+                <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+              </div>
 
-          <div class="card w-100 mb-3 mt-3">
-            <% if horse.photos.last %>
-            <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
-            <% else %>
-            <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: gray; background-size: cover;">
-            <% end %>
-
-              <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
-            </div>
-
-            <div class="card-content">
-              <div class="p-2 d-flex">
-                <div class="col-4"></div>
-                <div class="col-4 d-flex justify-content-center align-items-center">
-                  <%= link_to horse_show_path(horse.id) do %>
-                    <span>VER MAS</span>
-                  <% end %>
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div>
-                    <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                    <%= image_tag('share.png') %>
+              <div class="card-content">
+                <div class="p-2 d-flex">
+                  <div class="col-4"></div>
+                  <div class="col-4 d-flex justify-content-center align-items-center">
+                    <%= link_to horse_show_path(horse.id) do %>
+                      <span>VER MAS</span>
+                    <% end %>
+                  </div>
+                  <div class="col-4 d-flex justify-content-end align-items-center">
+                    <div>
+                      <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                      <%= image_tag('share.png') %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
+          <% end %>
+        <% else %>
+          <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+            <span>No hay recomendaciones disponibles todavia</span>
+          </div>
         <% end %>
       </div>
     </div>
