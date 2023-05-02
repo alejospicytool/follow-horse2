@@ -8,9 +8,10 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @horses = Horse.where(user_id: current_user)
-    @section_title = current_user.nombre + " " + current_user.apellido
+    @horses = Horse.where(user_id: @user.id)
+    @section_title = @user.nombre + " " + @user.apellido
     @review = Review.new
+    @reviews = Review.where(user: current_user)
   end
 
   def rite_caballos

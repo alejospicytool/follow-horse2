@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_04_25_211216) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_132113) do
+>>>>>>> f85976d0e62605f87055869c2069f303a9840979
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_211216) do
     t.datetime "start"
     t.datetime "finish"
     t.string "condiciones"
+    t.string "link_auction"
     t.index ["user_id"], name: "index_auctions_on_user_id"
   end
 

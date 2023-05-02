@@ -4,39 +4,47 @@
 
   <span class="section-subtitle mb-3">Tus favoritos</span>
 
-  <div class="cards mb-4 mt-3">
-    <% @auctions.each do |auction| %>
-      <div class="card w-100 mb-3">
+  <div class="cards mb-4 mt-3 row">
+    <% if @auctions != [] %>
+      <% @auctions.each do |auction| %>
+        <div class="col-sm-8 col-lg-6 col-sm-12">
+          <div class="card w-100 mb-3">
 
-        <% if auction.photo %>
-        <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path auction.photo.key %>'); background-size: cover;">
-        <% else %>
-        <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
-        <% end %>
+            <% if auction.photo %>
+            <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path auction.photo.key %>'); background-size: cover;">
+            <% else %>
+            <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+            <% end %>
 
-          <div class="nombre m-0 w-100"><span><%= auction.name %></span></div>
-        </div>
-
-        <div class="card-content">
-          <div class="p-2 d-flex">
-            <div class="col-4">
-              <%= link_to auction_destroy_path(auction.id, mis_publicaciones: "true"), data: { turbo_method: :delete } do %>
-                <span style="color: #838383; margin-left: 1.563rem;">ELIMINAR</span>
-              <% end %>
+              <div class="nombre m-0 w-100"><span><%= auction.name %></span></div>
             </div>
-            <div class="col-4 d-flex justify-content-center link align-items-center">
-              <%= link_to auction_path(auction.id) do %>
-                <span>VER MAS</span>
-              <% end %>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-              <div>
-                <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                <%= image_tag('share.png') %>
+
+            <div class="card-content">
+              <div class="p-2 d-flex">
+                <div class="col-4">
+                  <%= link_to auction_destroy_path(auction.id, mis_publicaciones: "true"), data: { turbo_method: :delete } do %>
+                    <span style="color: #838383; margin-left: 1.563rem;">ELIMINAR</span>
+                  <% end %>
+                </div>
+                <div class="col-4 d-flex justify-content-center link align-items-center">
+                  <%= link_to auction_path(auction.id) do %>
+                    <span>VER MAS</span>
+                  <% end %>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                  <div>
+                    <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                    <%= image_tag('share.png') %>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      <% end %>
+    <% else %>
+      <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+        <span>No hay favoritos guardados aun</span>
       </div>
     <% end %>
   </div>

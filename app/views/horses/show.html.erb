@@ -1,4 +1,3 @@
-<!-- Content -->
 <div class="horses-show">
   <div class="foto w-100 h-100 mb-3">
     <% if @horse.photos.count > 0 %>
@@ -42,44 +41,79 @@
         </div>
       </div>
     </div>
+    <div class="container px-2">
+      <div class="info">
 
-    <div class="publicaciones mt-3">
-      <span class="subtitle">Publicaciones relacionadas</span>
+        <div class="horse-titulo d-flex flex-column mb-4">
+          <span class="titulo mb-2"><%= @horse.name %></span>
+          <span class= "text"><%= @horse.description %></span>
+        </div>
 
-      <% @horses.last(2).each do |horse| %>
+        <div class="detalles d-flex flex-column py-3">
+          <span class= "subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
+          <span class= "subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
+        </div>
 
-        <div class="card w-100 mb-3 mt-3">
-          <% if horse.photos.last %>
-          <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
-          <% else %>
-          <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: gray; background-size: cover;">
-          <% end %>
+        <div class="pedigree d-flex flex-column py-3">
+          <span class= "subtitle">Pedigree</span>
+          <a href="">Descargar archivo.pdf</a>
+        </div>
 
-            <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+        <div class="user d-flex py-3">
+          <div>
+            <%= image_tag('profile-icon.png') %>
           </div>
+          <div class="d-flex flex-column" style="margin-left: 1rem;">
+            <span class= "subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
+            <span class="sub-subtitle"><%= @horse.user.establishment %></span>
+            <%= link_to profile_show_path(@horse.user.id) do %>
+              <span class="link">Ver perfil</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-          <div class="card-content">
-            <div class="p-2 d-flex">
-              <div class="col-4"></div>
-              <div class="col-4 d-flex justify-content-center align-items-center">
-                <%= link_to horse_show_path(horse.id) do %>
-                  <span>VER MAS</span>
-                <% end %>
+      <div class="publicaciones mt-3">
+        <span class="subtitle">Publicaciones relacionadas</span>
+
+        <% if @horses.last(2) != [] %>
+          <% @horses.last(2).each do |horse| %>
+            <div class="card w-100 mb-3 mt-3">
+              <% if horse.photos.last %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+              <% else %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: gray; background-size: cover;">
+              <% end %>
+                <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
               </div>
-              <div class="col-4 d-flex justify-content-end align-items-center">
-                <div>
-                  <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                  <%= image_tag('share.png') %>
+
+              <div class="card-content">
+                <div class="p-2 d-flex">
+                  <div class="col-4"></div>
+                  <div class="col-4 d-flex justify-content-center align-items-center">
+                    <%= link_to horse_show_path(horse.id) do %>
+                      <span>VER MAS</span>
+                    <% end %>
+                  </div>
+                  <div class="col-4 d-flex justify-content-end align-items-center">
+                    <div>
+                      <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                      <%= image_tag('share.png') %>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-      <% end %>
+          <% end %>
+        <% else %>
+          <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+            <span>No hay recomendaciones disponibles todavia</span>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-
   <div class="consultar">
     <button>
       <%= image_tag('message-filled.png') %>
