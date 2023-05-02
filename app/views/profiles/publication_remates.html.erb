@@ -2,10 +2,9 @@
 
 <div class="container" style="margin-top: 8rem !important;">
 
-  <span class="section-subtitle mb-3">Tus publicaciones activas</span>
-
   <div class="cards mb-4 mt-3 row">
-    <% if @horses != [] %>
+    <% if @auctions != [] %>
+      <span class="section-subtitle mb-3">Tus publicaciones activas</span>
       <% @auctions.each do |auction| %>
         <div class="col-sm-8 col-lg-6 col-sm-12">
           <div class="card w-100 mb-3">
