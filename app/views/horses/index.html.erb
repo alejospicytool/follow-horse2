@@ -22,10 +22,9 @@
                   <% end %>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div data-controller="share" data-share-url-value="<%= horses_url(horse)%>">
+                  <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                    <%= image_tag('share.png') %>
-                    <%= button_to "Share", "", data: {
+                    <%= button_to image_tag('share.png'), "", data: {
                       action: "click->share#share"
                     } %>
                     <%= content_tag(:p, "", class:"result", data: {

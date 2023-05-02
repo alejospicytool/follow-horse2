@@ -2,9 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="share"
 export default class extends Controller {
-  static targets = ["result", "title", "body"];
+  static targets = ["result"];
   connect() {
-    console.log("connected to the share controller");
     console.log(this.data.get("urlValue"));
     console.log(this.resultTarget);
   }
@@ -12,16 +11,16 @@ export default class extends Controller {
     e.preventDefault();
 
     const shareData = {
-      title: this.titleTarget.textContent,
-      body: this.bodyTarget.textContent,
+     // title: this.titleTarget.textContent,
+      //body: this.bodyTarget.textContent,
       url: this.data.get("urlValue"),
     };
     //console.log(shareData);
     try {
       await navigator.share(shareData);
-      this.resultTarget.textContent = "MDN shared succesfully";
+      //this.resultTarget.textContent = "MDN shared succesfully";
     } catch (err) {
-      this.resultTarget.textContent = `Error: ${err}`;
+      //this.resultTarget.textContent = `Error: ${err}`;
     }
   }
 }
