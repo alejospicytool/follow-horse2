@@ -50,22 +50,22 @@ puts "Created users"
 
 puts "Creating horses"
 
-horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
+horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3)
 file = URI.open("https://www.robertogarrudo.com/blog/wp-content/uploads/2014/10/412_79231_6753136_997956.jpg")
 horse1.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse1.save!
 
-horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "100", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
+horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "100", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10)
 file = URI.open("https://conceptodefinicion.de/wp-content/uploads/2019/05/Caballo-.jpg")
 horse2.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse2.save!
 
-horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "200", birthday: "22/10/2018", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
+horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "200", birthday: "22/10/2018", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2)
 file = URI.open("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-TP7Id5jPDWEny_-x1R6AgpbIfuVyy0v8HwQ-XiWrC63-q87_VBucXNICkNagn2ywX8M&usqp=CAU")
 horse3.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse3.save!
 
-horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "150", birthday: "22/10/2021", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 20)
+horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "150", birthday: "22/10/2021", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10)
 file = URI.open("https://madridhipica.com/wp-content/uploads/2022/06/Caballos-de-sangre-caliente-y-de-sangre-fria.jpg")
 horse4.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse4.save!
