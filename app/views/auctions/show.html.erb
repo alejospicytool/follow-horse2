@@ -26,7 +26,11 @@
             <%= image_tag('condiciones.svg', style: "margin-right: 5px; height: 18px;") %>
             <span class= "subtitle">Condiciones</span>
           </div>
-          <span class= "subtitle d-flex align-items-center px-4"><a href="">Ver condiciones del remate <i class="fa-solid fa-angle-right"></i></a></span></span>
+          <span class= "subtitle d-flex align-items-center px-4">
+            <a href="<%= @auction.condiciones %>" target="_blank">Ver condiciones del remate
+              <i class="fa-solid fa-angle-right"></i>
+            </a>
+          </span>
         </div>
 
         <div class="d-flex flex-column py-3 mb-4">
@@ -42,7 +46,9 @@
         </div>
       </div>
       <div class="d-flex justify-content-center mb-3">
-        <button class= "btn-submit mt-2">VER</button>
+        <a href="<%= @auction.link_auction %>" target="_blank">
+          <button class= "btn-submit mt-2">VER</button>
+        </a>
       </div>
     </div>
 
