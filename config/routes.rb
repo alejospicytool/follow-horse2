@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Horses routes
   get 'horses', to: 'horses#index'
+  get 'potros', to: 'horses#potros', as: 'potros'
   get 'horses/new', to: 'horses#new', as: 'horse_new'
   get 'horses/:id', to: 'horses#show', as: "horse_show"
   post 'horses/create', to: 'horses#create'

@@ -23,7 +23,9 @@ class PagesController < ApplicationController
     @navbar_brand = 'true'
     @search = 'true'
     @user = current_user
-    @horses = Horse.all
+    @horses = Horse.select do |horse|
+      horse.user.id != current_user.id
+    end
   end
 
   def search

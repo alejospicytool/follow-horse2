@@ -1,19 +1,14 @@
-<!-- Content -->
-<div class="horses-index container mt-3 ">
-  <div class="cards mb-4 col-sm-12 col-md-6 col-lg-4">
-    <% @horses.each do |horse| %>
-      <div class="card w-100 mb-3">
-       <%= content_tag(:p, horse.name, data: {
-          share_target: "title"
-           }) %>
-        <%= content_tag(:p, horse.rider, data: {
-          share_target: "body"
-        }) %>
-        <% if horse.photos.any? %>
-          <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
-        <% else %>
-          <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
-        <% end %>
+<div class="horses-index container mt-3">
+  <div class="cards mb-4 row">
+    <% if @horses != [] %>
+      <% @horses.each do |horse| %>
+        <div class="col-sm-6 col-lg-4 col-sm-12">
+          <div class="card w-100 mb-3">
+            <% if horse.photos.any? %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+            <% else %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+            <% end %>
 
             <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
             </div>
@@ -41,8 +36,12 @@
               </div>
             </div>
           </div>
-
+        </div>
+      <% end %>
+    <% else %>
+      <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+        <span>No hay caballos disponibles todavia</span>
+      </div>
     <% end %>
   </div>
-
 </div>

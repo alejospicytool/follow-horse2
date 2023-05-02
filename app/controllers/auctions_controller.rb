@@ -3,34 +3,30 @@ class AuctionsController < ApplicationController
   before_action :sub_links
 
   def next_auctions
-    @auctions = Auction.all
+    @auctions = Auction.all.where.not(user_id: current_user.id)
     @section_title = "Remates"
     @navbar_brand = 'true'
   end
 
   def active_auctions
-    @auctions = Auction.all
+    @auctions = Auction.all.where.not(user_id: current_user.id)
     @section_title = "Remates"
     @navbar_brand = 'true'
   end
 
   def show
-    @user = current_user
     @auction = Auction.find(params[:id])
-    @auctions = Auction.where(user: current_user)
     @section_title = @auction.name
   end
 
   def new
     @auction = Auction.new
-    @user = current_user
     @section_title = "Añadir Remate"
   end
 
   def create
-    @user = current_user
     @auction = Auction.create(auction_params)
-    @auction.user = @user
+    @auction.user = current_user
     if @auction.save
       redirect_to next_auctions_path
     else
