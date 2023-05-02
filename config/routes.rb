@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
+  get 'gracias_registo', to: 'pages#profile_index', as: 'registro_gracias'
 
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
