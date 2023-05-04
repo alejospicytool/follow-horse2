@@ -20,7 +20,7 @@
 
             <div class="card-content">
               <div class="p-2 d-flex">
-                <div class="col-4">
+                <div class="col-5 p-0">
                   <% t = auction.start - DateTime.now %>
                   <% mm, ss = t.divmod(60) %>
                   <% hh, mm = mm.divmod(60)  %>
@@ -28,12 +28,12 @@
                   <i class="time-left fa-regular fa-clock"></i>
                   <span class= "time-left"><%= "#{hh}:#{mm.round(2)}:#{ss.round}"%></span>
                 </div>
-                <div class="col-4 d-flex justify-content-center link align-items-center">
+                <div class="col-4 d-flex justify-content-start link align-items-center p-0">
                   <%= link_to auction_path(auction.id) do %>
                     <span>VER MAS</span>
                   <% end %>
                 </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
+                <div class="col-3 d-flex justify-content-end align-items-center p-0">
                   <div>
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
                     <%= image_tag('share.png') %>

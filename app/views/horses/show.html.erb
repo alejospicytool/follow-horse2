@@ -82,9 +82,13 @@
     </div>
   </div>
   <div class="consultar">
-    <button>
-      <%= image_tag('message-filled.png') %>
-      <span>CONSULTAR</span>
-    </button>
+    <%= simple_form_for @conversation, url: conversaciones_create_path do |f| %>
+      <%= hidden_field_tag(:sender_id, current_user.id) %>
+      <%= hidden_field_tag(:recipient_id, @horse.user_id) %>
+      <%= f.button :button do %>
+        <%= image_tag('message-filled.png') %>
+        <span>CONSULTAR</span>
+      <% end %>
+    <% end %>
   </div>
 </div>
