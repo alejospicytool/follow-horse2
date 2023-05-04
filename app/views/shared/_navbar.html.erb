@@ -35,20 +35,41 @@
           </div>
       </div>
     <% elsif @dots %>
-      <div class="dropdown">
-        <%= image_tag('dots.svg', class: "dropdown-toggle", data: {toggle: "dropdown"}, id: "dropdownMenuButton", aria: {haspopup: "true", expanded:"false"}) %>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -140px; padding: 0;">
-          <ul style="padding: 8px; margin-bottom: 0; text-align: center;">
-            <li><%= link_to "Eliminar", conversacion_destroy_path, class: "dropdown-item", data: {"turbo-method": :delete} %></li>
-            <% if @conversation.archive == false %>
-              <li><%= link_to "Archivar", conversacion_archivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %></li>
-            <% else %>
-              <li><%= link_to "Desarchivar", conversacion_desarchivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %></li>
-            <% end %>
-          </ul>
-        </div>
+      <div>
+        <%= link_to conversacion_destroy_path, data: {"turbo-method": :delete} do %>
+          <i class="fa-solid fa-trash" style="color: white; margin-right: 5px;"></i>
+        <% end %>
+        <% if @conversation.archive == false %>
+          <%= link_to conversacion_archivar_path(@conversation.id), data: {"turbo-method": :put} do %>
+            <i class="fa-solid fa-inbox" style="color: white;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to conversacion_desarchivar_path(@conversation.id), data: {"turbo-method": :put} do %>
+            <i class="fa-solid fa-inbox" style="color: white;"></i>
+          <% end %>
+        <% end %>
       </div>
-    <% end %>
 
+      <%# DROPDOWN NOT WORKING CORRECTLY %>
+      <%# <div class="dropdown"> %>
+        <%#= image_tag('dots.svg', class: "dropdown-toggle", data: {toggle: "dropdown"}, id: "dropdownMenuButton", aria: {haspopup: "true", expanded:"false"}) %>
+        <%# <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -140px; padding: 0;"> %>
+          <%# <ul style="padding: 8px; margin-bottom: 0; text-align: center;"> %>
+            <%# <li> %>
+              <%#= link_to "Eliminar", conversacion_destroy_path, class: "dropdown-item", data: {"turbo-method": :delete} %>
+            <%# </li> %>
+            <%# <% if @conversation.archive == false %>
+              <%# <li> %>
+                <%#= link_to "Archivar", conversacion_archivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %>
+              <%# </li> %>
+            <%# else %>
+              <%# <li> %>
+                <%#= link_to "Desarchivar", conversacion_desarchivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %>
+              <%# </li> %>
+            <%# end %>
+          <%# </ul> %>
+        <%# </div> %>
+      <%# </div> %>
+    <% end %>
   </div>
 </div>

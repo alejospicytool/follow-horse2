@@ -65,9 +65,9 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     @conversation.archive = true
     if @conversation.save
-      redirect_to conversaciones_activas_path
+      redirect_to conversaciones_archivadas_path
     else
-      render :conversaciones_activas, status: :unprocessable_entity
+      redirect_to conversaciones_activas_path, notice: "No se pudo archivar la conversacion, por favor intente nuevamente"
     end
   end
 
@@ -77,7 +77,7 @@ class ConversationsController < ApplicationController
     if @conversation.save
       redirect_to conversaciones_activas_path
     else
-      render :conversaciones_activas, status: :unprocessable_entity
+      redirect_to conversaciones_archivadas_path, notice: "No se pudo desarchivar la conversacion, por favor intente nuevamente"
     end
   end
 
