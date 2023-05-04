@@ -19,15 +19,15 @@
 
             <div class="card-content">
               <div class="p-2 d-flex">
-                <div class="col-4">
+                <div class="col-5 p-1">
                   <span class="en-vivo">EN VIVO</span>
                 </div>
-                <div class="col-4 d-flex justify-content-center link align-items-center">
+                <div class="col-4 d-flex justify-content-start link align-items-center p-1">
                   <%= link_to auction_path(auction.id) do %>
                     <span>VER MAS</span>
                   <% end %>
                 </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
+                <div class="col-3 d-flex justify-content-end align-items-center p-1">
                   <div>
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
                     <%= image_tag('share.png') %>
