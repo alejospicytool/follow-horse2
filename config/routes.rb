@@ -71,8 +71,4 @@ Rails.application.routes.draw do
   delete 'conversaciones/:id', to: 'conversations#destroy', as: 'conversacion_destroy'
   # Messages routes
   post 'mensajes', to: 'messages#create', as: 'conversation_messages'
-
-  # resources :conversations do
-  #   resources :messages
-  # end
 end
