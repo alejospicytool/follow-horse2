@@ -27,17 +27,14 @@
                     <span>VER MAS</span>
                   <% end %>
                 </div>
-                <div class="col-3 d-flex justify-content-end align-items-center p-1">
-                  <div>
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                  <div class="d-flex align-items-center justify-content-center">
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
                     <div data-controller="share" data-share-url-value="<%= auction_path(auction)%>">
-                      <%= button_to image_tag('share.png'), "", data: {
-                        action: "click->share#share"
-                      } %>
-                      <%= content_tag(:p, "", class:"result", data: {
-                        share_target: "result"
-                      }) %>
+                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
