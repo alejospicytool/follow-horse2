@@ -25,13 +25,11 @@
     <% elsif @filtros %>
       <%= image_tag('filtros.png') %>
     <% elsif @share_like %>
-      <div>
+      <div class="d-flex justify-content-center align-items-center">
         <%= image_tag('favorite-white.png', style: 'margin-right: 10px;') %>
           <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)%>">
-            <%= button_to image_tag('share.png'), "", data: {
-              action: "click->share#share"
-            } %>
-            <%= content_tag(:p, "", class:"result", data: {
+            <%= button_to image_tag('share.png'), "", data: {action: "click->share#share"}, style: "border: none; background: none; padding-bottom: 5px;" %>
+            <%= content_tag(:span, "", class:"result", data: {
               share_target: "result"
             }) %>
           </div>
