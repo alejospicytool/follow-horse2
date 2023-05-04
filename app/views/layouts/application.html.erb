@@ -31,8 +31,8 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <%= render "shared/navbar" unless @disable_nav %>
-    <%= render "shared/flashes" %>
     <%= yield %>
+    <%= render "shared/flashes" %>
     <%= render "shared/footer" unless @disable_nav %>
 
     <!-- Optional JavaScript -->

@@ -45,6 +45,7 @@ class PagesController < ApplicationController
   end
 
   def gracias
+    @disable_nav = true
   end
 
   def profile_show

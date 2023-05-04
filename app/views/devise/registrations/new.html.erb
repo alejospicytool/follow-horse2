@@ -1,11 +1,17 @@
-<div class="navbar d-flex align-items-center justify-content-start">
-    <%= link_to new_session_path('user') do %>
-      <i class="fa-solid fa-arrow-left" style="color: #FBFBFB; font-weight: 600; margin-right: 15px; margin-left: 15px;"></i>
-    <% end %>
-    <p style="font-size: 20px; color: #FBFBFB; font-weight: 600; margin-bottom: 0;">Registrarse</p>
+<!-- NAVBAR -->
+<div class="navbar navbar-top navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <%= link_to :back, class: "d-flex align-items-center" do %>
+        <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+      <% end %>
+      <p class="navbar-title">Registrarse</p>
+    </div>
+  </div>
 </div>
 
-<div class="container">
+<!-- CONTENT -->
+<div class="container" style="margin-top: 7rem !important">
   <p class="mt-5 mb-4" style="font-weight: 600;">Ingresa tus datos para crear tu cuenta</p>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
     <%= f.text_field :registro, value: "ok", type: "hidden" %>

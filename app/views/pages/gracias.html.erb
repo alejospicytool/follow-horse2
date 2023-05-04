@@ -1,1 +1,14 @@
-<h1>Thank you for singining up!</h1>
+  <div class="slide1 d-flex" style="background-image: url('<%= image_path 'gracias_registro_back.png' %>'); background-repeat: no-repeat; background-size: cover;">
+    <div class="container-filter d-flex flex-column" style="height: 100vh; width: 100vw;">
+      <%= image_tag 'logo_horse.svg', style: "margin-top: 65px; z-index: 1; height: 56px;" %>
+      <div class="d-flex flex-column align-items-center justify-content-center" style="margin-top: 5rem;">
+        <%= image_tag 'gracias_icon.svg', style: "z-index: 1; height: 6.25rem; margin-bottom: 20px;" %>
+        <p style="z-index: 1; width: 230px;">¡Tu registro fue realizado con exito!</p>
+      </div>
+    </div>
+</div>
+
+<%# ----BUTTONS----- %>
+<div class="d-flex justify-content-center" style="align-items: center; position: absolute; bottom: 50px; width: 100%; padding: 0 14px;">
+  <%= link_to 'Continuar al inicio', home_path, class: "white-outlined-big-btn", style:"width: 11.25rem !important;"  %>
+</div>
