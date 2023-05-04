@@ -15,6 +15,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(*)
     home_path
   end
+  def after_sign_out_path_for(*)
+    new_user_session_path
+  end
 
   def after_update_path_for(resource)
     edit_user_registration_path(resource)

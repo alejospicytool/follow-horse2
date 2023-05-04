@@ -30,8 +30,14 @@
                 <div class="col-3 d-flex justify-content-end align-items-center p-1">
                   <div>
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                    <%= image_tag('share.png') %>
-                  </div>
+                    <div data-controller="share" data-share-url-value="<%= auction_path(auction)%>">
+                      <%= button_to image_tag('share.png'), "", data: {
+                        action: "click->share#share"
+                      } %>
+                      <%= content_tag(:p, "", class:"result", data: {
+                        share_target: "result"
+                      }) %>
+                    </div>
                 </div>
               </div>
             </div>
