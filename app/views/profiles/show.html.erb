@@ -176,7 +176,13 @@
     </div>
 
     <div class="d-flex justify-content-center mt-5 mb-4">
-      <button class= "btn-submit mt-2">ENVIAR MENSAJE</button>
+      <%= simple_form_for @conversation, url: conversaciones_create_path do |f| %>
+        <%= hidden_field_tag(:sender_id, current_user.id) %>
+        <%= hidden_field_tag(:recipient_id, @user.id) %>
+        <%= f.button :button, class: "btn-submit mt-2" do %>
+          <span>ENVIAR MENSAJE</span>
+        <% end %>
+      <% end %>
     </div>
 
     <div class="d-flex justify-content-center mt-3 mb-5">
