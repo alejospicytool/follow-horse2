@@ -13,6 +13,9 @@
       <% end %>
 
       <% if @section_title %>
+        <% if @image_title %>
+          <%= image_tag("#{@image_title}", style: "width: 30px; height: 30px; margin-right: 7px;") %>
+        <% end %>
         <p class="navbar-title"><%= @section_title %></p>
       <% end %>
     </div>
@@ -26,6 +29,21 @@
         <%= image_tag('favorite-white.png', style: 'margin-right: 10px;') %>
         <%= image_tag('share-white.png') %>
       </div>
+    <% elsif @dots %>
+      <div class="dropdown">
+        <%= image_tag('dots.svg', class: "dropdown-toggle", data: {toggle: "dropdown"}, id: "dropdownMenuButton", aria: {haspopup: "true", expanded:"false"}) %>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -140px; padding: 0;">
+          <ul style="padding: 8px; margin-bottom: 0; text-align: center;">
+            <li><%= link_to "Eliminar", conversacion_destroy_path, class: "dropdown-item", data: {"turbo-method": :delete} %></li>
+            <% if @conversation.archive == false %>
+              <li><%= link_to "Archivar", conversacion_archivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %></li>
+            <% else %>
+              <li><%= link_to "Desarchivar", conversacion_desarchivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     <% end %>
+
   </div>
 </div>
