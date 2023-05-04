@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post 'auctions', to: 'auctions#create'
   get 'autions/:id', to: 'auctions#show', as: 'auction'
   get 'autions/:id/edit', to: 'auctions#edit'
-  put 'autions/:id', to: 'auctions#create'
+  put 'autions/:id', to: 'auctions#update'
   delete 'auctions/:id', to: 'auctions#destroy', as: :auction_destroy
 
   # Lotes views
@@ -47,13 +47,29 @@ Rails.application.routes.draw do
   get 'perfiles/:id', to: 'profiles#show', as: 'profile_show'
   resources :users do
     resources :reviews, only: :create
-    end
+  end
   get 'favoritos/caballos', to: 'profiles#favourite_caballos', as: 'profile_favourite_caballos'
   get 'favoritos/remates', to: 'profiles#favourite_remates', as: 'profile_favourite_remates'
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
 
+  # Admin routes
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
+
+  # Conversation routes
+  get 'conversaciones/activas', to: 'conversations#conversaciones_activas', as: 'conversaciones_activas'
+  get 'conversaciones/archivadas', to: 'conversations#conversaciones_archivadas', as: 'conversaciones_archivadas'
+  post 'conversaciones', to: 'conversations#create', as: 'conversaciones_create'
+  get 'conversaciones/:id', to: 'conversations#show', as: 'conversacion_show'
+  put 'conversaciones/:id/archivar', to: 'conversations#archivar', as: 'conversacion_archivar'
+  put 'conversaciones/:id/desarchivar', to: 'conversations#desarchivar', as: 'conversacion_desarchivar'
+  delete 'conversaciones/:id', to: 'conversations#destroy', as: 'conversacion_destroy'
+  # Messages routes
+  post 'mensajes', to: 'messages#create', as: 'conversation_messages'
+
+  # resources :conversations do
+  #   resources :messages
+  # end
 end
