@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
 
       <% if @navbar_brand %>
-        <%= link_to onboarding_path, class: "navbar-brand" do %>
+        <%= link_to home_path, class: "navbar-brand" do %>
           <%= image_tag 'follow-horse-logo-sin-texto.png' %>
         <% end %>
       <% else %>
@@ -26,9 +26,9 @@
       <%= image_tag('filtros.png') %>
     <% elsif @share_like %>
       <div class="d-flex justify-content-center align-items-center">
-        <%= image_tag('favorite-white.png', style: 'margin-right: 10px;') %>
+        <%= image_tag('favorite-white.svg', style: 'margin-right: 10px;') %>
           <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)%>">
-            <%= button_to image_tag('share.png'), "", data: {action: "click->share#share"}, style: "border: none; background: none; padding-bottom: 5px;" %>
+            <%= button_to image_tag('share-white.svg'), "", data: {action: "click->share#share"}, style: "border: none; background: none; padding-bottom: 5px;" %>
             <%= content_tag(:span, "", class:"result", data: {
               share_target: "result"
             }) %>
