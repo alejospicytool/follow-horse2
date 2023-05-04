@@ -1,0 +1,87 @@
+// To style the message itself
+.sender-style, .receiver-style {
+  width: 70%;
+  max-width: 400px;
+  padding: 8px;
+  min-height: 30px;
+  // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 15px;
+}
+
+.sender-style {
+  background: #FCEFC1;
+  border-radius: 5px;
+}
+
+.receiver-style {
+  background: #EAE4E4;
+  border-radius: 5px;
+}
+
+.receiver-style span, .sender-style span{
+  margin-bottom: 0rem !important;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.chat-box {
+  position: fixed;
+  bottom: 3.75rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #ffff;
+}
+
+#message_body {
+  background: #FBFBFB;
+  border: 1px solid rgba(131, 131, 131, 0.2);
+  box-shadow: 0px -2px 9px rgba(0, 0, 0, 0.15);
+  border-radius: 25px;
+  height: 40px;
+}
+
+#new_message {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+}
+
+.chat-btn {
+  background: #5A8C85;
+  border-radius: 25px;
+  border: none;
+  height: 40px;
+  width: 40px;
+}
+
+.messages-box {
+  margin-bottom: 2rem;
+}
+
+.message-text-index {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.message-headlin-index {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.conversations-index {
+  padding: 0 20px 0 20px;
+}
