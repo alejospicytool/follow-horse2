@@ -23,14 +23,12 @@
                   <% end %>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
+                  <div class="d-flex align-items-center justify-content-center">
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                    <%= button_to image_tag('share.png'), "", data: {
-                      action: "click->share#share"
-                    } %>
-                    <%= content_tag(:p, "", class:"result", data: {
-                      share_target: "result"
-                    }) %>
+                    <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
+                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                    </div>
                   </div>
                 </div>
               </div>
