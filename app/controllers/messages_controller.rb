@@ -23,9 +23,9 @@ class MessagesController < ApplicationController
       conversations = @conv1 + @conv2
       conversations.each do |conversation|
         conversation_id = conversation.id
-        notification_count = calculate_notification_count(conversation_id)
+        notification_count = calculate_notification_count(conversation_id, current_user.id)
 
-        ActionCable.server.broadcast('conversations', conversationId: conversation_id, notificationCount: notification_count)
+        ActionCable.server.broadcast('conversations', { conversationId: conversation_id, notificationCount: notification_count })
       end
 
     else
@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:body, :user_id, :conversation_id)
   end
 
-  def calculate_notification_count(conversation_id)
+  def calculate_notification_count(conversation_id, current_user_id)
     # Logic to calculate the notification count for a conversation
     conversation = Conversation.find(conversation_id)
     unread_messages = conversation.messages.where(read: false).where.not(user_id: current_user.id)
