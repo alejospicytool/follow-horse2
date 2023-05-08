@@ -1,0 +1,75 @@
+<div class="container col-sm-8 col-lg-6 col-sm-12" style="margin-top: 6rem !important;">
+  <%= simple_form_for @filtro, url: horses_aplicar_filtros_path, method:"post" do |f| %>
+    <div class="d-flex flex-column justify-content-between" style="height: 70vh;">
+      <div class="form-inputs">
+        <div class="mb-4">
+          <%= f.input :jinete, as: :select, collection: @jinetes, input_html: { multiple: false, class: "filter-icon-input-before filter-icon-input-jinete-before", onchange: "updateInputJinete();"}, label: "Jinete/ Amazona", prompt: "Seleccionar Jinete/ Amazona", wrapper_html: {style: "margin-bottom: 0 !important;"}, label_html: {class: "filter-label"} %>
+          <div class="input-border-before" id="border-jinete"></div>
+        </div>
+        <div class="mb-4">
+          <span class="filter-label">Edad</span>
+          <div class="w-100 justify-content-center d-flex">
+            <span class="filter_age_before" id="edad">Seleccionar</span>
+          </div>
+          <div class="d-flex justify-content-center">
+            <span style="font-size: 14px;">0</span>
+            <%= f.input :edad, as: :range, input_html: {onchange: "updateTextInput(this.value);", min: 0, max: 20, value: 0}, include_blank: "Seleccionar", label: false, wrapper_html: {class: "mx-2", style: "width: 70%;"} %>
+            <span style="font-size: 14px;">20 años</span>
+          </div>
+        </div>
+        <div class="mb-4" style="position: relative;">
+          <%= f.input :altura, collection: @height, as: :select, input_html: {class: "select_altura"}, wrapper_html: {class: "d-flex flex-column align-items-center"}, label_html: {style: "align-self: flex-start;"}, prompt: "Seleccionar", label_html: {class: "filter-label"} %>
+          <span class="metros">metros</span>
+        </div>
+        <div class="mb-4">
+          <%= f.input :ubicacion, collection: @ubicaciones, as: :select, input_html: { multiple: false, class: "filter-icon-input-before", onchange: "updateInputUbicacion();"}, prompt: "Seleccionar ubicación", label: "Ubicación", wrapper_html: {style: "margin-bottom: 0 !important;"}, label_html: {class: "filter-label"} %>
+          <div class="input-border-before" id="border-ubicacion"></div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mb-3">
+        <%= f.button :submit, "Buscar", class: "btn-submit mt-2" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  function updateTextInput(val) {
+    document.getElementById('edad').innerText = `${val} años` ;
+    document.getElementById('edad').classList.remove('filter_age_before')
+    document.getElementById('edad').classList.add('filter_age_after')
+  }
+
+  function updateInputUbicacion() {
+    if (document.getElementById('filtro_ubicacion').value == '') {
+      document.getElementById('filtro_ubicacion').classList.remove('filter-icon-input-after');
+      document.getElementById('filtro_ubicacion').classList.add('filter-icon-input-before');
+      document.getElementById('border-ubicacion').classList.remove('input-border-after');
+      document.getElementById('border-ubicacion').classList.add('input-border-before');
+    } else {
+      document.getElementById('filtro_ubicacion').classList.remove('filter-icon-input-before');
+      document.getElementById('filtro_ubicacion').classList.add('filter-icon-input-after');
+      document.getElementById('border-ubicacion').classList.remove('input-border-before');
+      document.getElementById('border-ubicacion').classList.add('input-border-after');
+    }
+  }
+
+    function updateInputJinete() {
+    if (document.getElementById('filtro_jinete').value == '') {
+      document.getElementById('filtro_jinete').classList.remove('filter-icon-input-after');
+      document.getElementById('filtro_jinete').classList.add('filter-icon-input-before');
+      document.getElementById('border-jinete').classList.remove('input-border-after');
+      document.getElementById('border-jinete').classList.add('input-border-before');
+      document.getElementById('filtro_jinete').classList.add('filter-icon-input-jinete-before');
+      document.getElementById('filtro_jinete').classList.remove('filter-icon-input-jinete-after');
+    } else {
+      document.getElementById('filtro_jinete').classList.remove('filter-icon-input-before');
+      document.getElementById('filtro_jinete').classList.add('filter-icon-input-after');
+      document.getElementById('border-jinete').classList.remove('input-border-before');
+      document.getElementById('border-jinete').classList.add('input-border-after');
+      document.getElementById('filtro_jinete').classList.remove('filter-icon-input-jinete-before');
+      document.getElementById('filtro_jinete').classList.add('filter-icon-input-jinete-after');
+    }
+  }
+</script>
