@@ -15,3 +15,6 @@ application.register("star-rating", StarRatingController)
 
 import ChatController from "./chat_controller"
 application.register("chat", ChatController)
+
+import NotificationController from "./notification_controller"
+application.register("notification", NotificationController)
