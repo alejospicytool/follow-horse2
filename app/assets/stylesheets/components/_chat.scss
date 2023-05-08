@@ -85,3 +85,23 @@
 .conversations-index {
   padding: 0 20px 0 20px;
 }
+
+.notificacion-mensaje {
+  width: 22px;
+  height: 22px;
+  background: #CEAC35;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificacion-mensaje span {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #FBFBFB;
+}
