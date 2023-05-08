@@ -15,14 +15,14 @@ class ProfilesController < ApplicationController
     @conversation = Conversation.new
   end
 
-  def favourite_caballos
+  def favorite_caballos
     @section_title = "Favoritos"
-    @horses = Horse.all.where(user_id: current_user)
+    @horses = Horse.all.where(id: Favorite.where(user_id: current_user).pluck(:horse_id))
   end
 
-  def favourite_remates
+  def favorite_remates
     @section_title = "Favoritos"
-    @auctions = Auction.all.where(user_id: current_user)
+    @auctions = Auction.all.where(id: Favorite.where(user_id: current_user).pluck(:auction_id))
   end
 
   def notification
@@ -46,8 +46,8 @@ class ProfilesController < ApplicationController
     ]
 
     @sub_links_favoritos = [
-      { title: "Caballos", path: profile_favourite_caballos_path },
-      { title: "Remates", path: profile_favourite_remates_path }
+      { title: "Caballos", path: profile_favorite_caballos_path },
+      { title: "Remates", path: profile_favorite_remates_path }
     ]
   end
 

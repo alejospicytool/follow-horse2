@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_134538) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_134538) do
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
+
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
@@ -75,13 +76,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_134538) do
     t.boolean "archive", default: false
   end
 
-  create_table "favourites", force: :cascade do |t|
-    t.bigint "horse_id", null: false
+  create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["horse_id"], name: "index_favourites_on_horse_id"
-    t.index ["user_id"], name: "index_favourites_on_user_id"
+    t.bigint "auction_id"
+    t.bigint "horse_id"
+    t.index ["auction_id"], name: "index_favorites_on_auction_id"
+    t.index ["horse_id"], name: "index_favorites_on_horse_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "horses", force: :cascade do |t|
@@ -150,6 +153,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_134538) do
     t.integer "age"
     t.string "description"
     t.string "establishment"
+    t.string "first_name"
+    t.string "last_name"
     t.string "nombre"
     t.string "apellido"
     t.string "direccion"
@@ -168,8 +173,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_134538) do
   add_foreign_key "auctions", "users"
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
-  add_foreign_key "favourites", "horses"
-  add_foreign_key "favourites", "users"
+  add_foreign_key "favorites", "auctions"
+  add_foreign_key "favorites", "horses"
+  add_foreign_key "favorites", "users"
   add_foreign_key "horses", "users"
   add_foreign_key "lotes", "auctions"
   add_foreign_key "messages", "conversations"

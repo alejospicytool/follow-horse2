@@ -1,4 +1,3 @@
-<!-- Content -->
 <div class="horses-show d-flex flex-column align-items-center" data-controller='share'>
   <div class="col-lg-6 col-sm-10 col-md-8 col-12" style="  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
     <div class="foto w-100 h-100 mb-3 d-flex justify-content-center">
@@ -92,3 +91,23 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  buttons = document.querySelectorAll('.horse_heart')
+    buttons.forEach(
+    function(button) {
+      if (button.innerText == "fav"){
+        button.innerHTML = "<i class='fa-solid fa-heart'></i>"
+      } else if (button.innerText == "nofav"){
+        button.innerHTML = "<i class='fa-regular fa-heart'></i>"
+      }
+      button.addEventListener('click', function() {
+        if (button.innerHTML == `<i class="fa-solid fa-heart"></i>`) {
+          button.innerHTML = `<i class="fa-regular fa-heart"></i>`
+        } else if (button.innerHTML == `<i class="fa-regular fa-heart"></i>`){
+          button.innerHTML = `<i class="fa-solid fa-heart"></i>`
+        }
+      })
+    }
+  )
+</script>

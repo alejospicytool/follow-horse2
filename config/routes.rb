@@ -54,17 +54,20 @@ Rails.application.routes.draw do
   get 'perfiles/:id', to: 'profiles#show', as: 'profile_show'
   resources :users do
     resources :reviews, only: :create
-  end
-  get 'favoritos/caballos', to: 'profiles#favourite_caballos', as: 'profile_favourite_caballos'
-  get 'favoritos/remates', to: 'profiles#favourite_remates', as: 'profile_favourite_remates'
+    end
+  get 'favoritos/caballos', to: 'profiles#favorite_caballos', as: 'profile_favorite_caballos'
+  get 'favoritos/remates', to: 'profiles#favorite_remates', as: 'profile_favorite_remates'
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
+  post 'favorite_horse/:horse', to: 'favorites#update_horse', as: 'favorite_horse'
+  post 'favorite_auction/:auction', to: 'favorites#update_auction', as: 'favorite_auction'
   get 'gracias_registo', to: 'pages#gracias', as: 'registro_gracias'
 
   # Admin routes
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
+
 
   # Conversation routes
   get 'conversaciones/activas', to: 'conversations#conversaciones_activas', as: 'conversaciones_activas'
@@ -76,4 +79,6 @@ Rails.application.routes.draw do
   delete 'conversaciones/:id', to: 'conversations#destroy', as: 'conversacion_destroy'
   # Messages routes
   post 'mensajes', to: 'messages#create', as: 'conversation_messages'
+  get 'favorite_horse/:id', to: 'favorites#delete_horse', as: 'favorite_delete_horse'
+  get 'favorite_auction/:id', to: 'favorites#delete_auction', as: 'favorite_delete_auction'
 end

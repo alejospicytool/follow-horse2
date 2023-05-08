@@ -22,4 +22,16 @@ class ApplicationController < ActionController::Base
   def after_update_path_for(resource)
     edit_user_registration_path(resource)
   end
+
+  def favorite_horse_text(horse)
+    @favorite_exists = Favorite.where(horse: horse, user: current_user) != []
+    return @favorite_exists ? "fav" : "nofav"
+  end
+
+  def favorite_auction_text(auction)
+    @favorite_exists = Favorite.where(auction: auction, user: current_user) != []
+    return @favorite_exists ? "fav" : "nofav"
+  end
+
+  helper_method :favorite_horse_text, :favorite_auction_text
 end
