@@ -67,7 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
-
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
