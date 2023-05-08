@@ -44,12 +44,12 @@ class ConversationsController < ApplicationController
     # Conversation messages
     @messages = @conversation.messages
     @message = Message.new
-    # @messages.each do |message|
-    #   if message.user_id != current_user.id
-    #     message.read = true
-    #     message.save!
-    #   end
-    # end
+    @messages.each do |message|
+      if message.user_id != current_user.id
+        message.read = true
+        message.save!
+      end
+    end
   end
 
   def create

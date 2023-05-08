@@ -36,7 +36,7 @@ file = URI.open("https://ca.slack-edge.com/T02NE0241-U03NY6P9V52-c21424e32e07-51
 user4.photo.attach(io: file, filename: "beni.png", content_type: "image/png")
 user4.save!
 
-user5 = User.new(email: "maki@gmail.com", password: "123456", nombre: "Ryusei", apellido: "Makiguchi", age: 30, pais: "Argentina", provincia: "Capital Federal", ciudad: "Capital Federal", direccion: "Av. Montes de Oca 2945", phone: "+5491149851247", description: "I love horses", establishment: "Haras El Maki")
+user5 = User.new(email: "maki@gmail.com", password: "123456", nombre: "Ryusei", apellido: "Makiguchi", age: 30, pais: "Argentina", provincia: "Buenos Aires", ciudad: "Benavidez", direccion: "Av. Montes de Oca 2945", phone: "+5491149851247", description: "I love horses", establishment: "Haras El Maki")
 file = URI.open("https://ca.slack-edge.com/T02NE0241-U03PTAN9ARE-e0ff21331654-512")
 user5.photo.attach(io: file, filename: "maki.png", content_type: "image/png")
 user5.save!
@@ -50,22 +50,22 @@ puts "Created users"
 
 puts "Creating horses"
 
-horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "100", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3)
+horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "1.0", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3)
 file = URI.open("https://www.robertogarrudo.com/blog/wp-content/uploads/2014/10/412_79231_6753136_997956.jpg")
 horse1.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse1.save!
 
-horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "100", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10)
+horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "1.5", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 5)
 file = URI.open("https://conceptodefinicion.de/wp-content/uploads/2019/05/Caballo-.jpg")
 horse2.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse2.save!
 
-horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "200", birthday: "22/10/2018", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2)
+horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "2.0", birthday: "22/10/2018", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2)
 file = URI.open("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-TP7Id5jPDWEny_-x1R6AgpbIfuVyy0v8HwQ-XiWrC63-q87_VBucXNICkNagn2ywX8M&usqp=CAU")
 horse3.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse3.save!
 
-horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "150", birthday: "22/10/2021", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10)
+horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "1.5", birthday: "22/10/2021", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10)
 file = URI.open("https://madridhipica.com/wp-content/uploads/2022/06/Caballos-de-sangre-caliente-y-de-sangre-fria.jpg")
 horse4.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
 horse4.save!

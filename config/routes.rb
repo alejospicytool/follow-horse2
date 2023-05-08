@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
 
+  mount ActionCable.server => '/cable'
+
   # Home routes
   get 'home', to: 'pages#home', as: 'home'
   get 'slide1', to: 'pages#slide1', as: 'slide1'
@@ -15,6 +17,9 @@ Rails.application.routes.draw do
   # Horses routes
   get 'horses', to: 'horses#index'
   get 'potros', to: 'horses#potros', as: 'potros'
+  get 'horses/filtros', to: 'horses#filtros', as: :horses_filtros
+  post 'horses/aplicar_filtros', to: 'horses#aplicarfiltros', as: :horses_aplicar_filtros
+  get 'horses/resultados', to: 'horses#resultados', as: :horses_results
   get 'horses/new', to: 'horses#new', as: 'horse_new'
   get 'horses/:id', to: 'horses#show', as: "horse_show"
   post 'horses/create', to: 'horses#create'

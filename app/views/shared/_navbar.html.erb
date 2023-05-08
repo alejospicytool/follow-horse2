@@ -21,9 +21,17 @@
     </div>
 
     <% if @search %>
-      <%= image_tag('search.png') %>
+      <%= link_to search_path do %>
+        <%= image_tag('search.png') %>
+      <% end %>
     <% elsif @filtros %>
-      <%= image_tag('filtros.png') %>
+      <% if params[:controller] == "horses" %>
+        <%= link_to horses_filtros_path do %>
+          <%= image_tag('filtros.png') %>
+        <% end %>
+      <% else %>
+        <%= image_tag('filtros.png') %>
+      <% end %>
     <% elsif @share_like %>
       <div class="d-flex justify-content-center align-items-center">
         <%= image_tag('favorite-white.svg', style: 'margin-right: 10px;') %>
