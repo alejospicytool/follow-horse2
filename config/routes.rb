@@ -53,8 +53,11 @@ Rails.application.routes.draw do
   get 'notificationes', to: 'profiles#notification', as: 'profile_notification'
   get 'mis_publicaciones/caballos', to: 'profiles#publication_caballos', as: 'profile_publication_caballos'
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
-  post 'favorite/:horse', to: 'favorites#update', as: 'favorite'
+  post 'favorite_horse/:horse', to: 'favorites#update_horse', as: 'favorite_horse'
+  post 'favorite_auction/:auction', to: 'favorites#update_auction', as: 'favorite_auction'
 
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
+  get 'favorite_horse/:id', to: 'favorites#delete_horse', as: 'favorite_delete_horse'
+  get 'favorite_auction/:id', to: 'favorites#delete_auction', as: 'favorite_delete_auction'
 end

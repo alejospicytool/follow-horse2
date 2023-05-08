@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_211216) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_132113) do
->>>>>>> f85976d0e62605f87055869c2069f303a9840979
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,10 +68,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_132113) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "horse_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "auction_id"
+    t.bigint "horse_id"
+    t.index ["auction_id"], name: "index_favorites_on_auction_id"
     t.index ["horse_id"], name: "index_favorites_on_horse_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
@@ -155,6 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_132113) do
   add_foreign_key "auctions", "users"
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
+  add_foreign_key "favorites", "auctions"
   add_foreign_key "favorites", "horses"
   add_foreign_key "favorites", "users"
   add_foreign_key "horses", "users"

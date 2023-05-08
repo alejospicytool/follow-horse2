@@ -28,8 +28,8 @@
                   <% end %>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div>
-                    <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                  <div class="d-flex">
+                    <%= button_to favorite_auction_text(auction), favorite_auction_path(auction: auction), class: "auction_heart_index mx-2", remote: true %>
                     <%= image_tag('share.png') %>
                   </div>
                 </div>
@@ -45,3 +45,24 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  buttons = document.querySelectorAll('.auction_heart_index')
+    buttons.forEach(
+    function(button) {
+      if (button.innerText == "fav"){
+        button.innerHTML = "<i class='fa-solid fa-heart'></i>"
+      } else if (button.innerText == "nofav"){
+        button.innerHTML = "<i class='fa-regular fa-heart'></i>"
+      }
+      button.addEventListener('click', function() {
+        if (button.innerHTML == `<i class="fa-solid fa-heart"></i>`) {
+          button.innerHTML = `<i class="fa-regular fa-heart"></i>`
+        } else if (button.innerHTML == `<i class="fa-regular fa-heart"></i>`){
+          button.innerHTML = `<i class="fa-solid fa-heart"></i>`
+        }
+      })
+    }
+  )
+
+</script>

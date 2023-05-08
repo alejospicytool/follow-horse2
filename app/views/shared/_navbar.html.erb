@@ -22,9 +22,9 @@
     <% elsif @filtros %>
       <%= image_tag('filtros.png') %>
     <% elsif @share_like %>
-      <div>
-        <%= image_tag('favorite-white.png', style: 'margin-right: 10px;') %>
-        <%= image_tag('share-white.png') %>
+      <div class="d-flex">
+        <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart mx-2", remote: true %>
+        <%= image_tag('share-white.png')%>
       </div>
     <% end %>
   </div>

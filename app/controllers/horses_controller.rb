@@ -21,6 +21,7 @@ class HorsesController < ApplicationController
     @horse = Horse.find(params[:id])
     @horses = Horse.all.where.not(user_id: current_user.id).where.not(id: params[:id].to_i)
     @share_like = 'true'
+    @favorite_exists = Favorite.where(horse: @horse, user: current_user) != []
   end
 
   def new

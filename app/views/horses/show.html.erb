@@ -6,9 +6,8 @@
       <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
     <% end %>
   </div>
-  <p><i class="fa-solid fa-heart"></i></p>
-  <p><i class="fa-regular fa-heart"></i></p>
-  <%= button_to favorite_text, favorite_path(horse: @horse), class: "horse_heart", remote: true %>
+
+  <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart", remote: true %>
 
   <div class="container px-4">
     <div class="info">
@@ -124,7 +123,7 @@
 
 <script>
   buttons = document.querySelectorAll('.horse_heart')
-  buttons.forEach(
+    buttons.forEach(
     function(button) {
       if (button.innerText == "fav"){
         button.innerHTML = "<i class='fa-solid fa-heart'></i>"
@@ -132,12 +131,10 @@
         button.innerHTML = "<i class='fa-regular fa-heart'></i>"
       }
       button.addEventListener('click', function() {
-        if (button.innerHTML == "<i class='fa-solid fa-heart'></i>") {
-          console.log("cambio por regular")
-          button.innerHTML = "<i class='fa-regular fa-heart'></i>"
-        } else if (button.innerHTML == "<i class='fa-regular fa-heart'></i>"){
-          console.log("cambio por solid")
-          button.innerHTML = "<i class='fa-solid fa-heart'></i>"
+        if (button.innerHTML == `<i class="fa-solid fa-heart"></i>`) {
+          button.innerHTML = `<i class="fa-regular fa-heart"></i>`
+        } else if (button.innerHTML == `<i class="fa-regular fa-heart"></i>`){
+          button.innerHTML = `<i class="fa-solid fa-heart"></i>`
         }
       })
     }

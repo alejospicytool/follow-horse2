@@ -14,14 +14,14 @@ class ProfilesController < ApplicationController
     @reviews = Review.where(user: current_user)
   end
 
-  def rite_caballos
+  def favorite_caballos
     @section_title = "Favoritos"
-    @horses = Horse.all.where(user_id: current_user)
+    @horses = Horse.all.where(id: Favorite.where(user_id: current_user).pluck(:horse_id))
   end
 
   def favorite_remates
     @section_title = "Favoritos"
-    @auctions = Auction.all.where(user_id: current_user)
+    @auctions = Auction.all.where(id: Favorite.where(user_id: current_user).pluck(:auction_id))
   end
 
 
