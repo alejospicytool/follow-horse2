@@ -44,6 +44,10 @@ class PagesController < ApplicationController
     @user = current_user
   end
 
+  def gracias
+    @disable_nav = true
+  end
+
   def profile_show
     @user = User.find(params[:id])
   end

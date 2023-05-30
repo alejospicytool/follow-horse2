@@ -20,20 +20,23 @@
 
             <div class="card-content">
               <div class="p-2 d-flex">
-                <div class="col-4">
+                <div class="col-5 p-0">
                   <%= link_to auction_destroy_path(auction.id, mis_publicaciones: "true"), data: { turbo_method: :delete } do %>
                     <span style="color: #838383; margin-left: 1.563rem;">ELIMINAR</span>
                   <% end %>
                 </div>
-                <div class="col-4 d-flex justify-content-center link align-items-center">
+                <div class="col-4 p-0 d-flex justify-content-center link align-items-center">
                   <%= link_to auction_path(auction.id) do %>
                     <span>VER MAS</span>
                   <% end %>
                 </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div>
+                <div class="col-3 d-flex justify-content-end align-items-center p-0">
+                  <div class="d-flex align-items-center justify-content-center">
                     <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                    <%= image_tag('share.png') %>
+                    <div data-controller="share" data-share-url-value="<%= auction_path(auction)%>">
+                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                    </div>
                   </div>
                 </div>
               </div>

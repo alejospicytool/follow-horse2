@@ -20,17 +20,23 @@
 
               <div class="card-content">
                 <div class="p-2 d-flex">
+
                   <div class="col-4">
-                      <%= link_to "ELIMINAR", favorite_delete_path(horse.id) %>
+                      <%= link_to "ELIMINAR", favorite_delete_horse_path(horse.id) %>
                   </div>
-                  <div class="col-4 d-flex justify-content-center link align-items-center">
+                  <div class="col-5 d-flex justify-content-center link align-items-center">
                     <%= link_to horse_show_path(horse.id) do %>
                       <span>VER MAS</span>
                     <% end %>
                   </div>
                   <div class="col-4 d-flex justify-content-end align-items-center">
-                    <div>
-                      <%= image_tag('share.png') %>
+                    <div class="d-flex align-items-center justify-content-center">
+                      <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                      <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
+                        <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                        <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                      </div>
+
                     </div>
                   </div>
                 </div>

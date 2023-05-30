@@ -1,0 +1,61 @@
+<%= render 'sub_links' %>
+
+<!-- Content -->
+<div class="conversations-index container" style="margin-top: 9rem !important;"
+    data-controller="notification">
+  <% if @conv_ordered != [] %>
+    <% @conv_ordered.each do |conversation| %>
+
+      <div>
+        <%# CHECK THE RECIPIENT %>
+        <% if conversation.sender_id == current_user.id %>
+          <% recipient = User.find(conversation.recipient_id) %>
+        <% else %>
+          <% recipient = User.find(conversation.sender_id) %>
+        <% end %>
+
+        <%# DISPLAY NAME OF THE CONVERSATION %>
+        <div class="mb-3">
+          <%= link_to conversacion_show_path(conversation), style: "text-decoration: none; color: inherit;" do %>
+            <div class="d-flex align-items-center">
+              <%= image_tag('profile-icon.png', style: "width: 40px; height: 40px;") %>
+              <div class="d-flex w-100 justify-content-between align-items-center">
+
+                <div class="d-flex flex-column" style="margin-left: 20px">
+                  <span class="message-headlin-index"><%= recipient.nombre %> <%= recipient.apellido %></span>
+                  <% if conversation.messages.last.body.length > 100 %>
+                    <span class="message-text-index"><%= conversation.messages.last.body.first(35) %>...</span>
+                  <% else %>
+                    <span class="message-text-index"><%= conversation.messages.last.body %></span>
+                  <% end %>
+                </div>
+
+                <% if conversation.messages.where(read: false).where.not(user_id: current_user.id) != [] %>
+                  <div id="notification-container" data-controller="notification">
+                    <div>
+                      <% notification_count = conversation.messages.where(read: false).where.not(user_id: current_user.id).length %>
+                      <% next if notification_count.zero? %>
+                    </div>
+
+                    <div class="notificacion-mensaje">
+                      <span data-target="notification.count" data-conversation-id="<%= conversation.id %>">
+                        <%= notification_count %>
+                      </span>
+                    </div>
+                  </div>
+                <% end %>
+
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+
+  <% else %>
+    <div class="d-flex justify-content-center align-items-center text-center" style="height: 30vh;">
+        <span>No hay conversaciones disponibles todavia</span>
+    </div>
+  <% end %>
+</div>

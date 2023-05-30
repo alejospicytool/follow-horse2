@@ -1,0 +1,93 @@
+<!-- Content -->
+<div class="horses-index container" style="margin-top: 4rem !important;">
+    <% if @horses != [] %>
+      <div class="mb-4 p-0">
+        <div class="resultados px-3">
+          <span class="section-subtitle mr-2">Filtros:</span>
+          <div class="d-flex mb-2 mt-2" style="flex-wrap: wrap;">
+              <div class="d-flex justify-content-center mb-1">
+                <% if params[:altura] != "" %>
+                  <span class="resultados_pill mr-2"><%= params[:altura] %> m
+                    <%= link_to horses_results_path(filtro: "OK", jinete: params[:jinete], edad: params[:edad], altura: "", ubicacion: params[:ubicacion]) do %>
+                      <%= image_tag('search_close.svg') %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
+              <div class="d-flex justify-content-center mb-1">
+                <% if params[:edad] != "0" %>
+                  <span class="resultados_pill mr-2"><%= params[:edad] %> años
+                    <%= link_to horses_results_path(filtro: "OK", jinete: params[:jinete], edad: "0", altura: params[:altura], ubicacion: params[:ubicacion]) do %>
+                      <%= image_tag('search_close.svg') %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
+              <div class="d-flex justify-content-center">
+                <% if params[:ubicacion] != "" %>
+                  <span class="resultados_pill mr-2"><%= params[:ubicacion] %>
+                    <%= link_to horses_results_path(filtro: "OK", jinete: params[:jinete], edad: params[:edad], altura: params[:altura], ubicacion: "") do %>
+                      <%= image_tag('search_close.svg') %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
+              <div class="d-flex justify-content-center">
+                <% if params[:jinete] != "" %>
+                  <span class="resultados_pill mr-2"><%= params[:jinete] %>
+                    <%= link_to horses_results_path(filtro: "OK", jinete: "", edad: params[:edad], altura: params[:altura], ubicacion: params[:ubicacion]) do %>
+                      <%= image_tag('search_close.svg') %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
+              <% if params[:altura] == "" && params[:edad] == "0" && params[:ubicacion] == "" && params[:jinete] == "" %>
+                <span style="font-style: italic;">No hay filtros aplicados</span>
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="cards mb-4 row">
+        <% @horses.each do |horse| %>
+          <div class="col-sm-6 col-lg-4 col-sm-12">
+            <div class="card w-100 mb-3">
+              <% if horse.photos.any? %>
+                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+              <% else %>
+                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+              <% end %>
+
+              <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+              </div>
+
+              <div class="card-content">
+                <div class="p-2 d-flex">
+                  <div class="col-3"></div>
+                  <div class="col-5 d-flex justify-content-center link align-items-center">
+                    <%= link_to horse_show_path(horse.id) do %>
+                      <span>VER MAS</span>
+                    <% end %>
+                  </div>
+                  <div class="col-4 d-flex justify-content-end align-items-center">
+                    <div class="d-flex align-items-center justify-content-center">
+                      <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                      <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
+                        <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                        <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="cards mb-4 row">
+        <div class="d-flex justify-content-center align-items-center text-center" style="height: 30vh;">
+          <span>No hay resultados disponibles para tu busqueda</span>
+        </div>
+      </div>
+    <% end %>
+</div>

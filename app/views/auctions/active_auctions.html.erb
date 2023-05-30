@@ -19,18 +19,22 @@
 
             <div class="card-content">
               <div class="p-2 d-flex">
-                <div class="col-4">
+                <div class="col-5 p-1">
                   <span class="en-vivo">EN VIVO</span>
                 </div>
-                <div class="col-4 d-flex justify-content-center link align-items-center">
+                <div class="col-4 d-flex justify-content-start link align-items-center p-1">
                   <%= link_to auction_path(auction.id) do %>
                     <span>VER MAS</span>
                   <% end %>
                 </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div class="d-flex">
+
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                  <div class="d-flex align-items-center justify-content-center">
                     <%= button_to favorite_auction_text(auction), favorite_auction_path(auction: auction), class: "auction_heart_index mx-2", remote: true %>
-                    <%= image_tag('share.png') %>
+                    <div data-controller="share" data-share-url-value="<%= auction_path(auction)%>">
+                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -39,7 +43,7 @@
         </div>
       <% end %>
     <% else %>
-      <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+      <div class="d-flex justify-content-center align-items-center text-center" style="height: 30vh;">
         <span>No hay remates disponibles todavia</span>
       </div>
     <% end %>

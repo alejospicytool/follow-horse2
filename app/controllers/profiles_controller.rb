@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
     @section_title = @user.nombre + " " + @user.apellido
     @review = Review.new
     @reviews = Review.where(user: current_user)
+    @conversation = Conversation.new
   end
 
   def favorite_caballos
@@ -23,7 +24,6 @@ class ProfilesController < ApplicationController
     @section_title = "Favoritos"
     @auctions = Auction.all.where(id: Favorite.where(user_id: current_user).pluck(:auction_id))
   end
-
 
   def notification
     @section_title = "Notificaciones"

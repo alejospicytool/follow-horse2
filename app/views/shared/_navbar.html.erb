@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
 
       <% if @navbar_brand %>
-        <%= link_to onboarding_path, class: "navbar-brand" do %>
+        <%= link_to home_path, class: "navbar-brand" do %>
           <%= image_tag 'follow-horse-logo-sin-texto.png' %>
         <% end %>
       <% else %>
@@ -13,19 +13,73 @@
       <% end %>
 
       <% if @section_title %>
+        <% if @image_title %>
+          <%= image_tag("#{@image_title}", style: "width: 30px; height: 30px; margin-right: 7px;") %>
+        <% end %>
         <p class="navbar-title"><%= @section_title %></p>
       <% end %>
     </div>
 
     <% if @search %>
-      <%= image_tag('search.png') %>
+      <%= link_to search_path do %>
+        <%= image_tag('search.png') %>
+      <% end %>
     <% elsif @filtros %>
-      <%= image_tag('filtros.png') %>
+      <% if params[:controller] == "horses" %>
+        <%= link_to horses_filtros_path do %>
+          <%= image_tag('filtros.png') %>
+        <% end %>
+      <% else %>
+        <%= image_tag('filtros.png') %>
+      <% end %>
     <% elsif @share_like %>
-      <div class="d-flex">
-        <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart mx-2", remote: true %>
-        <%= image_tag('share-white.png')%>
+
+      <div class="d-flex justify-content-center align-items-center">
+          <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart mx-2", remote: true %>
+          <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)%>">
+            <%= button_to image_tag('share-white.svg'), "", data: {action: "click->share#share"}, style: "border: none; background: none; padding-bottom: 5px;" %>
+            <%= content_tag(:span, "", class:"result", data: {
+              share_target: "result"
+            }) %>
+          </div>
+
       </div>
+    <% elsif @dots %>
+      <div>
+        <%= link_to conversacion_destroy_path, data: {"turbo-method": :delete} do %>
+          <i class="fa-solid fa-trash" style="color: white; margin-right: 5px;"></i>
+        <% end %>
+        <% if @conversation.archive == false %>
+          <%= link_to conversacion_archivar_path(@conversation.id), data: {"turbo-method": :put} do %>
+            <i class="fa-solid fa-inbox" style="color: white;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to conversacion_desarchivar_path(@conversation.id), data: {"turbo-method": :put} do %>
+            <i class="fa-solid fa-inbox" style="color: white;"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%# DROPDOWN NOT WORKING CORRECTLY %>
+      <%# <div class="dropdown"> %>
+        <%#= image_tag('dots.svg', class: "dropdown-toggle", data: {toggle: "dropdown"}, id: "dropdownMenuButton", aria: {haspopup: "true", expanded:"false"}) %>
+        <%# <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="left: -140px; padding: 0;"> %>
+          <%# <ul style="padding: 8px; margin-bottom: 0; text-align: center;"> %>
+            <%# <li> %>
+              <%#= link_to "Eliminar", conversacion_destroy_path, class: "dropdown-item", data: {"turbo-method": :delete} %>
+            <%# </li> %>
+            <%# <% if @conversation.archive == false %>
+              <%# <li> %>
+                <%#= link_to "Archivar", conversacion_archivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %>
+              <%# </li> %>
+            <%# else %>
+              <%# <li> %>
+                <%#= link_to "Desarchivar", conversacion_desarchivar_path(@conversation.id), data: {"turbo-method": :put}, class: "dropdown-item" %>
+              <%# </li> %>
+            <%# end %>
+          <%# </ul> %>
+        <%# </div> %>
+      <%# </div> %>
     <% end %>
   </div>
 </div>

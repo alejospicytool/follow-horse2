@@ -21,17 +21,24 @@
 
             <div class="card-content">
               <div class="p-2 d-flex">
+
                 <div class="col-4">
                       <%= link_to "ELIMINAR", favorite_delete_auction_path(auction.id) %>
                   </div>
                 <div class="col-4 d-flex justify-content-center link align-items-center">
+
                   <%= link_to auction_path(auction.id) do %>
                     <span>VER MAS</span>
                   <% end %>
                 </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                  <div>
-                    <%= image_tag('share.png') %>
+
+                <div class="col-3 d-flex justify-content-end align-items-center p-0">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
+                    <div data-controller="share" data-share-url-value="<%= auction_path(auction)%>">
+                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                    </div>
                   </div>
                 </div>
               </div>

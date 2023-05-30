@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => :registrations
+  }
   root to: "pages#onboarding", as: 'onboarding'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
+
+  mount ActionCable.server => '/cable'
 
   # Home routes
   get 'home', to: 'pages#home', as: 'home'
@@ -13,6 +17,9 @@ Rails.application.routes.draw do
   # Horses routes
   get 'horses', to: 'horses#index'
   get 'potros', to: 'horses#potros', as: 'potros'
+  get 'horses/filtros', to: 'horses#filtros', as: :horses_filtros
+  post 'horses/aplicar_filtros', to: 'horses#aplicarfiltros', as: :horses_aplicar_filtros
+  get 'horses/resultados', to: 'horses#resultados', as: :horses_results
   get 'horses/new', to: 'horses#new', as: 'horse_new'
   get 'horses/:id', to: 'horses#show', as: "horse_show"
   post 'horses', to: 'horses#create'
@@ -25,9 +32,11 @@ Rails.application.routes.draw do
   get 'next_acutions', to: 'auctions#next_auctions', as: 'next_auctions'
   get 'auctions/new', to: 'auctions#new'
   post 'auctions', to: 'auctions#create'
+
   get 'auctions/:id', to: 'auctions#show', as: 'auction'
   get 'auctions/:id/edit', to: 'auctions#edit'
   put 'auctions/:id', to: 'auctions#create'
+
   delete 'auctions/:id', to: 'auctions#destroy', as: :auction_destroy
 
   # Lotes views
@@ -55,9 +64,23 @@ Rails.application.routes.draw do
   get 'mis_publicaciones/remates', to: 'profiles#publication_remates', as: 'profile_publication_remates'
   post 'favorite_horse/:horse', to: 'favorites#update_horse', as: 'favorite_horse'
   post 'favorite_auction/:auction', to: 'favorites#update_auction', as: 'favorite_auction'
+  get 'gracias_registo', to: 'pages#gracias', as: 'registro_gracias'
 
+  # Admin routes
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
+
+
+  # Conversation routes
+  get 'conversaciones/activas', to: 'conversations#conversaciones_activas', as: 'conversaciones_activas'
+  get 'conversaciones/archivadas', to: 'conversations#conversaciones_archivadas', as: 'conversaciones_archivadas'
+  post 'conversaciones', to: 'conversations#create', as: 'conversaciones_create'
+  get 'conversaciones/:id', to: 'conversations#show', as: 'conversacion_show'
+  put 'conversaciones/:id/archivar', to: 'conversations#archivar', as: 'conversacion_archivar'
+  put 'conversaciones/:id/desarchivar', to: 'conversations#desarchivar', as: 'conversacion_desarchivar'
+  delete 'conversaciones/:id', to: 'conversations#destroy', as: 'conversacion_destroy'
+  # Messages routes
+  post 'mensajes', to: 'messages#create', as: 'conversation_messages'
   get 'favorite_horse/:id', to: 'favorites#delete_horse', as: 'favorite_delete_horse'
   get 'favorite_auction/:id', to: 'favorites#delete_auction', as: 'favorite_delete_auction'
 end
