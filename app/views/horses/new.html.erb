@@ -61,11 +61,13 @@
       placeholder: "Click aqui para subir una imagen",
       input_html: {class: "form-input", multiple: true},
       label_html: {class: "label-input"}%>
-    <%= f.input :video,
-      label:"Video:",
-      placeholder: "Ingrese link al video",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"}%>
+    
+
+    <%= f.input :video, as: :file,
+    label: "Video:",
+    input_html: { class: "form-input" },
+    label_html: { class: "label-input" },
+    placeholder: "Click here to upload a video" %>
 
     <div class="d-flex justify-content-center">
       <%= f.submit "AÑADIR", class: "btn-submit mt-4" %>

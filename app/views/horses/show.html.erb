@@ -10,36 +10,6 @@
   <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart", remote: true %>
 
   <div class="container px-4">
-    <div class="info">
-
-      <div class="horse-titulo d-flex flex-column mb-4">
-        <span class="titulo mb-2"><%= @horse.name %></span>
-        <span class= "text"><%= @horse.description %></span>
-      </div>
-
-      <div class="detalles d-flex flex-column py-3">
-        <span class= "subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
-        <span class= "subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
-      </div>
-
-      <div class="pedigree d-flex flex-column py-3">
-        <span class= "subtitle">Pedigree</span>
-        <a href="">Descargar archivo.pdf</a>
-      </div>
-
-      <div class="user d-flex py-3">
-        <div>
-          <%= image_tag('profile-icon.png') %>
-        </div>
-        <div class="d-flex flex-column" style="margin-left: 1rem;">
-          <span class= "subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
-          <span class="sub-subtitle"><%= @horse.user.establishment %></span>
-          <%= link_to profile_show_path(@horse.user.id) do %>
-            <span class="link">Ver perfil</span>
-          <% end %>
-        </div>
-      </div>
-    </div>
     <div class="container px-2">
       <div class="info">
 

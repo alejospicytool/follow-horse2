@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "archive", default: false
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -108,6 +116,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auction_id"], name: "index_lotes_on_auction_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "body"
+    t.bigint "conversation_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -158,5 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
   add_foreign_key "favorites", "users"
   add_foreign_key "horses", "users"
   add_foreign_key "lotes", "auctions"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "reviews", "users"
 end

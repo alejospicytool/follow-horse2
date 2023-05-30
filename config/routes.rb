@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'potros', to: 'horses#potros', as: 'potros'
   get 'horses/new', to: 'horses#new', as: 'horse_new'
   get 'horses/:id', to: 'horses#show', as: "horse_show"
-  post 'horses/create', to: 'horses#create'
+  post 'horses', to: 'horses#create'
   get 'horses/:id/edit', to: 'horses#edit'
   put 'horses/:id', to: 'horses#update'
   delete 'horses/:id', to: 'horses#destroy', as: :horses_destroy
@@ -23,11 +23,11 @@ Rails.application.routes.draw do
   # Auctions routes
   get 'active_auctions', to: 'auctions#active_auctions', as: 'active_auctions'
   get 'next_acutions', to: 'auctions#next_auctions', as: 'next_auctions'
-  get 'autions/new', to: 'auctions#new'
+  get 'auctions/new', to: 'auctions#new'
   post 'auctions', to: 'auctions#create'
-  get 'autions/:id', to: 'auctions#show', as: 'auction'
-  get 'autions/:id/edit', to: 'auctions#edit'
-  put 'autions/:id', to: 'auctions#create'
+  get 'auctions/:id', to: 'auctions#show', as: 'auction'
+  get 'auctions/:id/edit', to: 'auctions#edit'
+  put 'auctions/:id', to: 'auctions#create'
   delete 'auctions/:id', to: 'auctions#destroy', as: :auction_destroy
 
   # Lotes views
