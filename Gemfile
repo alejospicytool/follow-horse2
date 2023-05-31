@@ -80,3 +80,7 @@ group :test do
 end
 
 gem "dotenv-rails", groups: [:development, :test]
+
+gem "dockerfile-rails", ">= 1.4", :group => :development
+
+gem "redis", "~> 5.0"
