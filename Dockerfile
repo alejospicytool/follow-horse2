@@ -6,6 +6,10 @@ FROM ruby:$RUBY_VERSION-slim as base
 
 LABEL fly_launch_runtime="rails"
 
+## Cloudinary Credentials
+ARG CLOUDINARY_URL=cloudinary://894899123771416:2-xujc6WZoT4bN3bUDOOtTv8YMM@dgmtchxjj
+ENV CLOUDINARY_URL ${CLOUDINARY_URL}
+
 # Rails app lives here
 WORKDIR /rails
 
@@ -89,6 +93,7 @@ USER rails:rails
 ENV RAILS_LOG_TO_STDOUT="1" \
     RAILS_SERVE_STATIC_FILES="true"
 
+ENV SECRET_KEY_BASE 1
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
