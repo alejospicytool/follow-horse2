@@ -6,9 +6,6 @@ FROM ruby:$RUBY_VERSION-slim as base
 
 LABEL fly_launch_runtime="rails"
 
-## Cloudinary Credentials
-ARG CLOUDINARY_URL=cloudinary://894899123771416:2-xujc6WZoT4bN3bUDOOtTv8YMM@dgmtchxjj
-ENV CLOUDINARY_URL ${CLOUDINARY_URL}
 
 # Rails app lives here
 WORKDIR /rails
