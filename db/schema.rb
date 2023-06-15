@@ -76,8 +76,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "auction_id"
     t.bigint "user_id", null: false
+    t.bigint "auction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "horse_id"
