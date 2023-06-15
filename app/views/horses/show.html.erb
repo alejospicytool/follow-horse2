@@ -9,7 +9,7 @@
   </div>
 
   <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart", remote: true %>
-  <% if @horse.video %>
+  <% if @horse.video != nil%>
     <iframe src=<%=@horse.video%> width="500" height="400"></iframe>
   <% end %>
   <div class="container px-4">
@@ -17,7 +17,13 @@
       <div class="info">
 
         <div class="horse-titulo d-flex flex-column mb-4">
-          <span class="titulo mb-2"><%= @horse.name %></span>
+          <span class="titulo mb-2"><%= @horse.name %>
+            <% if @horse.user == current_user %>
+              <%= link_to  horse_edit_path(@horse) do%>
+              <i class="fa-solid fa-pen-to-square" style= "color: black;"></i>
+              <% end %>
+            <% end %>
+          </span>
           <span class= "text"><%= @horse.description %></span>
         </div>
 
