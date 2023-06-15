@@ -9,7 +9,9 @@
   </div>
 
   <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart", remote: true %>
-
+  <% if @horse.video %>
+    <iframe src=<%=@horse.video%> width="500" height="400"></iframe>
+  <% end %>
   <div class="container px-4">
     <div class="container px-2">
       <div class="info">
