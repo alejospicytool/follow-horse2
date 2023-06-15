@@ -76,10 +76,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.bigint "auction_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "auction_id"
     t.bigint "horse_id"
     t.index ["auction_id"], name: "index_favorites_on_auction_id"
     t.index ["horse_id"], name: "index_favorites_on_horse_id"
@@ -152,8 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_162504) do
     t.integer "age"
     t.string "description"
     t.string "establishment"
-    t.string "first_name"
-    t.string "last_name"
     t.string "nombre"
     t.string "apellido"
     t.string "direccion"

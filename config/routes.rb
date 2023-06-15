@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'slide3', to: 'pages#slide3', as: 'slide3'
 
   # Horses routes
+  get 'horses/:id/edit', to: 'horses#edit', as: "horse_edit"
   get 'horses', to: 'horses#index'
   get 'potros', to: 'horses#potros', as: 'potros'
   get 'horses/filtros', to: 'horses#filtros', as: :horses_filtros
@@ -23,8 +24,7 @@ Rails.application.routes.draw do
   get 'horses/new', to: 'horses#new', as: 'horse_new'
   get 'horses/:id', to: 'horses#show', as: "horse_show"
   post 'horses', to: 'horses#create'
-  get 'horses/:id/edit', to: 'horses#edit'
-  put 'horses/:id', to: 'horses#update'
+  put 'horses/:id', to: 'horses#update', as: "horse_update"
   delete 'horses/:id', to: 'horses#destroy', as: :horses_destroy
 
   # Auctions routes

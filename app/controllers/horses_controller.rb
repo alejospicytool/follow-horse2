@@ -32,10 +32,12 @@ class HorsesController < ApplicationController
   def create
     @horse = Horse.create(horse_params)
     @horse.user = current_user
-    uploaded_file = horse_params[:video]
-    name = ''
-    url = post_video_to_wistia(name, horse_params[:video])
-    @horse.video = url
+    if params[:horse][:video] != nil
+      uploaded_file = horse_params[:video]
+      name = ''
+      url = post_video_to_wistia(name, horse_params[:video])
+      @horse.video = url
+    end
     if @horse.save
       redirect_to horses_path
     else
@@ -44,15 +46,24 @@ class HorsesController < ApplicationController
   end
 
   def edit
+    @horse = Horse.find(params[:id])
   end
 
   def update
-    if @horse.update(horse_params)
+    if params[:horse][:video] != nil
+      name = ''
+      url = post_video_to_wistia(name, params[:horse][:video])
+      @horse.video = url
+      @horse.save
+    end
+    horse_params_without_video = horse_params.except(:horse_video)
+    if @horse.update(horse_params_without_video)
       redirect_to horses_path(@horse)
     else
       render :edit, status: :unprocessable_entity
     end
   end
+
   def filtros
     @filtro = Filtro.new
     @horses = Horse.all.where.not(user_id: current_user.id)
