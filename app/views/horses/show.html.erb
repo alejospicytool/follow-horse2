@@ -1,18 +1,57 @@
+<!-- Content -->
+<div class="horses-show d-flex flex-column align-items-center" data-controller='share'>
+  <div class="col-lg-6 col-sm-10 col-md-8 col-12" style="  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 
-<div class="horses-show">
-  <div class="foto w-100 h-100 mb-3">
-    <% if @horse.photos.count > 0 %>
-      <%= cl_image_tag @horse.photos.last.key, class: "w-100", style: "height: 18.75rem;" %>
-    <% else %>
-      <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>
-    <% end %>
-  </div>
+    <!---------- Carousel ------->
+    <div class="foto w-100 h-100 mb-3 mt-3 d-flex justify-content-center">
+      <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <% if @horse.photos.count > 0 %>
+            <% @horse.photos.each_with_index do |photo, index| %>
+              <li data-target="#carouselExampleIndicators" data-slide-to=<%= "#{index}" %> class=<%= photo == @horse.photos.first ? "active" : "" %>></li>
+            <% end %>
+          <% else %>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <% end %>
+          <% if @horse.video != nil%>
+            <% last_index = @horse.photos.length - 1 %>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= last_index + 1 %>"></li>
+          <% end %>
+        </ol>
+        <div class="carousel-inner">
+          <!---------- Photo ------->
+          <% if @horse.photos.count > 0 %>
+            <% @horse.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= photo == @horse.photos.first ? "active" : "" %>">
+                <%= cl_image_tag photo.key, class: "d-block w-100", style: "height: 25rem;" %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="carousel-item active">
+              <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 25rem;") %>
+            </div>
+          <% end %>
+            <!---------- Video ------->
+            <% if @horse.video != nil%>
+              <div class="carousel-item">
+                <iframe src=<%= @horse.video %> width="100%" height="400"></iframe>
+              </div>
+            <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
 
-  <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart", remote: true %>
-  <% if @horse.video != nil%>
-    <iframe src=<%=@horse.video%> width="500" height="400"></iframe>
-  <% end %>
-  <div class="container px-4">
+    <!---------- Favorite ------->
+    <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart d-none", remote: true %>
+
     <div class="container px-2">
       <div class="info">
 
@@ -28,13 +67,17 @@
         </div>
 
         <div class="detalles d-flex flex-column py-3">
-          <span class= "subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
-          <span class= "subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
+          <span class="subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
+          <span class="subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
         </div>
 
         <div class="pedigree d-flex flex-column py-3">
-          <span class= "subtitle">Pedigree</span>
-          <a href="">Descargar archivo.pdf</a>
+          <span class="subtitle">Pedigree</span>
+          <% if @horse.pedigree != "" %>
+            <a href="">Ver pedigree</a>
+          <% else %>
+            <span class="text">No posee pedigree</span>
+          <% end %>
         </div>
 
         <div class="user d-flex py-3">
@@ -42,7 +85,7 @@
             <%= image_tag('profile-icon.png') %>
           </div>
           <div class="d-flex flex-column" style="margin-left: 1rem;">
-            <span class= "subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
+            <span class="subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
             <span class="sub-subtitle"><%= @horse.user.establishment %></span>
             <%= link_to profile_show_path(@horse.user.id) do %>
               <span class="link">Ver perfil</span>
