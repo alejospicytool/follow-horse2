@@ -28,7 +28,7 @@ class AuctionsController < ApplicationController
     @auction = Auction.create(auction_params)
     @auction.user = current_user
     if @auction.save
-      redirect_to next_auctions_path
+      redirect_to profile_publication_remates_path
     else
       render :new, status: :unprocessable_entity
     end
