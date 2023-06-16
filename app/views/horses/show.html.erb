@@ -31,12 +31,12 @@
               <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 25rem;") %>
             </div>
           <% end %>
-          <div class="carousel-item">
             <!---------- Video ------->
             <% if @horse.video != nil%>
-              <iframe src=<%= @horse.video %> width="100%" height="400"></iframe>
+              <div class="carousel-item">
+                <iframe src=<%= @horse.video %> width="100%" height="400"></iframe>
+              </div>
             <% end %>
-          </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,13 +67,17 @@
         </div>
 
         <div class="detalles d-flex flex-column py-3">
-          <span class= "subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
-          <span class= "subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
+          <span class="subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
+          <span class="subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
         </div>
 
         <div class="pedigree d-flex flex-column py-3">
-          <span class= "subtitle">Pedigree</span>
-          <a href="">Ver pedigree</a>
+          <span class="subtitle">Pedigree</span>
+          <% if @horse.pedigree != "" %>
+            <a href="">Ver pedigree</a>
+          <% else %>
+            <span class="text">No posee pedigree</span>
+          <% end %>
         </div>
 
         <div class="user d-flex py-3">
@@ -81,7 +85,7 @@
             <%= image_tag('profile-icon.png') %>
           </div>
           <div class="d-flex flex-column" style="margin-left: 1rem;">
-            <span class= "subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
+            <span class="subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
             <span class="sub-subtitle"><%= @horse.user.establishment %></span>
             <%= link_to profile_show_path(@horse.user.id) do %>
               <span class="link">Ver perfil</span>
