@@ -75,9 +75,9 @@ puts "Creating auctions"
 auction1 = Auction.new(
   name: "Remate Haras Victoria",
   location: "Buenos Aires",
-  date: Date.new(2023, 05, 27),
-  user_id: user1.id, start: DateTime.new(2023, 5, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 5, 27, 5, 0, 0),
+  user_id: user1.id,
+  start: Time.now,
+  finish: Time.now + 2.days,
   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
@@ -88,9 +88,9 @@ auction1.save!
 auction2 = Auction.new(
   name: "Haras Remate AlBar",
   location: "Capitan Sarmiento",
-  date: Date.new(2023, 04, 27),
-  user_id: user1.id, start: DateTime.new(2023, 4, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 4, 27, 5, 0, 0),
+  user_id: user1.id,
+  start: Time.now,
+  finish: Time.now + 2.days,
   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
@@ -101,9 +101,9 @@ auction2.save!
 auction3 = Auction.new(
   name: "Haras Selva de Pedra",
   location: "Rio Cuarto",
-  date: Date.new(2023, 03, 27),
-  user_id: user5.id, start: DateTime.new(2023, 3, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 3, 27, 5, 0, 0),
+  user_id: user5.id,
+  start: Time.now + 2.days,
+  finish: Time.now + 4.days,
   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
@@ -114,14 +114,40 @@ auction3.save!
 auction4 = Auction.new(
   name: "Haras San Pablo",
   location: "Pergamino",
-  date: Date.new(2023, 06, 27),
-  user_id: user5.id, start: DateTime.new(2023, 6, 27, 4, 0, 0),
-  finish: DateTime.new(2023, 6, 27, 5, 0, 0),
+  user_id: user5.id,
+  start: Time.now + 4.days,
+  finish: Time.now + 6.days,
   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
 )
 file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
 auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
 auction4.save!
+
+auction5 = Auction.new(
+  name: "Haras Remate Carampagne",
+  location: "Hipoódromo de San Isidro",
+  user_id: user4.id,
+  start: Time.now,
+  finish: Time.now + 2.days,
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.arg-sales.com/remates/view/301"
+)
+file = URI.open("https://www.arg-sales.com/mydocuments/cd18e3a8-21d3-4c57-8149-a3a2776df442.png")
+auction5.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction5.save!
+
+auction6 = Auction.new(
+  name: "Haras El Rincon",
+  location: "Buenos Aires",
+  user_id: user3.id,
+  start: Time.now + 2.days,
+  finish: Time.now + 4.days,
+  condiciones: "https://www.saenz-valiente.com/remate/22219",
+  link_auction: "https://www.saenz-valiente.com/remate/22219"
+)
+file = URI.open("https://criolloselrincon.com.ar/img/logo.png")
+auction6.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction6.save!
 
 puts "Created auctions"

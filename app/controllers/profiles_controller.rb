@@ -37,6 +37,7 @@ class ProfilesController < ApplicationController
   def publication_remates
     @section_title = "Mis publicaciones"
     @auctions = Auction.all.where(user_id: current_user)
+    @auctions = @auctions.where("finish > ?", Time.now)
   end
 
   def sub_links

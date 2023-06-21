@@ -1,22 +1,22 @@
 <!-- Content -->
 <div class="horses-show d-flex flex-column align-items-center" style="margin-bottom: 5rem !important;">
-  <div class="col-lg-6 col-sm-10 col-md-8 col-12" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+  <div class="col-lg-6 col-sm-10 col-md-8 col-12 px-0" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 
     <div class="foto w-100 h-100 mb-3">
       <% if @auction.photo.key %>
-        <%= cl_image_tag @auction.photo.key, class: "w-100", style: "height: 18.75rem;" %>
+        <%= cl_image_tag @auction.photo.key, class: "w-100", style: "height: 25rem;" %>
       <% else %>
-        <%= image_tag('caballo.png', class: "w-100", style: "height: 18.75rem;") %>
+        <%= image_tag('auction-logo-solo.png', class: "w-100", style: "height: 25rem;") %>
       <% end %>
     </div>
 
-    <div class="container px-4 pb-5">
+    <div class="container px-3 pb-5">
       <div class="info">
 
         <div class="horse-titulo d-flex flex-column mb-4">
           <div class="d-flex align-items-center mb-1">
             <%= image_tag('ubicacion.svg', style: "margin-right: 5px; height: 18px;") %>
-            <span class= "subtitle">Ubicacion</span>
+            <span class= "subtitle">Ubicación</span>
           </div>
           <span class= "text px-4"><%= @auction.location %></span>
         </div>
@@ -27,9 +27,13 @@
             <span class= "subtitle">Condiciones</span>
           </div>
           <span class= "subtitle d-flex align-items-center px-4">
-            <a href="<%= @auction.condiciones %>" target="_blank">Ver condiciones del remate
-              <i class="fa-solid fa-angle-right"></i>
-            </a>
+            <% if @auction.condiciones != nil %>
+              <a href="<%= @auction.condiciones %>" target="_blank">Ver condiciones del remate
+                <i class="fa-solid fa-angle-right"></i>
+              </a>
+            <% else %>
+              <span>Condiciones no disponibles</span>
+            <% end %>
           </span>
         </div>
 
@@ -39,15 +43,27 @@
             <span class= "subtitle">Fecha</span>
           </div>
           <div class="d-flex justify-content-between mb-2 px-4">
-            <span class= "text">Inicio: <%= @auction.start.strftime("%d/%m/%Y") %></span>
-            <span class= "text">Finalizacion: <%= @auction.finish.strftime("%d/%m/%Y") %></span>
+            <span class="text">Inicio: <%= @auction.start.strftime("%d/%m/%Y") %></span>
+            <span class="text text-right">Finalización: <%= @auction.finish.strftime("%d/%m/%Y") %></span>
           </div>
-          <span class= "subtitle text-center mt-3">Quedan 2 dias 7:03:21</span>
+          <% if @auction.start > Time.now %>
+            <% t = @auction.start - DateTime.now %>
+            <% mm, ss = t.divmod(60) %>
+            <% hh, mm = mm.divmod(60)  %>
+            <% dd, hh = hh.divmod(24)  %>
+            <span class= "subtitle text-center mt-3">Faltan <%= "#{dd} días #{hh}:#{mm.round(2)}:#{ss.round}"%></span>
+          <% else %>
+            <% t = @auction.finish - DateTime.now %>
+            <% mm, ss = t.divmod(60) %>
+            <% hh, mm = mm.divmod(60)  %>
+            <% dd, hh = hh.divmod(24)  %>
+            <span class= "subtitle text-center mt-3">Quedan <%= "#{dd} días #{hh}:#{mm.round(2)}:#{ss.round}"%></span>
+          <% end %>
         </div>
       </div>
       <div class="d-flex justify-content-center mb-3">
         <a href="<%= @auction.link_auction %>" target="_blank">
-          <button class= "btn-submit mt-2">VER</button>
+          <button class= "btn-submit mt-2">VER REMATE</button>
         </a>
       </div>
     </div>

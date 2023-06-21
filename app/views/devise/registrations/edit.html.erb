@@ -4,10 +4,10 @@
 
   <div class="foto d-flex justify-content-center align-items-center mb-4">
     <div style="position: relative; width: 35%" class="d-flex justify-content-center align-items-center">
-      <% if @user.photo %>
+      <% if @user.photo.key != nil %>
         <%= cl_image_tag @user.photo.key, class: "mis-datos-img" %>
       <% else %>
-        <%= image_tag('caballo.jpeg', class: "mis-datos-img") %>
+        <%= image_tag('user-placeholder.png', class: "mis-datos-img") %>
       <% end %>
 
       <div class="d-flex align-items-end justify-content-end" style="height: 142px;">
@@ -28,7 +28,7 @@
       <%#= f.input :email, required: true, autofocus: true %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
       <% end %>
 
       <%= f.input :age,
@@ -86,6 +86,7 @@
                   label_html: {class: "label-input"} %>
 
       <%= f.input :password_confirmation,
+                  hint: "Dejar en blanco si no se quiere actualizar",
                   required: false,
                   input_html: { autocomplete: "Nueva Contraseña", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
                   label_html: {class: "label-input"} %>

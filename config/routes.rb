@@ -32,11 +32,9 @@ Rails.application.routes.draw do
   get 'next_acutions', to: 'auctions#next_auctions', as: 'next_auctions'
   get 'auctions/new', to: 'auctions#new'
   post 'auctions', to: 'auctions#create'
-
   get 'auctions/:id', to: 'auctions#show', as: 'auction'
   get 'auctions/:id/edit', to: 'auctions#edit'
-  put 'auctions/:id', to: 'auctions#create'
-
+  put 'auctions/:id', to: 'auctions#update'
   delete 'auctions/:id', to: 'auctions#destroy', as: :auction_destroy
 
   # Lotes views

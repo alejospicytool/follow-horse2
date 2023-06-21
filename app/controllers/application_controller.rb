@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(*)
     home_path
   end
+
   def after_sign_out_path_for(*)
     new_user_session_path
   end
@@ -31,6 +33,10 @@ class ApplicationController < ActionController::Base
   def favorite_auction_text(auction)
     @favorite_exists = Favorite.where(auction: auction, user: current_user) != []
     return @favorite_exists ? "fav" : "nofav"
+  end
+
+  def set_locale
+    I18n.locale = :es
   end
 
   helper_method :favorite_horse_text, :favorite_auction_text

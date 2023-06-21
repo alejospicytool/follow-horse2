@@ -1,0 +1,84 @@
+es:
+  activerecord:
+    attributes:
+      horse:
+        rider: "Jinete/ amazona"
+        name: "Nombre"
+        birthday: "Fecha de nacimiento"
+        age: "Edad"
+        height: "Altura"
+        gender: "Sexo"
+        alzada: "Alzada"
+      auction:
+        name: "Nombre"
+        link_auction: "Link del remate"
+        location: "Ubicación"
+        start: "Fecha de inicio"
+        finish: "Fecha de finalización"
+      user:
+        nombre: "Nombre"
+        apellido: "Apellido"
+        direccion: "Dirección"
+        ciudad: "Ciudad"
+        provincia: "Provincia"
+        pais: "País"
+        phone: "Teléfono"
+        email: "Email"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+        current_password: "Contraseña actual"
+    errors:
+      models:
+        horse:
+          attributes:
+            rider:
+              blank: "no puede estar en blanco"
+            name:
+              blank: "no puede estar en blanco"
+            birthday:
+              blank: "no puede estar en blanco"
+            age:
+              blank: "no puede estar en blanco"
+            height:
+              blank: "no puede estar en blanco"
+            gender:
+              blank: "no puede estar en blanco"
+            alzada:
+              blank: "no puede estar en blanco"
+        auction:
+          attributes:
+            name:
+              blank: "no puede estar en blanco"
+            link_auction:
+              blank: "no puede estar en blanco"
+            location:
+              blank: "no puede estar en blanco"
+            start:
+              blank: "no puede estar en blanco"
+            finish:
+              blank: "no puede estar en blanco"
+        user:
+          attributes:
+            nombre:
+              blank: "no puede estar en blanco"
+            apellido:
+              blank: "no puede estar en blanco"
+            direccion:
+              blank: "no puede estar en blanco"
+            ciudad:
+              blank: "no puede estar en blanco"
+            provincia:
+              blank: "no puede estar en blanco"
+            pais:
+              blank: "no puede estar en blanco"
+            phone:
+              blank: "no puede estar en blanco"
+            email:
+              blank: "no puede estar en blanco"
+              taken: "ya ha sido tomado"
+            password:
+              blank: "no puede estar en blanco"
+              too_short: "es demasiado corta (mínimo %{count} caracteres)"
+            password_confirmation:
+              blank: "no puede estar en blanco"
+              confirmation: "no coincide con la contraseña"
