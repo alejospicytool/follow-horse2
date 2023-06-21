@@ -1,11 +1,11 @@
 <!-- Content -->
 <div class="horses-show d-flex flex-column align-items-center" data-controller='share'>
-  <div class="col-lg-6 col-sm-10 col-md-8 col-12" style="  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+  <div class="col-lg-6 col-sm-10 col-md-8 col-12 px-0" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 
     <!---------- Carousel ------->
-    <div class="foto w-100 h-100 mb-3 mt-3 d-flex justify-content-center">
+    <div class="foto w-100 h-100 mb-3 d-flex justify-content-center">
       <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
-        <ol class="carousel-indicators">
+        <ol class="carousel-indicators" style="z-index: 3 !important;">
           <% if @horse.photos.count > 0 %>
             <% @horse.photos.each_with_index do |photo, index| %>
               <li data-target="#carouselExampleIndicators" data-slide-to=<%= "#{index}" %> class=<%= photo == @horse.photos.first ? "active" : "" %>></li>
@@ -22,18 +22,18 @@
           <!---------- Photo ------->
           <% if @horse.photos.count > 0 %>
             <% @horse.photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= photo == @horse.photos.first ? "active" : "" %>">
+              <div class="carousel-item <%= photo == @horse.photos.first ? "active" : "" %>" style="height: 400px !important">
                 <%= cl_image_tag photo.key, class: "d-block w-100", style: "height: 25rem;" %>
               </div>
             <% end %>
           <% else %>
-            <div class="carousel-item active">
-              <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 25rem;") %>
+            <div class="carousel-item active" style="height: 400px !important">
+              <%= image_tag('caballo-placeholder.png', class: "w-100", style: "height: 25rem;") %>
             </div>
           <% end %>
             <!---------- Video ------->
             <% if @horse.video != nil%>
-              <div class="carousel-item">
+              <div class="carousel-item" style="height: 400px !important">
                 <iframe src=<%= @horse.video %> width="100%" height="400"></iframe>
               </div>
             <% end %>
@@ -52,7 +52,7 @@
     <!---------- Favorite ------->
     <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart d-none", remote: true %>
 
-    <div class="container px-2">
+    <div class="container px-3" style="margin-top: 1rem !important;">
       <div class="info">
 
         <div class="horse-titulo d-flex flex-column mb-4">
@@ -97,13 +97,13 @@
       <div class="publicaciones mt-3">
         <span class="subtitle">Publicaciones relacionadas</span>
 
-        <% if @horses.last(2) != [] %>
-          <% @horses.last(2).each do |horse| %>
+        <% if @horses.last(3) != [] %>
+          <% @horses.last(3).each do |horse| %>
             <div class="card w-100 mb-3 mt-3">
               <% if horse.photos.last %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
               <% else %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: gray; background-size: cover;">
+                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= image_path 'caballo-placeholder-solo.png' %>'); background-repeat: no-repeat; background-position: center; background-size: 300px;">
               <% end %>
                 <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
               </div>
@@ -116,12 +116,15 @@
                       <span>VER MAS</span>
                     <% end %>
                   </div>
-                  <div class="col-4 d-flex justify-content-end align-items-center">
-                    <div>
-                      <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                      <%= image_tag('share.png') %>
+                <div class="col-4 d-flex justify-content-end align-items-center pr-0">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <%= button_to favorite_horse_text(horse), favorite_horse_path(horse: horse), class: "horse_heart_index mx-2", remote: true %>
+                    <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
+                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -166,3 +169,51 @@
     }
   )
 </script>
+
+<script>
+  buttons = document.querySelectorAll('.horse_heart_index')
+    buttons.forEach(
+    function(button) {
+      if (button.innerText == "fav"){
+        button.innerHTML = "<i class='fa-solid fa-heart'></i>"
+      } else if (button.innerText == "nofav"){
+        button.innerHTML = "<i class='fa-regular fa-heart'></i>"
+      }
+      button.addEventListener('click', function() {
+        if (button.innerHTML == `<i class="fa-solid fa-heart"></i>`) {
+          button.innerHTML = `<i class="fa-regular fa-heart"></i>`
+        } else if (button.innerHTML == `<i class="fa-regular fa-heart"></i>`){
+          button.innerHTML = `<i class="fa-solid fa-heart"></i>`
+        }
+      })
+    }
+  )
+</script>
+
+<style>
+  .horse_heart{
+    border: none;
+    background: none;
+    padding: 0;
+    color:white;
+    font-size: 1.3rem;
+  }
+
+  .horse_heart_index{
+    border: none;
+    background: none;
+    padding: 0;
+    padding-top: 2px;
+    color: #F2DA84;
+    font-size: 1.3rem;
+  }
+
+  .horse_heart_home{
+    border: none;
+    background: none;
+    padding: 0;
+    padding-top: 2px;
+    color: #F2DA84;
+    font-size: 1.3rem;
+  }
+</style>
