@@ -1,6 +1,6 @@
 <!-- Content -->
 <div class="horses-show d-flex flex-column align-items-center" style="margin-bottom: 5rem !important;">
-  <div class="col-lg-6 col-sm-10 col-md-8 col-12" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+  <div class="col-lg-6 col-sm-10 col-md-8 col- px-0" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 
     <div class="foto w-100 h-100 mb-3">
       <% if @user.photo %>
@@ -11,12 +11,12 @@
     </div>
 
     <div class="info">
-      <div class="horse-titulo container px-4 d-flex flex-column mb-4 py-0">
+      <div class="horse-titulo px-3 d-flex flex-column mb-4 mt-4 py-0">
         <div class="d-flex justify-content-between">
           <span class="titulo mb-1"><%= @user.nombre %> <%= @user.apellido %></span>
-          <span class= "text d-flex align-items-center">
-            <strong><%= user_rating %></strong>
+          <span class= "text d-flex justify-content-end mt-2">
             <% if user_rating != "Sin reseñas recibidas" %>
+              <strong><%= user_rating %></strong>
               <i class="fas fa-star review-star-icon" style="margin-left: 3px; color: #e67e22;margin-bottom: 4px;"></i>
             <% end %>
           </span>
@@ -25,15 +25,15 @@
       </div>
       <div id="accordion">
         <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important; border-top: 0.5px solid #5E9970 !important;">
-          <div class="card-header" id="headingOne">
-            <button class="btn btn-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none; color: #494949;">
+          <div class="card-header px-3" id="headingOne">
+            <button class="btn btn-link d-flex align-items-center justify-content-between w-100 px-0" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none; color: #494949;">
               <h5 class="mb-0">Info de Contacto</h5>
               <%= image_tag('arrow-down.svg') %>
             </button>
           </div>
 
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
-            <div class="card-body mb-3 container py-0 px-5" style="margin-top: 10px !important;">
+            <div class="card-body mb-3 container py-0 px-3" style="margin-top: 10px !important;">
 
               <div class="detalles d-flex flex-column py-3" style="border-top: none;">
                 <span class= "subtitle">Telefono: <span class= "text"><%= @user.phone %> </span></span>
@@ -46,29 +46,29 @@
               </div>
 
               <div class="pedigree d-flex flex-column py-3" style="border-bottom: none;">
-                <span class= "subtitle">Descripcion: <span class= "text"><%= @user.description %> </span></span>
+                <span class= "subtitle">Descripción: <span class= "text"><%= @user.description %> </span></span>
               </div>
 
             </div>
           </div>
         </div>
         <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important;">
-          <div class="card-header" id="headingTwo">
-            <button class="btn btn-link collapsed d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none; color: #494949;">
+          <div class="card-header px-3" id="headingTwo">
+            <button class="btn btn-link collapsed d-flex align-items-center justify-content-between w-100 px-0" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration: none; color: #494949;">
               <h5 class="mb-0">Publicaciones realizadas</h5>
               <%= image_tag('arrow-down.svg') %>
             </button>
           </div>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-            <div class="card-body px-5">
+            <div class="card-body px-3">
               <div class="cards mb-4 mt-2">
                 <% @horses.each do |horse| %>
                   <div class="card w-100 mb-3">
 
                     <% if horse.photos.any? %>
-                    <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+                      <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
                     <% else %>
-                    <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background: grey; background-size: cover;">
+                      <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= image_path 'caballo-placeholder-solo.png' %>'); background-repeat: no-repeat; background-position: center; background-size: 300px;">
                     <% end %>
 
                       <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
@@ -78,15 +78,18 @@
                       <div class="p-2 d-flex">
                         <div class="col-4">
                         </div>
-                        <div class="col-4 d-flex justify-content-center link align-items-center">
+                        <div class="col-4 d-flex justify-content-center link align-items-center" style="text-decoration: none !important;">
                           <%= link_to horse_show_path(horse.id) do %>
                             <span>VER MAS</span>
                           <% end %>
                         </div>
-                        <div class="col-4 d-flex justify-content-end align-items-center">
-                          <div>
-                            <%= image_tag('favorite.png', style: "margin-right: 7px;") %>
-                            <%= image_tag('share.png') %>
+                        <div class="col-4 d-flex justify-content-end align-items-center pr-0">
+                          <div class="d-flex align-items-center justify-content-center">
+                            <%= button_to favorite_horse_text(horse), favorite_horse_path(horse: horse), class: "horse_heart_home mx-2", remote: true %>
+                            <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
+                              <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                              <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -99,15 +102,15 @@
         </div>
 
         <div class="card" style="height: auto; box-shadow: none; border: none; border-bottom: 0.5px solid #5E9970 !important;">
-          <div class="card-header" id="headingOne">
-            <button class="btn btn-link d-flex align-items-center justify-content-between w-100" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" style="text-decoration: none; color: #494949;">
+          <div class="card-header px-3" id="headingOne">
+            <button class="btn btn-link d-flex align-items-center justify-content-between w-100 px-0" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" style="text-decoration: none; color: #494949;">
               <h5 class="mb-0">Reseñas</h5>
               <%= image_tag('arrow-down.svg') %>
             </button>
           </div>
 
           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
-            <div class="card-body mb-3 container py-0 px-4" style="margin-top: 20px !important;">
+            <div class="card-body mb-3 container py-0 px-3" style="margin-top: 20px !important;">
 
               <% if current_user.admin == true %>
                 <ul style="padding: 0;" class="px-2">
@@ -193,3 +196,51 @@
 
   </div>
 </div>
+
+<script>
+  buttons = document.querySelectorAll('.horse_heart_home')
+    buttons.forEach(
+    function(button) {
+      if (button.innerText == "fav"){
+        button.innerHTML = "<i class='fa-solid fa-heart'></i>"
+      } else if (button.innerText == "nofav"){
+        button.innerHTML = "<i class='fa-regular fa-heart'></i>"
+      }
+      button.addEventListener('click', function() {
+        if (button.innerHTML == `<i class="fa-solid fa-heart"></i>`) {
+          button.innerHTML = `<i class="fa-regular fa-heart"></i>`
+        } else if (button.innerHTML == `<i class="fa-regular fa-heart"></i>`){
+          button.innerHTML = `<i class="fa-solid fa-heart"></i>`
+        }
+      })
+    }
+  )
+</script>
+
+<style>
+  .horse_heart{
+    border: none;
+    background: none;
+    padding: 0;
+    color:white;
+    font-size: 1.3rem;
+  }
+
+  .horse_heart_index{
+    border: none;
+    background: none;
+    padding: 0;
+    padding-top: 2px;
+    color: #F2DA84;
+    font-size: 1.3rem;
+  }
+
+  .horse_heart_home{
+    border: none;
+    background: none;
+    padding: 0;
+    padding-top: 2px;
+    color: #F2DA84;
+    font-size: 1.3rem;
+  }
+</style>
