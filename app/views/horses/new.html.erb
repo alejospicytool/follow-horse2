@@ -1,73 +1,103 @@
 <div class="container">
   <%= simple_form_for @horse do |f|%>
+    <%# Jinete / Amazona %>
+    <%= f.label :rider, "Jinete/ amazona:",
+                class: "label-input" %>
     <%= f.input :rider,
-      label: "Jinete/ amazona:",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"},
-      placeholder: "Escribe aquí" %>
+                input_html: { class: "form-input" },
+                placeholder: "Escribe aquí",
+                label: false %>
+    <%# Nombre %>
+    <%= f.label :name, "Nombre caballo:",
+                class: "label-input" %>
     <%= f.input :name,
-      label: "Nombre caballo:",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"},
-      placeholder: "Escribe aquí" %>
-    <%= f.input :description, as: :text,
-      label: "Descripción:",
-      input_html: {class: "form-input", style: "height: 5rem;"},
-      label_html: {class: "label-input"},
-      placeholder: "Escribe aquí" %>
-    <%= f.input :birthday, as: :date, html5: true,
-      label: "Fecha de nacimiento:",
-      input_html: {class: "form-input", style:"margin-left: 26px;"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center justify-content-between mt-4"} %>
-    <%= f.input :age,
-      label: "Edad:",
-      as: :select,
-      collection: (1...20).to_a,
-      input_html: {class: "form-input", style:"margin-left: 26px;"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center mt-4"},
-      prompt: "Seleccionar Edad" %>
-    <%= f.input :height,
-      label: "Altura:",
-      as: :select,
-      collection: @height,
-      input_html: {class: "form-input", style:"margin-left: 26px;"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center mt-4"},
-      prompt: "Seleccionar Altura" %>
-    <%= f.input :gender,
-      label: "Sexo:", as: :select,
-      collection: ["Macho", "Hembra", "Padrillo"],
-      input_html: {class: "form-input", style:"margin-left: 26px;"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center mt-4"},
-      prompt: "Seleccionar Sexo" %>
+                input_html: { class: "form-input" },
+                placeholder: "Escribe aquí",
+                label: false %>
+    <%# Descripción %>
+    <%= f.label :description, "Descripción:",
+                class: "label-input" %>
+    <%= f.input :description,
+                as: :text,
+                input_html: { class: "form-input", style: "height: 5rem !important;" },
+                placeholder: "Escribe aquí",
+                label: false %>
+    <%# Fecha de nacimiento %>
+    <div class= "d-flex align-items-center justify-content-between mt-3" style= "gap:5px;">
+      <%= f.label :birthday, "Fecha de nacimiento:",
+                  class: "label-input" %>
+      <%= f.input :birthday,
+                  as: :date,
+                  html5: true,
+                  input_html: { class: "form-input", style: "margin-left: 20px;" },
+                  label: false %>
+    </div>
+    <%# Edad %>
+    <div class= "d-flex align-items-center mt-3">
+      <%= f.label :age, "Edad:",
+                  class: "label-input" %>
+      <%= f.input :age,
+                  label: false,
+                  as: :select,
+                  collection: (1...20).to_a,
+                  input_html: {class: "form-input"},
+                  prompt: "Seleccionar Edad",
+                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
+    </div>
+    <%# Altura %>
+    <div class= "d-flex align-items-center mt-3">
+      <%= f.label :height, "Altura:",
+                  class: "label-input" %>
+      <%= f.input :height,
+                  label: false,
+                  as: :select,
+                  collection: @height,
+                  input_html: {class: "form-input" },
+                  prompt: "Seleccionar Altura",
+                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
+    </div>
+    <%# Sexo %>
+    <div class= "d-flex align-items-center mt-3">
+      <%= f.label :gender, "Sexo:",
+                  class: "label-input" %>
+      <%= f.input :gender,
+                  label: false,
+                  as: :select,
+                  collection: ["Macho", "Hembra", "Padrillo"],
+                  input_html: {class: "form-input" },
+                  prompt: "Seleccionar Sexo",
+                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
+    </div>
+    <%# Alzada %>
+    <div class= "d-flex align-items-center mt-3">
+      <%= f.label :alzada, "Alzada:",
+                  class: "label-input" %>
     <%= f.input :alzada,
-      label: "Alzada:",
-      as: :select,
-      collection: @alzada,
-      input_html: {class: "form-input", style:"margin-left: 26px;"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center mt-4"},
-      prompt: "Seleccionar Alzada" %>
+                label: false,
+                as: :select,
+                collection: @alzada,
+                input_html: {class: "form-input"},
+                wrapper_html: {style: "width: 100%; margin-left: 20px;"},
+                prompt: "Seleccionar Alzada" %>
+    </div>
+    <%# Pedigree %>
     <%= f.input :pedigree,
-      label:"Pedigree:",
-      placeholder: "Ingrese link al pedigree",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"}%>
+                label:"Pedigree:",
+                placeholder: "Ingrese link al pedigree",
+                input_html: {class: "form-input"},
+                label_html: {class: "label-input"}%>
+    <%# Photos  %>
     <%= f.input :photos, as: :file,
-      label:"Imagen:",
-      placeholder: "Click aqui para subir una imagen",
-      input_html: {class: "form-input", multiple: true},
-      label_html: {class: "label-input"}%>
-
-
+                label:"Imagen:",
+                placeholder: "Click aqui para subir una imagen",
+                input_html: {class: "form-input", multiple: true},
+                label_html: {class: "label-input"}%>
+    <%# Video %>
     <%= f.input :video, as: :file,
-    label: "Video:",
-    input_html: { class: "form-input" },
-    label_html: { class: "label-input" },
-    placeholder: "Click here to upload a video" %>
+                label: "Video:",
+                input_html: { class: "form-input" },
+                label_html: { class: "label-input" },
+                placeholder: "Click here to upload a video" %>
 
     <div class="d-flex justify-content-center">
       <%= f.submit "AÑADIR", class: "btn-submit mt-4" %>
