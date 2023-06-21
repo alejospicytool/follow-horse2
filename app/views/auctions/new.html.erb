@@ -1,43 +1,65 @@
 <div class="container">
   <%= simple_form_for (@auction) do |f|%>
+    <%# -------- Nombre ------------ %>
+    <%= f.label :name, "Nombre remate:",
+                class: "label-input mt-3" %>
     <%= f.input :name,
-      label: "Nombre remate:",
+      label: false,
       input_html: {class: "form-input"},
-      label_html: {class: "label-input"},
       placeholder: "Escribe aqui" %>
+    <%# -------- Link -------- %>
+    <%= f.label :link_auction, "Link del remate:",
+                class: "label-input" %>
     <%= f.input :link_auction,
-      label: "Link del remate",
+      label: false,
       placeholder: "Agrega un link del remate",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"} %>
+      input_html: {class: "form-input"} %>
+    <%# -------- Imagen -------- %>
+    <%= f.label :photo, "Imagen:",
+                class: "label-input" %>
     <%= f.input :photo, as: :file,
-      label:"Imagen",
+      label: false,
       placeholder: "Click aqui para subir una imagen",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"} %>
+      input_html: {class: "form-input"} %>
+    <%# -------- Ubicacion -------- %>
+    <%= f.label :location, "Ubicación:",
+                class: "label-input" %>
     <%= f.input :location,
-      label: "Ubicacion",
-      placeholder: "Seleccionar ubicacion",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"} %>
-    <%= f.input :start,
-      label: "Fecha de comienzo:",
-      as: :datetime, html5: true,
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center justify-content-between"} %>
-    <%= f.input :finish,
-      label: "Fecha de finalizacion:",
-      as: :datetime, html5: true,
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"},
-      wrapper_html: {class: "d-flex align-items-center justify-content-between",
-      style: "margin-top: 26px;"} %>
-    <%= f.input :condiciones,
-      label: "Condiciones",
-      placeholder: "Agrega un link a las condiciones",
-      input_html: {class: "form-input"},
-      label_html: {class: "label-input"} %>
+      label: false,
+      placeholder: "Seleccionar ubicación",
+      input_html: {class: "form-input"} %>
+    <%# -------- Fecha de comienzo -------- %>
+    <div class= "d-flex align-items-center justify-content-between mt-4" style= "gap:5px;">
+      <%= f.label :start, "Fecha de comienzo:",
+                  class: "label-input",
+                  style: "width: 26%;" %>
+      <%= f.input :start,
+                  label: false,
+                  as: :datetime, html5: true,
+                  input_html: { class: "form-input" },
+                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
+    </div>
+    <%# -------- Fecha de fin  -------- %>
+    <div class= "d-flex align-items-center justify-content-between mt-3" style= "gap:5px;">
+      <%= f.label :finish, "Fecha de finalización:",
+                  class: "label-input",
+                  style: "width: 26%;" %>
+      <%= f.input :finish,
+                  label: false,
+                  as: :datetime, html5: true,
+                  input_html: {class: "form-input" },
+                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
+    </div>
+    <%# -------- Condiciones -------- %>
+    <div class="mt-3">
+      <%= f.label :condiciones, "Condiciones",
+                  class: "label-input" %>
+      <%= f.input :condiciones,
+        label: false,
+        placeholder: "Agrega un link a las condiciones",
+        input_html: {class: "form-input"} %>
+    </div>
+
     <div class="d-flex justify-content-center">
       <%= f.submit "CREAR", class: "btn-submit mt-2" %>
     </div>
