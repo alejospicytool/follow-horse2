@@ -4,12 +4,14 @@ class AuctionsController < ApplicationController
 
   def next_auctions
     @auctions = Auction.all.where.not(user_id: current_user.id)
+    @auctions = @auctions.where("start > ?", Time.now)
     @section_title = "Remates"
     @navbar_brand = 'true'
   end
 
   def active_auctions
     @auctions = Auction.all.where.not(user_id: current_user.id)
+    @auctions = @auctions.where("start < ?", Time.now).where("finish > ?", Time.now)
     @section_title = "Remates"
     @navbar_brand = 'true'
   end
@@ -30,17 +32,20 @@ class AuctionsController < ApplicationController
     if @auction.save
       redirect_to profile_publication_remates_path
     else
+      @section_title = "Añadir Remate"
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @section_title = "Editar remate"
   end
 
   def update
     if @auction.update(auction_params)
       redirect_to auctions_path(@auction)
     else
+      @section_title = "Editar remate"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -72,6 +77,6 @@ class AuctionsController < ApplicationController
   end
 
   def auction_params
-    params.require(:auction).permit(:name, :location, :date, :start, :finish, :photo, :condiciones)
+    params.require(:auction).permit(:name, :location, :start, :finish, :photo, :condiciones, :link_auction)
   end
 end
