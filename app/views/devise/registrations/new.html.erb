@@ -11,8 +11,8 @@
 </div>
 
 <!-- CONTENT -->
-<div class="container" style="margin-top: 7rem !important">
-  <p class="mt-5 mb-4" style="font-weight: 600;">Ingresa tus datos para crear tu cuenta</p>
+<div class="container" style="margin-top: 6rem !important">
+  <p class="mt-3 mb-4" style="font-weight: 600;">Ingresa tus datos para crear tu cuenta</p>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
     <%= f.text_field :registro, value: "ok", type: "hidden" %>
     <%= f.error_notification %>
@@ -77,7 +77,7 @@
       <%= f.input :photo, as: :file,
                   label: false,
                   placeholder: "Foto",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
+                  input_html: {style: "border-bottom: 4px solid #207B6E; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
                   hint: "Foto de perfil",
                   hint_html: {style: "font-weight: 400; font-size: 12px; color: #727272;"} %>
       <%= f.input :email,
@@ -92,7 +92,7 @@
                   required: true,
                   label: false,
                   placeholder: "Contraseña",
-                  hint: ("La contraseña debe tener #{@minimum_password_length}" if @minimum_password_length),
+                  hint: ("La contraseña debe tener #{@minimum_password_length} caracteres" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" },
                   class: "log-in-input",
                   input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
