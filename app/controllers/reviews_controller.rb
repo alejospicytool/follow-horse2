@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review.writer_id = current_user.id
     @review.user_id = @user.id
     if @review.save
-      redirect_to profile_show_path(@user), notice: "Reseña creada correctamente"
+      redirect_to profile_show_path(@user), notice: "Reseña creada correctamente, será revisada por un administrador"
     else
       redirect_to profile_show_path(@user), notice: "Datos incorrectos, por favor reviselos e intente nuevamente"
       # flash[:alert] = "Datos incorrectos, por favor reviselos e intente nuevamente"
