@@ -82,3 +82,5 @@ es:
             password_confirmation:
               blank: "no puede estar en blanco"
               confirmation: "no coincide con la contraseña"
+      messages:
+        record_invalid: "no ande che"

@@ -72,82 +72,82 @@ horse4.save!
 
 puts "Creating auctions"
 
-auction1 = Auction.new(
-  name: "Remate Haras Victoria",
-  location: "Buenos Aires",
-  user_id: user1.id,
-  start: Time.now,
-  finish: Time.now + 2.days,
-  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-)
-file = URI.open("https://mir-s3-cdn-cf.behance.net/projects/404/e4104d112052313.Y3JvcCwxNjYzLDEzMDAsMCwxMjM.png")
-auction1.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-auction1.save!
+# auction1 = Auction.new(
+#   name: "Remate Haras Victoria",
+#   location: "Buenos Aires",
+#   user_id: user1.id,
+#   start: Time.now,
+#   finish: Time.now + 2.days,
+#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+# )
+# file = URI.open("https://mir-s3-cdn-cf.behance.net/projects/404/e4104d112052313.Y3JvcCwxNjYzLDEzMDAsMCwxMjM.png")
+# auction1.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+# auction1.save!
 
-auction2 = Auction.new(
-  name: "Haras Remate AlBar",
-  location: "Capitan Sarmiento",
-  user_id: user1.id,
-  start: Time.now,
-  finish: Time.now + 2.days,
-  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-)
-file = URI.open("https://www.guerra-creativa.com/img/uploads/designs/850x566/bimzp3p0.jpg")
-auction2.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-auction2.save!
+# auction2 = Auction.new(
+#   name: "Haras Remate AlBar",
+#   location: "Capitan Sarmiento",
+#   user_id: user1.id,
+#   start: Time.now,
+#   finish: Time.now + 2.days,
+#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+# )
+# file = URI.open("https://www.guerra-creativa.com/img/uploads/designs/850x566/bimzp3p0.jpg")
+# auction2.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+# auction2.save!
 
-auction3 = Auction.new(
-  name: "Haras Selva de Pedra",
-  location: "Rio Cuarto",
-  user_id: user5.id,
-  start: Time.now + 2.days,
-  finish: Time.now + 4.days,
-  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-)
-file = URI.open("https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2018%2F03%2F07%2F20%2FLogo-234918_70207_204757969_278263886.jpg")
-auction3.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-auction3.save!
+# auction3 = Auction.new(
+#   name: "Haras Selva de Pedra",
+#   location: "Rio Cuarto",
+#   user_id: user5.id,
+#   start: Time.now + 2.days,
+#   finish: Time.now + 4.days,
+#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+# )
+# file = URI.open("https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2018%2F03%2F07%2F20%2FLogo-234918_70207_204757969_278263886.jpg")
+# auction3.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+# auction3.save!
 
-auction4 = Auction.new(
-  name: "Haras San Pablo",
-  location: "Pergamino",
-  user_id: user5.id,
-  start: Time.now + 4.days,
-  finish: Time.now + 6.days,
-  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-)
-file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
-auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-auction4.save!
+# auction4 = Auction.new(
+#   name: "Haras San Pablo",
+#   location: "Pergamino",
+#   user_id: user5.id,
+#   start: Time.now + 4.days,
+#   finish: Time.now + 6.days,
+#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+# )
+# file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
+# auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+# auction4.save!
 
-auction5 = Auction.new(
-  name: "Haras Remate Carampagne",
-  location: "Hipoódromo de San Isidro",
-  user_id: user4.id,
-  start: Time.now,
-  finish: Time.now + 2.days,
-  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-  link_auction: "https://www.arg-sales.com/remates/view/301"
-)
-file = URI.open("https://www.arg-sales.com/mydocuments/cd18e3a8-21d3-4c57-8149-a3a2776df442.png")
-auction5.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-auction5.save!
+# auction5 = Auction.new(
+#   name: "Haras Remate Carampagne",
+#   location: "Hipoódromo de San Isidro",
+#   user_id: user4.id,
+#   start: Time.now,
+#   finish: Time.now + 2.days,
+#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+#   link_auction: "https://www.arg-sales.com/remates/view/301"
+# )
+# file = URI.open("https://www.arg-sales.com/mydocuments/cd18e3a8-21d3-4c57-8149-a3a2776df442.png")
+# auction5.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+# auction5.save!
 
-auction6 = Auction.new(
-  name: "Haras El Rincon",
-  location: "Buenos Aires",
-  user_id: user3.id,
-  start: Time.now + 2.days,
-  finish: Time.now + 4.days,
-  condiciones: "https://www.saenz-valiente.com/remate/22219",
-  link_auction: "https://www.saenz-valiente.com/remate/22219"
-)
-file = URI.open("https://criolloselrincon.com.ar/img/logo.png")
-auction6.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-auction6.save!
+# auction6 = Auction.new(
+#   name: "Haras El Rincon",
+#   location: "Buenos Aires",
+#   user_id: user3.id,
+#   start: Time.now + 2.days,
+#   finish: Time.now + 4.days,
+#   condiciones: "https://www.saenz-valiente.com/remate/22219",
+#   link_auction: "https://www.saenz-valiente.com/remate/22219"
+# )
+# file = URI.open("https://criolloselrincon.com.ar/img/logo.png")
+# auction6.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+# auction6.save!
 
 puts "Created auctions"
