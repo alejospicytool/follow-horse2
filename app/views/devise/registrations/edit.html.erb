@@ -1,17 +1,26 @@
 <%= render 'shared/navbar' %>
 
+ <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 <div class="container col-sm-8 col-lg-6 col-sm-12">
 
   <div class="foto d-flex justify-content-center align-items-center mb-4">
     <div style="position: relative; width: 35%" class="d-flex justify-content-center align-items-center">
       <% if @user.photo.key != nil %>
-        <%= cl_image_tag @user.photo.key, class: "mis-datos-img" %>
+        <%= cl_image_tag @user.photo.key, class: "mis-datos-img", id:'primer-photo' %>
       <% else %>
-        <%= image_tag('user-placeholder.png', class: "mis-datos-img") %>
+        <%= image_tag('user-placeholder.png', class: "mis-datos-img", id:'primer-photo') %>
       <% end %>
+        <img class= "mis-datos-img d-none" id="segunda-photo">
 
       <div class="d-flex align-items-end justify-content-end" style="height: 142px;">
-        <%= image_tag('foto-icon.svg', style: "position: absolute;") %>
+      <div class="file-input-wrapper" style="position: relative">
+        <%= f.label :photo, input_html: {disabled: true}, id: "file-icon" do %>
+        <%= image_tag('foto-icon.svg', alt: 'Upload Image', class: 'upload-icon', style: "position: absolute; bottom: 0px; right: 7px;") %>
+        <%= f.input :photo, as: :file, label: false, id: "photo-input", class: 'file-input d-none', type: "hidden", input_html: {class: "d-none", onchange: "displayPreview(this)"} %>
+        <% end %>
+
+
+</div>
       </div>
     </div>
   </div>
@@ -21,92 +30,189 @@
     <span class=""><%= @user.email %></span>
   </div>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= f.error_notification %>
+  <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%#= f.input :email, required: true, autofocus: true %>
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true %>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
-      <% end %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
+    <% end %>
 
-      <%= f.input :age,
-                  label: "Edad:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :age,
+                label: "Edad:",
+                input_html: { id: "age-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
+    <%= f.input :establishment,
+                label: "Establecimiento:",
+                input_html: { id: "establishment-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :establishment,
-                  label: "Establecimiento:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :phone,
+                label: "Teléfono:",
+                input_html: { id: "phone-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :phone,
-                  label: "Telefono:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :direccion,
+                label: "Dirección:",
+                input_html: { id: "direccion-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :direccion,
-                  label: "Direccion:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :ciudad,
+                label: "Ciudad:",
+                input_html: { id: "ciudad-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :ciudad,
-                  label: "Ciudad:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :provincia,
+                label: "Provincia:",
+                input_html: { id: "provincia-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :provincia,
-                  label: "Provincia:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :pais,
+                label: "País:",
+                input_html: { id: "pais-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :pais,
-                  label: "Pais:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :description,
+                label: "Sobre mí:",
+                input_html: { id: "description-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" },
+                placeholder: "Escribe aquí" %>
 
-      <%= f.input :description,
-                  label: "Sobre mi:",
-                  input_html: {class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;"},
-                  label_html: {class: "label-input"},
-                  placeholder: "Escribe aqui" %>
+    <%= f.input :password,
+                hint: "Dejar en blanco si no se quiere actualizar",
+                required: false,
+                input_html: { autocomplete: "Nueva Contraseña", id: "password-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" } %>
 
-      <%= f.input :password,
-                  hint: "Dejar en blanco si no se quiere actualizar",
-                  required: false,
-                  input_html: { autocomplete: "Nueva Contraseña", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
-                  label_html: {class: "label-input"} %>
+    <%= f.input :password_confirmation,
+                hint: "Dejar en blanco si no se quiere actualizar",
+                required: false,
+                input_html: { autocomplete: "Nueva Contraseña", id: "password-confirmation-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" } %>
 
-      <%= f.input :password_confirmation,
-                  hint: "Dejar en blanco si no se quiere actualizar",
-                  required: false,
-                  input_html: { autocomplete: "Nueva Contraseña", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
-                  label_html: {class: "label-input"} %>
+    <%= f.input :current_password,
+                hint: "Necesitamos que ingreses tu contraseña para confirmar los cambios",
+                required: true,
+                input_html: { autocomplete: "Contraseña actual", id: "current-password-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                label_html: { class: "label-input" } %>
+  </div>
 
-      <%= f.input :current_password,
-                  hint: "Necesitamos que ingreses tu contraseña para confirmar los cambios",
-                  required: true,
-                  input_html: { autocomplete: "Contraseña actual", class: "form-input", style:"border-color: #207B6E !important; background-image: none !important;" },
-                  label_html: {class: "label-input"} %>
-    </div>
-
-    <div class="d-flex justify-content-center mb-3">
-      <%= f.button :submit, "ACTUALIZAR", class: "btn-submit mt-2" %>
-    </div>
-
-  <% end %>
-
-  <div class="d-flex align-items-center justify-content-center">
-    <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+  <div class="d-flex justify-content-center mb-3">
+    <%= f.button :submit, "ACTUALIZAR", class: "btn-submit mt-2", id: "submit-button" %>
   </div>
 </div>
+  <% end %>
+<script>
+  document.getElementById("submit-button").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // Perform validations
+    var ageInput = document.getElementById("age-input");
+    var establishmentInput = document.getElementById("establishment-input");
+    var phoneInput = document.getElementById("phone-input");
+    var direccionInput = document.getElementById("direccion-input");
+    var ciudadInput = document.getElementById("ciudad-input");
+    var provinciaInput = document.getElementById("provincia-input");
+    var paisInput = document.getElementById("pais-input");
+    var descriptionInput = document.getElementById("description-input");
+    var passwordInput = document.getElementById("password-input");
+    var passwordConfirmationInput = document.getElementById("password-confirmation-input");
+    var currentPasswordInput = document.getElementById("current-password-input");
+    var ageErrorMessage = document.getElementById("age-error-message");
+
+    if (ageInput.value === "") {
+      ageInput.style.borderColor = "red";
+      text = "Por favor ingrese su edad.";
+      ageInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (establishmentInput.value === "") {
+      establishmentInput.style.borderColor = "red";
+      text = "Por favor ingrese el establecimiento.";
+      establishmentInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (phoneInput.value === "") {
+      phoneInput.style.borderColor = "red";
+      text = "Por favor ingrese su telefono";
+      phoneInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (direccionInput.value === "") {
+      direccionInput.style.borderColor = "red";
+      text = "Por favor ingrese su direccion.";
+      direccionInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (ciudadInput.value === "") {
+      ciudadInput.style.borderColor = "red";
+      text = "Por favor ingrese su ciudad.";
+      ciudadInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (provinciaInput.value === "") {
+      provinciaInput.style.borderColor = "red";
+      text = "Por favor ingrese su provincia.";
+      provinciaInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (paisInput.value === "") {
+      paisInput.style.borderColor = "red";
+      text = "Por favor ingrese su pais.";
+      paisInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    if (descriptionInput.value === "") {
+      descriptionInput.style.borderColor = "red";
+      text = "Por favor ingrese una descripcion.";
+      descriptionInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      return false;
+    }
+
+    // Add any additional validations for password, password confirmation, and current password fields
+
+    // If all validations pass, submit the form
+    event.target.closest("form").submit();
+  });
+  // ---------------- IMAGE PREVIEW -------------------------------//
+
+  // const previewImageOnFileSelect = () => {
+  // // we select the photo input
+  //   const input = document.getElementById('user_photo');
+  //   // we add a listener to know when a new picture is uploaded
+  //   input.addEventListener('change', () => {
+  //     // we call the displayPreview function (who retrieve the image url and display it)
+  //     displayPreview(input);
+  //   })
+  // }
+
+function displayPreview(input) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      document.getElementById('segunda-photo').src = event.currentTarget.result;
+    }
+    reader.readAsDataURL(input.files[0])
+    document.getElementById('segunda-photo').classList.remove('d-none');
+    document.getElementById('primer-photo').classList.add('d-none');
+}
+
+  // previewImageOnFileSelect()
+
+</script>
 
 <%= render 'shared/footer' %>
