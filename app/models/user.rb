@@ -11,17 +11,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Validations
-  # validates :nombre, presence: true
-  # validates :apellido, presence: true
-  # validates :direccion, presence: true
-  # validates :ciudad, presence: true
-  # validates :provincia, presence: true
-  # validates :pais, presence: true
-  # validates :phone, presence: true
-  # validates :email, presence: true
-  # validates :password, presence: true
-
   def update_rating
     reviews = Review.where(user_id: self.id)
     sum = 0
