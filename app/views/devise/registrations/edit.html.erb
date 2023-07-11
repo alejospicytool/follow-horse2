@@ -1,116 +1,117 @@
 <%= render 'shared/navbar' %>
 
- <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-<div class="container col-sm-8 col-lg-6 col-sm-12">
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <div class="container col-sm-8 col-lg-6 col-sm-12">
 
-  <div class="foto d-flex justify-content-center align-items-center mb-4">
-    <div style="position: relative; width: 35%" class="d-flex justify-content-center align-items-center">
-      <% if @user.photo.key != nil %>
-        <%= cl_image_tag @user.photo.key, class: "mis-datos-img", id:'primer-photo' %>
-      <% else %>
-        <%= image_tag('user-placeholder.png', class: "mis-datos-img", id:'primer-photo') %>
-      <% end %>
-        <img class= "mis-datos-img d-none" id="segunda-photo">
-
-      <div class="d-flex align-items-end justify-content-end" style="height: 142px;">
-      <div class="file-input-wrapper" style="position: relative">
-        <%= f.label :photo, input_html: {disabled: true}, id: "file-icon" do %>
-        <%= image_tag('foto-icon.svg', alt: 'Upload Image', class: 'upload-icon', style: "position: absolute; bottom: 0px; right: 7px;") %>
-        <%= f.input :photo, as: :file, label: false, id: "photo-input", class: 'file-input d-none', type: "hidden", input_html: {class: "d-none", onchange: "displayPreview(this)"} %>
+    <div class="foto d-flex justify-content-center align-items-center mb-4">
+      <div style="position: relative; width: 35%" class="d-flex justify-content-center align-items-center">
+        <% if @user.photo.key != nil %>
+          <%= cl_image_tag @user.photo.key, class: "mis-datos-img", id:'primer-photo' %>
+        <% else %>
+          <%= image_tag('user-placeholder.png', class: "mis-datos-img", id:'primer-photo') %>
         <% end %>
+          <img class= "mis-datos-img d-none" id="segunda-photo">
 
-
-</div>
+        <div class="d-flex align-items-end justify-content-end" style="height: 142px;">
+          <div class="file-input-wrapper" style="position: relative">
+            <%= f.label :photo, input_html: {disabled: true}, id: "file-icon" do %>
+            <%= image_tag('foto-icon.svg', alt: 'Upload Image', class: 'upload-icon', style: "position: absolute; bottom: 0px; right: 7px;") %>
+            <%= f.input :photo, as: :file, label: false, id: "photo-input", class: 'file-input d-none', type: "hidden", input_html: {class: "d-none", onchange: "displayPreview(this)"} %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="title mb-4">
+      <h5 class="section-title mb-0"><%= @user.nombre.capitalize %> <%= @user.apellido.capitalize %></h5>
+      <span class=""><%= @user.email %></span>
+    </div>
+
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%#= f.input :email, required: true, autofocus: true %>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
+      <% end %>
+
+      <%= f.input :age,
+                  label: "Edad:",
+                  input_html: { id: "age-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+      <%= f.input :establishment,
+                  label: "Establecimiento:",
+                  input_html: { id: "establishment-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :phone,
+                  label: "Teléfono:",
+                  input_html: { id: "phone-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :direccion,
+                  label: "Dirección:",
+                  input_html: { id: "direccion-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :ciudad,
+                  label: "Ciudad:",
+                  input_html: { id: "ciudad-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :provincia,
+                  label: "Provincia:",
+                  input_html: { id: "provincia-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :pais,
+                  label: "País:",
+                  input_html: { id: "pais-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :description,
+                  as: :text,
+                  label: "Sobre mí:",
+                  input_html: { id: "description-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;" },
+                  label_html: { class: "label-input" },
+                  placeholder: "Escribe aquí" %>
+
+      <%= f.input :password,
+                  hint: "Dejar en blanco si no se quiere actualizar",
+                  required: false,
+                  input_html: { autocomplete: "Nueva Contraseña", id: "password-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" } %>
+
+      <%= f.input :password_confirmation,
+                  hint: "Dejar en blanco si no se quiere actualizar",
+                  required: false,
+                  input_html: { autocomplete: "Nueva Contraseña", id: "password-confirmation-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" } %>
+
+      <%= f.input :current_password,
+                  hint: "Necesitamos que ingreses tu contraseña para confirmar los cambios",
+                  required: false,
+                  input_html: { autocomplete: "Contraseña actual", id: "current-password-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  label_html: { class: "label-input" } %>
+    </div>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= f.button :submit, "ACTUALIZAR", class: "btn-submit mt-2", id: "submit-button" %>
+    </div>
   </div>
+<% end %>
 
-  <div class="title mb-4">
-    <h5 class="section-title mb-0"><%= @user.nombre.capitalize %> <%= @user.apellido.capitalize %></h5>
-    <span class=""><%= @user.email %></span>
-  </div>
-
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Esperando confirmación para: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :age,
-                label: "Edad:",
-                input_html: { id: "age-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-    <%= f.input :establishment,
-                label: "Establecimiento:",
-                input_html: { id: "establishment-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :phone,
-                label: "Teléfono:",
-                input_html: { id: "phone-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :direccion,
-                label: "Dirección:",
-                input_html: { id: "direccion-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :ciudad,
-                label: "Ciudad:",
-                input_html: { id: "ciudad-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :provincia,
-                label: "Provincia:",
-                input_html: { id: "provincia-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :pais,
-                label: "País:",
-                input_html: { id: "pais-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :description,
-                label: "Sobre mí:",
-                input_html: { id: "description-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" },
-                placeholder: "Escribe aquí" %>
-
-    <%= f.input :password,
-                hint: "Dejar en blanco si no se quiere actualizar",
-                required: false,
-                input_html: { autocomplete: "Nueva Contraseña", id: "password-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" } %>
-
-    <%= f.input :password_confirmation,
-                hint: "Dejar en blanco si no se quiere actualizar",
-                required: false,
-                input_html: { autocomplete: "Nueva Contraseña", id: "password-confirmation-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" } %>
-
-    <%= f.input :current_password,
-                hint: "Necesitamos que ingreses tu contraseña para confirmar los cambios",
-                required: true,
-                input_html: { autocomplete: "Contraseña actual", id: "current-password-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
-                label_html: { class: "label-input" } %>
-  </div>
-
-  <div class="d-flex justify-content-center mb-3">
-    <%= f.button :submit, "ACTUALIZAR", class: "btn-submit mt-2", id: "submit-button" %>
-  </div>
-</div>
-  <% end %>
 <script>
+  // ---------------- VALIDATIONS -------------------------------//
   document.getElementById("submit-button").addEventListener("click", function(event) {
     event.preventDefault();
 
@@ -126,93 +127,248 @@
     var passwordInput = document.getElementById("password-input");
     var passwordConfirmationInput = document.getElementById("password-confirmation-input");
     var currentPasswordInput = document.getElementById("current-password-input");
-    var ageErrorMessage = document.getElementById("age-error-message");
+    var errorMessage = document.getElementById("error-message");
 
     if (ageInput.value === "") {
-      ageInput.style.borderColor = "red";
+      ageInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su edad.";
-      ageInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        ageInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        ageInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      ageInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (establishmentInput.value === "") {
-      establishmentInput.style.borderColor = "red";
+      establishmentInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese el establecimiento.";
-      establishmentInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        establishmentInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        establishmentInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      establishmentInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (phoneInput.value === "") {
-      phoneInput.style.borderColor = "red";
+      phoneInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su telefono";
-      phoneInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        phoneInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        phoneInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      phoneInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (direccionInput.value === "") {
-      direccionInput.style.borderColor = "red";
+      direccionInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su direccion.";
-      direccionInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        direccionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        direccionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      direccionInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (ciudadInput.value === "") {
-      ciudadInput.style.borderColor = "red";
+      ciudadInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su ciudad.";
-      ciudadInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        ciudadInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        ciudadInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      ciudadInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (provinciaInput.value === "") {
-      provinciaInput.style.borderColor = "red";
+      provinciaInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su provincia.";
-      provinciaInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        provinciaInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        provinciaInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      provinciaInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (paisInput.value === "") {
-      paisInput.style.borderColor = "red";
+      paisInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su pais.";
-      paisInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        paisInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        paisInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      paisInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
     if (descriptionInput.value === "") {
-      descriptionInput.style.borderColor = "red";
+      descriptionInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese una descripcion.";
-      descriptionInput.parentElement.innerHTML += `<span id= "age-error-message" class= "mb-3" style="color: red; font-size: 0.8em;" >${text}</span>`
+      if (!errorMessage) {
+        descriptionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        descriptionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
       return false;
+    } else {
+      descriptionInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
     }
 
-    // Add any additional validations for password, password confirmation, and current password fields
+    if (currentPasswordInput.value === "") {
+      currentPasswordInput.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su contraseña actual.";
+      if (!errorMessage) {
+        currentPasswordInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        currentPasswordInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      currentPasswordInput.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (passwordInput.value !== "" && passwordInput.value.length < 6) {
+      passwordInput.style.borderColor = "#DC3545";
+      const text = "La contraseña debe tener al menos 6 caracteres.";
+      if (errorMessage) {
+        errorMessage.remove();
+        passwordInput.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      } else {
+        passwordInput.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else {
+      passwordInput.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (passwordInput.value !== "" && passwordConfirmationInput.value === "") {
+      passwordConfirmationInput.style.borderColor = "#DC3545";
+      const text = "Por favor confirme su contraseña.";
+      if (errorMessage) {
+        errorMessage.remove();
+        passwordConfirmationInput.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      } else {
+        passwordConfirmationInput.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else if (passwordInput.value !== passwordConfirmationInput.value){
+      passwordConfirmationInput.style.borderColor = "#DC3545";
+      const text = "Las contraseñas no coinciden.";
+      if (errorMessage) {
+        errorMessage.remove();
+        passwordConfirmationInput.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      } else {
+        passwordConfirmationInput.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else {
+      passwordConfirmationInput.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
 
     // If all validations pass, submit the form
     event.target.closest("form").submit();
   });
+
   // ---------------- IMAGE PREVIEW -------------------------------//
+  function displayPreview(input) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        document.getElementById('segunda-photo').src = event.currentTarget.result;
+      }
+      reader.readAsDataURL(input.files[0])
+      document.getElementById('segunda-photo').classList.remove('d-none');
+      document.getElementById('primer-photo').classList.add('d-none');
+  }
+</script>
 
-  // const previewImageOnFileSelect = () => {
-  // // we select the photo input
-  //   const input = document.getElementById('user_photo');
-  //   // we add a listener to know when a new picture is uploaded
-  //   input.addEventListener('change', () => {
-  //     // we call the displayPreview function (who retrieve the image url and display it)
-  //     displayPreview(input);
-  //   })
-  // }
+<script>
+  function reload() {
+    console.log("reload");
+    const errorDiv = document.querySelector(".invalid-feedback");
 
-function displayPreview(input) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      document.getElementById('segunda-photo').src = event.currentTarget.result;
+    if (errorDiv) {
+      if (errorDiv.innerText === "Contraseña actual no es válido") {
+        // Store a flag in localStorage before the reload
+        localStorage.setItem("reloadFlag", "true");
+        window.location.href = "/users/edit";
+      }
     }
-    reader.readAsDataURL(input.files[0])
-    document.getElementById('segunda-photo').classList.remove('d-none');
-    document.getElementById('primer-photo').classList.add('d-none');
-}
+  }
 
-  // previewImageOnFileSelect()
+  window.addEventListener("load", function() {
+    // Check if the flag is set in localStorage after the page reloads
+    const reloadFlag = localStorage.getItem("reloadFlag");
+    if (reloadFlag === "true") {
+      localStorage.removeItem("reloadFlag"); // Remove the flag from storage
+      const currentPasswordInput = document.getElementById("current-password-input");
+      const text = "La contraseña actual no es válida";
+      currentPasswordInput.style.borderColor = "#DC3545";
+      currentPasswordInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+    }
+  });
 
+  window.addEventListener("load", reload);
 </script>
 
 <%= render 'shared/footer' %>

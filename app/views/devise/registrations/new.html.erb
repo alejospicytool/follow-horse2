@@ -11,7 +11,7 @@
 </div>
 
 <!-- CONTENT -->
-<div class="container" style="margin-top: 6rem !important">
+<div class="container" style="margin-top: 6rem !important" >
   <p class="mt-3 mb-4" style="font-weight: 600;">Ingresa tus datos para crear tu cuenta</p>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
     <%= f.text_field :registro, value: "ok", type: "hidden" %>
@@ -23,92 +23,298 @@
                   autofocus: true,
                   placeholder: "Nombre",
                   label: false,
-                  input_html: { autocomplete: "nombre" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "nombre", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :apellido,
                   required: true,
                   autofocus: true,
                   placeholder: "Apellido",
                   label: false,
-                  input_html: { autocomplete: "apellido" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "apellido", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :direccion,
                   required: true,
                   autofocus: true,
                   placeholder: "Direccion",
                   label: false,
-                  input_html: { autocomplete: "direccion" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "direccion", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :ciudad,
                   required: true,
                   autofocus: true,
                   placeholder: "Ciudad",
                   label: false,
-                  input_html: { autocomplete: "ciudad" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "ciudad", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :provincia,
                   required: true,
                   autofocus: true,
                   placeholder: "Provincia",
                   label: false,
-                  input_html: { autocomplete: "provincia" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "provincia", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :pais,
                   required: true,
                   autofocus: true,
                   placeholder: "Pais",
                   label: false,
-                  input_html: { autocomplete: "pais" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "pais", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :phone,
                   required: true,
                   autofocus: true,
                   placeholder: "Telefono",
                   label: false,
-                  input_html: { autocomplete: "telefono" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "telefono", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :photo, as: :file,
                   label: false,
                   placeholder: "Foto",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
                   hint: "Foto de perfil",
+                  input_html: {style: "border-bottom: 4px solid #207B6E; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
                   hint_html: {style: "font-weight: 400; font-size: 12px; color: #727272;"} %>
       <%= f.input :email,
                   required: true,
                   autofocus: true,
                   placeholder: "Email",
                   label: false,
-                  input_html: { autocomplete: "email" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
+                  input_html: {autocomplete: "email", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"} %>
       <%= f.input :password,
                   required: true,
                   label: false,
                   placeholder: "Contraseña",
                   hint: ("La contraseña debe tener #{@minimum_password_length} caracteres" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
+                  input_html: {autocomplete: "new-password", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"},
                   hint_html: {style: "font-weight: 400; font-size: 12px; color: #727272;"}  %>
       <%= f.input :password_confirmation,
                   label: false,
                   placeholder: "Confirmar Contraseña",
                   required: true,
-                  input_html: { autocomplete: "new-password" },
                   class: "log-in-input",
-                  input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"}%>
+                  input_html: {autocomplete: "new-password", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);"}%>
     </div>
 
     <div class="form-actions d-flex justify-content-center">
-      <%= f.button :submit,"Confirmar Registro", class: "form-button mt-4 mb-5", style:"background: #207B6E" %>
+      <%= f.button :submit,"Confirmar Registro", class: "form-button mt-4 mb-5", style:"background: #207B6E", id: "submit-button" %>
     </div>
   <% end %>
 
 </div>
+
+<script>
+  // ---------------- VALIDATIONS -------------------------------//
+  document.getElementById("submit-button").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // Perform validations
+    var nombre = document.getElementById("user_nombre");
+    var apellido = document.getElementById("user_apellido");
+    var direccion = document.getElementById("user_direccion");
+    var ciudad = document.getElementById("user_ciudad");
+    var provincia = document.getElementById("user_provincia");
+    var pais = document.getElementById("user_pais");
+    var telefono = document.getElementById("user_phone");
+    var email = document.getElementById("user_email");
+    var password = document.getElementById("user_password");
+    var passwordConfirmation = document.getElementById("user_password_confirmation");
+    var errorMessage = document.getElementById("error-message");
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (nombre.value === "") {
+      nombre.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su nombre.";
+      if (!errorMessage) {
+        nombre.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      nombre.style.borderColor = "#207B6E";
+      if(errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (apellido.value === "") {
+      apellido.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su apellido.";
+      if (!errorMessage) {
+        apellido.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      apellido.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (direccion.value === "") {
+      direccion.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su dirección.";
+      if (!errorMessage) {
+        direccion.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      direccion.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (ciudad.value === "") {
+      ciudad.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su ciudad.";
+      if (!errorMessage) {
+        ciudad.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      ciudad.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (provincia.value === "") {
+      provincia.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su provincia.";
+      if (!errorMessage) {
+        provincia.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      provincia.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (pais.value === "") {
+      pais.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su país.";
+      if (!errorMessage) {
+        pais.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      pais.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (telefono.value === "") {
+      telefono.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su telefono.";
+      if (!errorMessage) {
+        telefono.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else {
+      telefono.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (email.value === "") {
+      email.style.borderColor = "#DC3545";
+      const text = "Por favor ingrese su email.";
+      if (!errorMessage) {
+        email.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else if (!emailPattern.test(email.value)) {
+      email.style.borderColor = "#DC3545";
+      const text = "Por favor ingrese un email válido.";
+      if (errorMessage) {
+        errorMessage.remove();
+        email.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      } else {
+        email.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else {
+      const users = <%= raw User.pluck(:email).to_json %>;
+
+      if (users.includes(email.value)) {
+        // Email already exists
+        email.style.borderColor = "#DC3545";
+        const text = "El correo electrónico ya está en uso.";
+        if (!errorMessage) {
+          email.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+        } else {
+          errorMessage.remove();
+          email.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+        }
+        return false;
+      } else {
+        // Email is valid and unique
+        email.style.borderColor = "#207B6E";
+        if (errorMessage) {
+          errorMessage.remove();
+        }
+      }
+    }
+
+    if (password.value === "") {
+      password.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su contraseña.";
+      if (!errorMessage) {
+        password.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        password.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else if (password.value !== "" && password.value.length < 6) {
+      password.style.borderColor = "#DC3545";
+      const text = "La contraseña debe tener al menos 6 caracteres.";
+      if (errorMessage) {
+        errorMessage.remove();
+        password.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      } else {
+        password.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else {
+      password.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    if (passwordConfirmation.value === "") {
+      passwordConfirmation.style.borderColor = "#DC3545";
+      text = "Por favor ingrese su contraseña nuevamente.";
+      if (!errorMessage) {
+        passwordConfirmation.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      } else {
+        errorMessage.remove();
+        passwordConfirmation.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
+      }
+      return false;
+    } else if (password.value !== passwordConfirmation.value) {
+      passwordConfirmation.style.borderColor = "#DC3545";
+      const text = "Las contraseñas no coinciden.";
+      if (!errorMessage) {
+        passwordConfirmation.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      } else {
+        errorMessage.remove();
+        passwordConfirmation.parentElement.innerHTML += `<span id="error-message" class="mb-3" style="color: #DC3545; font-size: 0.8em;">${text}</span>`;
+      }
+      return false;
+    } else {
+      passwordConfirmation.style.borderColor = "#207B6E";
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    }
+
+    // If all validations pass, submit the form
+    event.target.closest("form").submit();
+  });
+</script>

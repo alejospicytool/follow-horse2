@@ -1,6 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :account_update_params, only: [:update]
-
   protected
 
   def after_sign_up_path_for(*)
@@ -10,8 +8,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_update_path_for(resource)
     flash[:notice] = "Datos actualizados correctamente"
-    edit_user_registration_path 
+    edit_user_registration_path
   end
+
   # def update_resource(resource, account_update_params)
   #   resource.update(account_update_params)
   #   after_update_path_for(resource)
