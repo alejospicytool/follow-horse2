@@ -76,11 +76,21 @@ es:
             email:
               blank: "no puede estar en blanco"
               taken: "ya ha sido tomado"
+              invalid: "no es válido"
+              empty: "no puede estar en blanco"
             password:
               blank: "no puede estar en blanco"
               too_short: "es demasiado corta (mínimo %{count} caracteres)"
+              empty: "no puede estar en blanco"
+              confirmation: "no coincide con la contraseña"
+              invalid: "no es válido"
+            current_password:
+              blank: "no puede estar en blanco"
+              too_short: "es demasiado corta (mínimo %{count} caracteres)"
+              empty: "no puede estar en blanco"
+              confirmation: "no coincide con la contraseña"
+              invalid: "no es válido"
             password_confirmation:
               blank: "no puede estar en blanco"
               confirmation: "no coincide con la contraseña"
-      messages:
-        record_invalid: "no ande che"
+              invalid: "no es válido"
