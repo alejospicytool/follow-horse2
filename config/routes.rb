@@ -68,7 +68,6 @@ Rails.application.routes.draw do
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
 
-
   # Conversation routes
   get 'conversaciones/activas', to: 'conversations#conversaciones_activas', as: 'conversaciones_activas'
   get 'conversaciones/archivadas', to: 'conversations#conversaciones_archivadas', as: 'conversaciones_archivadas'
