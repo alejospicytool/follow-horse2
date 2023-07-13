@@ -18,15 +18,15 @@ class MessagesController < ApplicationController
       head :ok
 
       # Broadcast the updated notification count for all conversations
-      @conv1 = Conversation.where(sender_id: current_user.id).where(archive: true)
-      @conv2 = Conversation.where(recipient_id: current_user.id).where(archive: true)
-      conversations = @conv1 + @conv2
-      conversations.each do |conversation|
-        conversation_id = conversation.id
-        notification_count = calculate_notification_count(conversation_id, current_user.id)
+      # @conv1 = Conversation.where(sender_id: current_user.id).where(archive: true)
+      # @conv2 = Conversation.where(recipient_id: current_user.id).where(archive: true)
+      # conversations = @conv1 + @conv2
+      # conversations.each do |conversation|
+      #   conversation_id = conversation.id
+      #   notification_count = calculate_notification_count(conversation_id, current_user.id)
 
-        ActionCable.server.broadcast('conversations', { conversationId: conversation_id, notificationCount: notification_count })
-      end
+      #   ActionCable.server.broadcast('conversations', { conversationId: conversation_id, notificationCount: notification_count })
+      # end
 
     else
       redirect_to conversation_show_path(@conversation)
