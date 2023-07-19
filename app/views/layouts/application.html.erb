@@ -33,6 +33,8 @@
 
     <%= render "shared/navbar" unless @disable_nav %>
     <%= yield %>
+
+    <!-- Display flash messages -->
     <%= render "shared/flashes" %>
     <%= render "shared/footer" unless @disable_nav %>
 
