@@ -39,6 +39,9 @@ class HorsesController < ApplicationController
     @share_like = 'true'
     @conversation = Conversation.new
     @favorite_exists = Favorite.where(horse: @horse, user: current_user) != []
+    url = @horse.video
+    url_path = url.sub("http://", "//")
+    @horse.video = url_path
   end
 
   def new
@@ -228,7 +231,7 @@ class HorsesController < ApplicationController
       puts "Excedio el limite de videos"
       return "Excedio el limite de videos"
     else
-      id =  JSON.parse(response.body)["thumbnail"]["url"]
+      id = JSON.parse(response.body)["thumbnail"]["url"]
       id = id.split('/').last.split('.').first
       url = "http://embed.wistia.com/deliveries/#{id}.bin"
       return url
