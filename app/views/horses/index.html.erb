@@ -5,14 +5,16 @@
       <% @horses.each do |horse| %>
         <div class="col-sm-6 col-lg-4 col-sm-12">
           <div class="card w-100 mb-3">
-            <% if horse.photos.any? %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+            <% if horse.video != nil %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
+                <iframe src=<%= horse.video %> width="100%" height="100%"></iframe>
+                <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+              </div>
             <% else %>
               <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= image_path 'caballo-placeholder-solo.png' %>'); background-repeat: no-repeat; background-position: center; background-size: 300px;">
+                <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+              </div>
             <% end %>
-
-            <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
-            </div>
 
             <div class="card-content">
               <div class="p-2 d-flex">

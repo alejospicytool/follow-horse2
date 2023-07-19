@@ -1,19 +1,24 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 
 require "open-uri"
 
+puts "Destroying Favorites"
+Favorite.destroy_all
+puts "Destroyed Favorites"
+puts "----------------------"
 puts "Destryoing horses"
 Horse.destroy_all
 puts "Destroyed Horses"
+puts "----------------------"
+puts "Destryoing auctions"
+Auction.destroy_all
+puts "Destroyed Auctions"
+puts "----------------------"
 puts "Destryoing users"
 User.destroy_all
 puts "Destroyed Users"
+puts "----------------------"
 
 puts "Creatting Users"
 user1 = User.new(email: "clari@gmail.com", password: "123456", nombre: "Clari", apellido: "Ursini", age: 34, pais: "Argentina", provincia: "Capital Federal", ciudad: "Capital Federal", direccion: "Viamonte 2040", phone: "+5491149608212", description: "I love horses", establishment: "Haras La Clari")
@@ -47,107 +52,101 @@ user6.photo.attach(io: file, filename: "foto.png", content_type: "image/png")
 user6.save!
 
 puts "Created users"
-
+puts "----------------------"
 puts "Creating horses"
 
-horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "1.0", birthday: "22/10/2022", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3)
-file = URI.open("https://www.robertogarrudo.com/blog/wp-content/uploads/2014/10/412_79231_6753136_997956.jpg")
-horse1.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "1.0", birthday: "22/10/2022", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3, video: "http://embed.wistia.com/deliveries/f05edc86686dd1401fac203f004096fb.bin")
 horse1.save!
 
-horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "1.5", birthday: "22/10/2019", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 5)
-file = URI.open("https://conceptodefinicion.de/wp-content/uploads/2019/05/Caballo-.jpg")
-horse2.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "1.5", birthday: "22/10/2019", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 5, video: "http://embed.wistia.com/deliveries/ad85ed31d149d7a4cf8ef9559a22288f.bin")
 horse2.save!
 
-horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "2.0", birthday: "22/10/2018", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2)
-file = URI.open("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-TP7Id5jPDWEny_-x1R6AgpbIfuVyy0v8HwQ-XiWrC63-q87_VBucXNICkNagn2ywX8M&usqp=CAU")
-horse3.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "2.0", birthday: "22/10/2018", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2, video: "http://embed.wistia.com/deliveries/55ae5115a46fe6a4292868be702c06d3.bin")
 horse3.save!
 
-horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "1.5", birthday: "22/10/2021", video: "https://www.youtube.com/watch?v=Socb6o6VKGE", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10)
-file = URI.open("https://madridhipica.com/wp-content/uploads/2022/06/Caballos-de-sangre-caliente-y-de-sangre-fria.jpg")
-horse4.photos.attach(io: file, filename: "horse.png", content_type: "image/png")
+horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "1.5", birthday: "22/10/2021", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10, video: "http://embed.wistia.com/deliveries/d69342f6c4e927079fb358327ebbe914.bin")
 horse4.save!
 
+puts "Created horses"
+puts "----------------------"
 puts "Creating auctions"
 
-# auction1 = Auction.new(
-#   name: "Remate Haras Victoria",
-#   location: "Buenos Aires",
-#   user_id: user1.id,
-#   start: Time.now,
-#   finish: Time.now + 2.days,
-#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-# )
-# file = URI.open("https://mir-s3-cdn-cf.behance.net/projects/404/e4104d112052313.Y3JvcCwxNjYzLDEzMDAsMCwxMjM.png")
-# auction1.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-# auction1.save!
+auction1 = Auction.new(
+  name: "Remate Haras Victoria",
+  location: "Buenos Aires",
+  user_id: user1.id,
+  start: Time.now + 1.hour,
+  finish: Time.now + 2.days,
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+)
+file = URI.open("https://mir-s3-cdn-cf.behance.net/projects/404/e4104d112052313.Y3JvcCwxNjYzLDEzMDAsMCwxMjM.png")
+auction1.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction1.save!
 
-# auction2 = Auction.new(
-#   name: "Haras Remate AlBar",
-#   location: "Capitan Sarmiento",
-#   user_id: user1.id,
-#   start: Time.now,
-#   finish: Time.now + 2.days,
-#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-# )
-# file = URI.open("https://www.guerra-creativa.com/img/uploads/designs/850x566/bimzp3p0.jpg")
-# auction2.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-# auction2.save!
+auction2 = Auction.new(
+  name: "Haras Remate AlBar",
+  location: "Capitan Sarmiento",
+  user_id: user1.id,
+  start: Time.now + 1.hour,
+  finish: Time.now + 2.days,
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+)
+file = URI.open("https://www.guerra-creativa.com/img/uploads/designs/850x566/bimzp3p0.jpg")
+auction2.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction2.save!
 
-# auction3 = Auction.new(
-#   name: "Haras Selva de Pedra",
-#   location: "Rio Cuarto",
-#   user_id: user5.id,
-#   start: Time.now + 2.days,
-#   finish: Time.now + 4.days,
-#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-# )
-# file = URI.open("https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2018%2F03%2F07%2F20%2FLogo-234918_70207_204757969_278263886.jpg")
-# auction3.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-# auction3.save!
+auction3 = Auction.new(
+  name: "Haras Selva de Pedra",
+  location: "Rio Cuarto",
+  user_id: user5.id,
+  start: Time.now + 2.days,
+  finish: Time.now + 4.days,
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+)
+file = URI.open("https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2018%2F03%2F07%2F20%2FLogo-234918_70207_204757969_278263886.jpg")
+auction3.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction3.save!
 
-# auction4 = Auction.new(
-#   name: "Haras San Pablo",
-#   location: "Pergamino",
-#   user_id: user5.id,
-#   start: Time.now + 4.days,
-#   finish: Time.now + 6.days,
-#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-#   link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
-# )
-# file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
-# auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-# auction4.save!
+auction4 = Auction.new(
+  name: "Haras San Pablo",
+  location: "Pergamino",
+  user_id: user5.id,
+  start: Time.now + 4.days,
+  finish: Time.now + 6.days,
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23"
+)
+file = URI.open("https://carolinalascano.com.ar/esp/wp-content/uploads/haras-san-pablo-trabajo1.jpg")
+auction4.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction4.save!
 
-# auction5 = Auction.new(
-#   name: "Haras Remate Carampagne",
-#   location: "Hipoódromo de San Isidro",
-#   user_id: user4.id,
-#   start: Time.now,
-#   finish: Time.now + 2.days,
-#   condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
-#   link_auction: "https://www.arg-sales.com/remates/view/301"
-# )
-# file = URI.open("https://www.arg-sales.com/mydocuments/cd18e3a8-21d3-4c57-8149-a3a2776df442.png")
-# auction5.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-# auction5.save!
+auction5 = Auction.new(
+  name: "Haras Remate Carampagne",
+  location: "Hipoódromo de San Isidro",
+  user_id: user4.id,
+  start: Time.now + 1.hour,
+  finish: Time.now + 2.days,
+  condiciones: "https://www.caccm.com.ar/remates/prod.php?col=93&sec=23",
+  link_auction: "https://www.arg-sales.com/remates/view/301"
+)
+file = URI.open("https://www.arg-sales.com/mydocuments/cd18e3a8-21d3-4c57-8149-a3a2776df442.png")
+auction5.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction5.save!
 
-# auction6 = Auction.new(
-#   name: "Haras El Rincon",
-#   location: "Buenos Aires",
-#   user_id: user3.id,
-#   start: Time.now + 2.days,
-#   finish: Time.now + 4.days,
-#   condiciones: "https://www.saenz-valiente.com/remate/22219",
-#   link_auction: "https://www.saenz-valiente.com/remate/22219"
-# )
-# file = URI.open("https://criolloselrincon.com.ar/img/logo.png")
-# auction6.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
-# auction6.save!
+auction6 = Auction.new(
+  name: "Haras El Rincon",
+  location: "Buenos Aires",
+  user_id: user3.id,
+  start: Time.now + 2.days,
+  finish: Time.now + 4.days,
+  condiciones: "https://www.saenz-valiente.com/remate/22219",
+  link_auction: "https://www.saenz-valiente.com/remate/22219"
+)
+file = URI.open("https://criolloselrincon.com.ar/img/logo.png")
+auction6.photo.attach(io: file, filename: "auction.png", content_type: "image/png")
+auction6.save!
 
 puts "Created auctions"

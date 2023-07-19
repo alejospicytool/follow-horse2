@@ -8,8 +8,9 @@
         <div class="col-sm-6 col-lg-4 col-sm-12">
           <div class="card w-100 mb-3">
 
-            <% if horse.photos.any? %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+            <% if horse.video != nil %>
+              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
+                <iframe src=<%= horse.video %> width="100%" height="100%"></iframe>
                 <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
               </div>
             <% else %>

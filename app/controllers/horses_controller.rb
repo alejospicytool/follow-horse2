@@ -5,6 +5,18 @@ class HorsesController < ApplicationController
 
   before_action :set_horse, only: %i[show edit update destroy]
 
+  def initialize
+    super
+    numbers = []
+    (1..2).each do |major|
+      (1..20).each do |minor|
+        numbers << "#{major}.#{format('%02d', minor)}"
+      end
+    end
+    @alzada = numbers
+    @height = ["0.50", "0.60", "0.70", "0.80", "0.90", "1.00", "1.10", "1.20", "1.30", "1.40", "1.50", "1.60", "1.70", "1.80", "1.90", "2.00"]
+  end
+
   def index
     @horses = Horse.all.where.not(user_id: current_user.id)
     @section_title = "Caballos"
@@ -32,8 +44,6 @@ class HorsesController < ApplicationController
   def new
     @horse = Horse.new
     @section_title = "Añadir caballo"
-    @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-    @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
   end
 
   def create
@@ -47,30 +57,36 @@ class HorsesController < ApplicationController
     end
 
     if params[:horse][:video] != nil
+      puts "--------------------------------"
+      puts "Inicio post check de url"
       uploaded_file = horse_params[:video]
       name = ''
       url = post_video_to_wistia(name, horse_params[:video])
+      puts "--------------------------------"
+      puts "Excedio el limite de videos"
       if url == "Excedio el limite de videos"
-        render :new, status: :unprocessable_entity, alert: "No se pudo crear el caballo, intente nuevamente"
+        flash[:alert] = "No se pudo crear el caballo, intente nuevamente sin video"
+        render :new, status: :unprocessable_entity
       else
+        puts "--------------------------------"
+        puts "Inicio post to wistia"
         @horse.video = url
         if @horse.save
-          redirect_to profile_publication_caballos_path
+          redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
         else
           @section_title = "Añadir caballo"
-          @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-          @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-          render :new, status: :unprocessable_entity, alert: "No se pudo crear el caballo, intente nuevamente"
+          flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+          render :new, status: :unprocessable_entity
         end
       end
-    end
-    if @horse.save
-      redirect_to profile_publication_caballos_path
     else
-      @section_title = "Añadir caballo"
-      @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-      @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-      render :new, status: :unprocessable_entity, alert: "No se pudo crear el caballo, intente nuevamente"
+      if @horse.save
+        redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+      else
+        @section_title = "Añadir caballo"
+        flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -84,33 +100,33 @@ class HorsesController < ApplicationController
   def update
     # If the video is uploaded
     if horse_params[:video] != nil
+      puts "--------------------------------"
+      puts "Inicio post check de url"
       name = ''
       url = post_video_to_wistia(name, horse_params[:video])
       if url == "Excedio el limite de videos"
+        puts "--------------------ERRROR----------------"
+        puts "Excedio el limite de videos"
         @section_title = "Editar caballo"
         @horse = Horse.find(params[:id])
-        @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-        @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
         flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente sin subir un video"
-        render :edit, status: :unprocessable_entity, alert: "No se pudo editar el caballo, intente nuevamente sin subir un video"
+        render :edit, status: :unprocessable_entity
       else
         @horse.video = url
         if @horse.save
           if @horse.update(horse_params.reject { |key, _| key == "video" })
-            redirect_to horse_show_path(@horse)
+            redirect_to horse_show_path(@horse), notice: "Caballo editado con éxito"
           else
             @section_title = "Editar caballo"
             @horse = Horse.find(params[:id])
-            @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-            @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-            render :edit, status: :unprocessable_entity, alert: "No se pudo editar el caballo, intente nuevamente"
+            flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente"
+            render :edit, status: :unprocessable_entity
           end
         else
           @section_title = "Editar caballo"
           @horse = Horse.find(params[:id])
-          @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-          @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-          render :edit, status: :unprocessable_entity, alert: "No se pudo editar el caballo, intente nuevamente"
+          flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente"
+          render :edit, status: :unprocessable_entity
         end
       end
     else
@@ -120,8 +136,6 @@ class HorsesController < ApplicationController
       else
         @section_title = "Editar caballo"
         @horse = Horse.find(params[:id])
-        @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-        @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
         render :edit, status: :unprocessable_entity, alert: "No se pudo editar el caballo, intente nuevamente"
       end
     end
@@ -131,7 +145,6 @@ class HorsesController < ApplicationController
     @filtro = Filtro.new
     @horses = Horse.all.where.not(user_id: current_user.id)
     @jinetes = @horses.map { |horse| horse.rider }.uniq
-    @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
     @ubicaciones = @horses.map { |horse| User.find(horse.user_id).ciudad }.uniq
     @section_title = "Caballos - Filtros"
   end
@@ -201,7 +214,8 @@ class HorsesController < ApplicationController
     http.use_ssl = true
     # Construct the request.
     request = Net::HTTP::Post::Multipart.new uri.request_uri, {
-      'access_token' => "596f97ec721a7997a641b5bd4c64f4e1f838d99e34d2dca91c8ccd46d1c18c8a",
+      # 'access_token' => "596f97ec721a7997a641b5bd4c64f4e1f838d99e34d2dca91c8ccd46d1c18c8a",
+      'access_token' => "f1e7de6e254c1d532ba7586cafc33e27267c9cafb8b134834b7870c08d6c93b7",
       'file' => UploadIO.new(
                   File.open(path_to_video),
                   'application/octet-stream',
@@ -211,6 +225,7 @@ class HorsesController < ApplicationController
     # Make it so!
     response = http.request(request)
     if response.code == "401"
+      puts "Excedio el limite de videos"
       return "Excedio el limite de videos"
     else
       id =  JSON.parse(response.body)["thumbnail"]["url"]

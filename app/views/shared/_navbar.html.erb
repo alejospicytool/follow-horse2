@@ -2,44 +2,46 @@
   <div class="container-fluid">
     <div class="d-flex align-items-center">
 
+      <%# NAVBAR BRAND ICON %>
       <% if @navbar_brand %>
         <%= link_to home_path, class: "navbar-brand" do %>
           <%= image_tag 'follow-horse-logo-sin-texto.png' %>
         <% end %>
+
+      <%# BACK FUNCTIONALITY ICON %>
       <% else %>
-         <% if request.path == "/perfiles/" %>
-           <%= link_to :back, class: "d-flex align-items-center" do %>
+        <% if request.path == "/perfiles/" %>
+          <%= link_to :back, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-           <% end %>
-           <% elsif request.path.include?("/conversaciones/") %>
-            <%= link_to conversaciones_activas_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-          <% elsif request.path == "/horses" || request.path == "/auctions" || request.path.include?("conversaciones") || request.path == "/perfiles"  %>
-            <%= link_to home_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-          <% elsif request.path == "/horses/new" || request.path == "/auctions/new" %>
-            <%= link_to add_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-
-          <% elsif request.path.include?("/horses/") %>
-            <%= link_to horses_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-          <% elsif request.path.include?("/auctions/") %>
-            <%= link_to active_auctions_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-          <% elsif request.path == "/users/edit" || request.path == "/notificationes" || request.path.include?("favoritos") || request.path.include?("mis_publicaciones")  %>
-            <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-
+          <% end %>
+        <% elsif request.path.include?("/conversaciones/") %>
+          <%= link_to conversaciones_activas_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+          <% end %>
+        <% elsif request.path == "/horses" || request.path == "/auctions" || request.path == "/potros" || request.path.include?("conversaciones") || request.path == "/perfiles"  %>
+          <%= link_to home_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+          <% end %>
+        <% elsif request.path == "/horses/new" || request.path == "/auctions/new" %>
+          <%= link_to add_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+          <% end %>
+        <% elsif request.path.include?("/horses/") %>
+          <%= link_to horses_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+          <% end %>
+        <% elsif request.path.include?("/auctions/") %>
+          <%= link_to active_auctions_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+          <% end %>
+        <% elsif request.path == "/users/edit" || request.path == "/notificationes" || request.path.include?("favoritos") || request.path.include?("mis_publicaciones")  %>
+          <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
+          <% end %>
           <% end %>
       <% end %>
 
+      <%# SECTION TITLE %>
       <% if @section_title %>
         <% if @image_title %>
           <%= image_tag("#{@image_title}", style: "width: 30px; height: 30px; margin-right: 7px;") %>
@@ -48,6 +50,7 @@
       <% end %>
     </div>
 
+    <%# SEARCH ICON %>
     <% if @search %>
       <%= link_to search_path do %>
         <%= image_tag('search.png') %>
@@ -60,8 +63,9 @@
       <% else %>
         <%= image_tag('filtros.png') %>
       <% end %>
-    <% elsif @share_like %>
 
+    <%# SHARE ICON %>
+    <% elsif @share_like %>
       <div class="d-flex justify-content-center align-items-center">
           <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart mx-2", remote: true %>
           <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)%>">
@@ -70,8 +74,9 @@
               share_target: "result"
             }) %>
           </div>
-
       </div>
+
+    <%# DOTS ICON %>
     <% elsif @dots %>
       <div>
         <%= link_to conversacion_destroy_path, data: {"turbo-method": :delete} do %>
