@@ -94,3 +94,5 @@ es:
               blank: "no puede estar en blanco"
               confirmation: "no coincide con la contraseña"
               invalid: "no es válido"
+      messages:
+        record_invalid: "La validación falló: %{errors}"
