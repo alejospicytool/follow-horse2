@@ -56,21 +56,25 @@
       placeholder: "Ingrese link al pedigree",
       input_html: {class: "form-input"},
       label_html: {class: "label-input"}, value: @horse.pedigree%>
-    <%= f.input :photos, as: :file,
+    <%#= f.input :photos, as: :file,
       label:"Imagen:",
       placeholder: "Click aqui para subir una imagen",
       input_html: {class: "form-input", multiple: true},
       label_html: {class: "label-input"}, value: @horse.photos%>
-
-
     <%= f.input :video, as: :file,
-    label: "Video:",
-    input_html: { class: "form-input" },
-    label_html: { class: "label-input" },
-    placeholder: "Subi un archivo si queres modificar tu video" %>
+      label: "Video:",
+      input_html: { class: "form-input" },
+      label_html: { class: "label-input" },
+      placeholder: "Subi un archivo si queres modificar tu video" %>
 
     <div class="d-flex justify-content-center">
       <%= f.submit "GUARDAR CAMBIOS", class: "btn-submit mt-4" %>
     </div>
   <% end %>
 </div>
+
+<style>
+  abbr[title="required"] {
+  display: none;
+  }
+</style>
