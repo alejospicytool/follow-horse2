@@ -12,7 +12,8 @@
           <!---------- Video ------->
           <% if @horse.video != nil %>
             <div class="carousel-item active" style="height: 400px !important">
-              <iframe src=<%= @horse.video %> width="100%" height="400"></iframe>
+              <iframe src=<%= @horse.video %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="400"></iframe>
+              <script src="//embed.wistia.com/assets/external/E-v1.js" async></script>
             </div>
           <% else %>
             <div class="carousel-item active" style="height: 400px !important">
@@ -82,13 +83,16 @@
         <% if @horses.last(3) != [] %>
           <% @horses.last(3).each do |horse| %>
             <div class="card w-100 mb-3 mt-3">
-              <% if horse.photos.last %>
-                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= cl_image_path horse.photos.last.key %>'); background-size: cover;">
+              <% if horse.video != nil %>
+                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
+                  <iframe src=<%= horse.video %> width="100%" height="100%"></iframe>
+                  <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+                </div>
               <% else %>
                 <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= image_path 'caballo-placeholder-solo.png' %>'); background-repeat: no-repeat; background-position: center; background-size: 300px;">
+                  <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
+                </div>
               <% end %>
-                <div class="nombre m-0 w-100"><span><%= horse.name %></span></div>
-              </div>
 
               <div class="card-content">
                 <div class="p-2 d-flex">
