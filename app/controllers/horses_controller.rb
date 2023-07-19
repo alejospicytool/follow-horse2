@@ -39,9 +39,11 @@ class HorsesController < ApplicationController
     @share_like = 'true'
     @conversation = Conversation.new
     @favorite_exists = Favorite.where(horse: @horse, user: current_user) != []
-    url = @horse.video
-    url_path = url.sub("http://", "//")
-    @horse.video = url_path
+    if @horse.video != nil
+      url = @horse.video
+      url_path = url.sub("http://", "//")
+      @horse.video = url_path
+    end
   end
 
   def new
@@ -65,9 +67,9 @@ class HorsesController < ApplicationController
       uploaded_file = horse_params[:video]
       name = ''
       url = post_video_to_wistia(name, horse_params[:video])
-      puts "--------------------------------"
-      puts "Excedio el limite de videos"
       if url == "Excedio el limite de videos"
+        puts "--------------------------------"
+        puts "Excedio el limite de videos"
         flash[:alert] = "No se pudo crear el caballo, intente nuevamente sin video"
         render :new, status: :unprocessable_entity
       else
