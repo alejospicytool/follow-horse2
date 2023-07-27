@@ -8,8 +8,10 @@ class HorsesController < ApplicationController
   def initialize
     super
     numbers = []
-    (1..2).each do |major|
-      (1..20).each do |minor|
+    (0..220).each do |num|
+      major = num / 100
+      minor = num % 100
+      if major >= 1 && major <= 2 && minor > 0
         numbers << "#{major}.#{format('%02d', minor)}"
       end
     end
@@ -98,8 +100,6 @@ class HorsesController < ApplicationController
   def edit
     @section_title = "Editar caballo"
     @horse = Horse.find(params[:id])
-    @alzada = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
-    @height = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"]
   end
 
   def update
