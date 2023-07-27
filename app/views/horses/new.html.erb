@@ -44,18 +44,6 @@
                   prompt: "Seleccionar Edad",
                   wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
     </div>
-    <%# Altura %>
-    <div class= "d-flex align-items-center mt-3">
-      <%= f.label :height, "Altura:",
-                  class: "label-input" %>
-      <%= f.input :height,
-                  label: false,
-                  as: :select,
-                  collection: @height,
-                  input_html: {class: "form-input" },
-                  prompt: "Seleccionar Altura",
-                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
-    </div>
     <%# Sexo %>
     <div class= "d-flex align-items-center mt-3">
       <%= f.label :gender, "Sexo:",
@@ -79,6 +67,19 @@
                 input_html: {class: "form-input"},
                 wrapper_html: {style: "width: 100%; margin-left: 20px;"},
                 prompt: "Seleccionar Alzada" %>
+    </div>
+    <%# Altura %>
+    <div class= "d-flex align-items-center mt-3">
+      <%= f.label :height, "Altura de prueba:",
+                  class: "label-input",
+                  style: "white-space: nowrap;" %>
+      <%= f.input :height,
+                  label: false,
+                  as: :select,
+                  collection: @height,
+                  input_html: {class: "form-input" },
+                  prompt: "Seleccionar Altura",
+                  wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
     </div>
     <%# Pedigree %>
     <%= f.input :pedigree,
