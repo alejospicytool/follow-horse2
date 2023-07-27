@@ -1,8 +1,7 @@
 <%= render 'sub_links' %>
 
 <!-- Content -->
-<div class="conversations-index container" style="margin-top: 9rem !important;"
-    data-controller="notification">
+<div class="conversations-index container" style="margin-top: 9rem !important;">
   <% if @conv_ordered != [] %>
     <% @conv_ordered.each do |conversation| %>
 
@@ -31,7 +30,7 @@
                 </div>
 
                 <% if conversation.messages.where(read: false).where.not(user_id: current_user.id) != [] %>
-                  <div id="notification-container" data-controller="notification">
+                  <div id="notification-container">
                     <div>
                       <% notification_count = conversation.messages.where(read: false).where.not(user_id: current_user.id).length %>
                       <% next if notification_count.zero? %>
