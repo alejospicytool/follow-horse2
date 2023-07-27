@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
     @conv = @conversations.select { |conv| conv.messages.last != nil}
     @conv_ordered = @conv.sort_by { |conv| conv.messages.last.created_at }.reverse
 
-    @conversation = Conversation.new
+    # @conversation = Conversation.new
     @section_title = "Mensajes"
     @search = true
   end
@@ -22,7 +22,7 @@ class ConversationsController < ApplicationController
     @conv = @conversations.select { |conv| conv.messages.last != nil}
     @conv_ordered = @conv.sort_by { |conv| conv.messages.last.created_at }.reverse
 
-    @conversation = Conversation.new
+    # @conversation = Conversation.new
     @section_title = "Mensajes"
     @search = true
   end
