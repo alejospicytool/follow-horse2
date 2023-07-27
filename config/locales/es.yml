@@ -45,6 +45,8 @@ es:
               blank: "no puede estar en blanco"
             alzada:
               blank: "no puede estar en blanco"
+            video:
+              blank: "no puede estar en blanco"
         auction:
           attributes:
             name:
