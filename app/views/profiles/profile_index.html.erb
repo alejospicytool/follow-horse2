@@ -48,7 +48,7 @@
           <%= image_tag('arrow-right-white.png') %>
         </li>
         <li class="py-4">
-          <%= button_to(destroy_user_session_path, method: :delete, class:"d-flex justify-content-between m-0 w-100 align-items-center border-0 bg-transparent p-0", input_html: {class: "w-100"}) do %>
+          <%= button_to(destroy_user_session_path, method: :delete, id: "logout", class:"d-flex justify-content-between m-0 w-100 align-items-center border-0 bg-transparent p-0", input_html: {class: "w-100"}) do %>
             <div class="d-flex justify-content-start align-items-center">
               <%= image_tag('cerrar_sesion.svg', style: "height: 22px; margin-right: 14px;") %>
               <span>Cerrar Sesion</span>
@@ -60,3 +60,16 @@
     </div>
   </div>
 </div>
+
+<script>
+  confirmLogout = (e) => {
+    const result = window.confirm("¿Estás seguro que deseas cerrar sesión?");
+    if (result) {
+      return true;
+    } else {
+      e.preventDefault();
+      return false;
+    }
+  }
+  document.getElementById("logout").addEventListener("click", confirmLogout);
+</script>
