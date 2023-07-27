@@ -55,9 +55,10 @@
       <%= f.label :condiciones, "Condiciones",
                   class: "label-input" %>
       <%= f.input :condiciones,
+        as: :text,
         label: false,
-        placeholder: "Agrega un link a las condiciones",
-        input_html: {class: "form-input"} %>
+        placeholder: "Escribe las condiciones del remate",
+        input_html: { id: "description-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;" } %>
     </div>
 
     <div class="d-flex justify-content-center">
