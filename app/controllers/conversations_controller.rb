@@ -44,6 +44,8 @@ class ConversationsController < ApplicationController
     # Conversation messages
     @messages = @conversation.messages
     @message = Message.new
+
+    # Marking the messages as read
     @messages.each do |message|
       if message.user_id != current_user.id
         message.read = true
@@ -57,6 +59,14 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
     else
       @conversation = Conversation.create!(conversation_params)
+    end
+    if params[:horse_id]
+      @horse = Horse.find(params[:horse_id])
+      puts "Este es el caballo: #{@horse}"
+      # Metodo que haga post de un mensaje con la info del caballo
+      message_link = horse_show_path(@horse)
+      @mensaje_referencia = Message.new(body: "Hola, estoy interesado en el caballo '#{@horse.name}'.", user_id: current_user.id, conversation_id: @conversation.id)
+      @mensaje_referencia.save
     end
     redirect_to conversacion_show_path(@conversation)
   end

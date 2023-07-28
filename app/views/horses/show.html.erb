@@ -126,7 +126,7 @@
     </div>
   </div>
   <div class="consultar">
-    <%= simple_form_for @conversation, url: conversaciones_create_path do |f| %>
+    <%= simple_form_for @conversation, url: conversaciones_create_path(horse_id: @horse.id) do |f| %>
       <%= hidden_field_tag(:sender_id, current_user.id) %>
       <%= hidden_field_tag(:recipient_id, @horse.user_id) %>
       <%= f.button :button do %>
