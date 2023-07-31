@@ -5,12 +5,12 @@
     data-chat-current-user-id-value="<%= current_user.id %>">
 
   <%# Message Box %>
-  <div class="container messages-box" style="overflow-y:auto; margin-top: 20px !important;">
+  <div class="container messages-box" style="overflow-y:auto; margin-top: 20px !important;" id="messages-box">
     <div class="messages" data-chat-target="messages">
       <% @conversation.messages.each do |message| %>
         <% if message.body %>
           <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+            <div class="message-row <%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
               <%= render "messages/message", message: message %>
             </div>
           </div>
@@ -33,3 +33,19 @@
   </div>
 
 </div>
+
+<!-- Scroll into view -->
+<script>
+  function scrollToLastMessage() {
+    const messagesBox = document.getElementById("messages-box");
+    const messages = messagesBox.querySelectorAll(".message-row");
+    if (messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      lastMessage.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+  // Use the 'pageshow' event to ensure the script runs when coming from another page
+  window.addEventListener("pageshow", function (event) {
+    scrollToLastMessage();
+  });
+</script>
