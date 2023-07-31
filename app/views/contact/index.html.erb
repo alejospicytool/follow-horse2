@@ -1,0 +1,5 @@
+<h1>How can I help you?</h1>
+<%= form_tag send_message_path, method: :post do %>
+  <%= text_area_tag :message, '', rows: 5, cols: 60 %>
+  <%= submit_tag 'Send Message' %>
+<% end %>

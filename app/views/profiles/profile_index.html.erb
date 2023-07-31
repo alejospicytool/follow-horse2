@@ -41,11 +41,13 @@
           <% end %>
         </li>
         <li class="d-flex justify-content-between py-4">
+         <%= link_to contact_path, class:"d-flex justify-content-between align-items-center" do %>
           <div class="d-flex justify-content-start align-items-center">
             <%= image_tag('ayuda.svg', style: "height: 22px; margin-right: 14px;") %>
             <span>Ayuda</span>
           </div>
           <%= image_tag('arrow-right-white.png') %>
+          <% end %>
         </li>
         <li class="py-4">
           <%= button_to(destroy_user_session_path, method: :delete, id: "logout", class:"d-flex justify-content-between m-0 w-100 align-items-center border-0 bg-transparent p-0", input_html: {class: "w-100"}) do %>
