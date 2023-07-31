@@ -66,11 +66,13 @@
           <div>
             <%= image_tag('profile-icon.png') %>
           </div>
-          <div class="d-flex flex-column" style="margin-left: 1rem;">
+          <div class="d-flex flex-column justify-content-center" style="margin-left: 1rem;">
             <span class="subtitle"><%= @horse.user.nombre %> <%= @horse.user.apellido %></span>
             <span class="sub-subtitle"><%= @horse.user.establishment %></span>
-            <%= link_to profile_show_path(@horse.user.id) do %>
-              <span class="link">Ver perfil</span>
+            <% if @horse.user.id != current_user.id %>
+              <%= link_to profile_show_path(@horse.user.id) do %>
+                <span class="link">Ver perfil</span>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -125,16 +127,18 @@
       </div>
     </div>
   </div>
-  <div class="consultar">
-    <%= simple_form_for @conversation, url: conversaciones_create_path(horse_id: @horse.id) do |f| %>
-      <%= hidden_field_tag(:sender_id, current_user.id) %>
-      <%= hidden_field_tag(:recipient_id, @horse.user_id) %>
-      <%= f.button :button do %>
-        <%= image_tag('message-filled.png') %>
-        <span>CONSULTAR</span>
+  <% if @horse.user.id != current_user.id %>
+    <div class="consultar">
+      <%= simple_form_for @conversation, url: conversaciones_create_path(horse_id: @horse.id), data: { turbo: false } do |f| %>
+        <%= hidden_field_tag(:sender_id, current_user.id) %>
+        <%= hidden_field_tag(:recipient_id, @horse.user_id) %>
+        <%= f.button :button do %>
+          <%= image_tag('message-filled.png') %>
+          <span>CONSULTAR</span>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 <script>

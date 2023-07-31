@@ -10,7 +10,7 @@
 
       <%# BACK FUNCTIONALITY ICON %>
       <% else %>
-        <% if request.path == "/perfiles/" %>
+        <% if request.path.include?("/perfiles/") %>
           <%= link_to :back, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
