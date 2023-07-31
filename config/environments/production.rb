@@ -1,8 +1,16 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://followhorse.fly.dev/" }
+  config.action_mailer.default_url_options = { host: "followhorse-62b4d57d2b9e.herokuapp.com/" }
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.outlook.com', # Replace with your SMTP server address
+    port: 587,                # Replace with the appropriate SMTP port
+    domain: 'outlook.com',           # The domain used in the "EHLO" command by the client to the SMTP server
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
