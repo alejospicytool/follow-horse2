@@ -44,7 +44,7 @@
                   placeholder: "Escribe aquí" %>
       <%= f.input :establishment,
                   label: "Establecimiento:",
-                  input_html: { id: "establishment-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  input_html: { id: "establishment-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                   label_html: { class: "label-input" },
                   placeholder: "Escribe aquí" %>
 
@@ -56,32 +56,32 @@
 
       <%= f.input :direccion,
                   label: "Dirección:",
-                  input_html: { id: "direccion-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  input_html: { id: "direccion-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                   label_html: { class: "label-input" },
                   placeholder: "Escribe aquí" %>
 
       <%= f.input :ciudad,
                   label: "Ciudad:",
-                  input_html: { id: "ciudad-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  input_html: { id: "ciudad-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                   label_html: { class: "label-input" },
                   placeholder: "Escribe aquí" %>
 
       <%= f.input :provincia,
                   label: "Provincia:",
-                  input_html: { id: "provincia-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  input_html: { id: "provincia-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                   label_html: { class: "label-input" },
                   placeholder: "Escribe aquí" %>
 
       <%= f.input :pais,
                   label: "País:",
-                  input_html: { id: "pais-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;" },
+                  input_html: { id: "pais-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                   label_html: { class: "label-input" },
                   placeholder: "Escribe aquí" %>
 
       <%= f.input :description,
                   as: :text,
                   label: "Sobre mí:",
-                  input_html: { id: "description-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;" },
+                  input_html: { id: "description-input", class: "form-input", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                   label_html: { class: "label-input" },
                   placeholder: "Escribe aquí" %>
 

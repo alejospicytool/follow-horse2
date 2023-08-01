@@ -4,14 +4,14 @@
     <%= f.label :rider, "Jinete/ amazona:",
                 class: "label-input" %>
     <%= f.input :rider,
-                input_html: { class: "form-input" },
+                input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                 placeholder: "Escribe aquí",
                 label: false %>
     <%# Nombre %>
     <%= f.label :name, "Nombre caballo:",
                 class: "label-input" %>
     <%= f.input :name,
-                input_html: { class: "form-input" },
+                input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                 placeholder: "Escribe aquí",
                 label: false %>
     <%# Descripción %>
@@ -19,7 +19,7 @@
                 class: "label-input" %>
     <%= f.input :description,
                 as: :text,
-                input_html: { class: "form-input", style: "height: 5rem !important;" },
+                input_html: { class: "form-input", style: "height: 5rem !important;", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                 placeholder: "Escribe aquí",
                 label: false %>
     <%# Fecha de nacimiento %>
