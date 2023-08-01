@@ -68,7 +68,7 @@ class ConversationsController < ApplicationController
       message_link = horse_show_path(@horse)
       # @mensaje_referencia = Message.new(body: "Hola, estoy interesado en el caballo '#{@horse.name}'.", user_id: current_user.id, conversation_id: @conversation.id)
       # @mensaje_referencia.save
-      @mensaje_automatico = "Hola, estoy interesado en el caballo #{@horse.name}."
+      @mensaje_automatico = "Hola, estoy interesado en el caballo #{@horse.name.capitalize}."
     end
     redirect_to conversacion_show_path(@conversation, mensaje_automatico: @mensaje_automatico)
   end

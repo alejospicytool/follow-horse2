@@ -2,17 +2,17 @@
   <%= simple_form_for @horse, url: horse_update_path(@horse.id), method: :put do |f|%>
     <%= f.input :rider,
       label: "Jinete/ amazona:",
-      input_html: {class: "form-input"},
+      input_html: {class: "form-input", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
       label_html: {class: "label-input"},
       placeholder: "Escribe aquí", value: @horse.rider%>
     <%= f.input :name,
       label: "Nombre caballo:",
-      input_html: {class: "form-input"},
+      input_html: {class: "form-input", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
       label_html: {class: "label-input"},
-      placeholder: "Escribe aquí", value: @horse.name %>
+      placeholder: "Escribe aquí", value: @horse.name.capitalize %>
     <%= f.input :description, as: :text,
       label: "Descripción:",
-      input_html: {class: "form-input", style: "height: 5rem !important;"},
+      input_html: {class: "form-input", style: "height: 5rem !important;", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
       label_html: {class: "label-input"},
       placeholder: "Escribe aquí", value: @horse.description %>
     <%= f.input :birthday, as: :date, html5: true,

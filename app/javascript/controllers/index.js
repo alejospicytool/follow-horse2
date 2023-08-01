@@ -4,17 +4,20 @@
 
 import { application } from "./application"
 
+import CapitalizeController from "./capitalize_controller"
+application.register("capitalize", CapitalizeController)
+
+import ChatController from "./chat_controller"
+application.register("chat", ChatController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import NotificationController from "./notification_controller"
+application.register("notification", NotificationController)
 
 import ShareController from "./share_controller"
 application.register("share", ShareController)
 
 import StarRatingController from "./star_rating_controller"
 application.register("star-rating", StarRatingController)
-
-import ChatController from "./chat_controller"
-application.register("chat", ChatController)
-
-import NotificationController from "./notification_controller"
-application.register("notification", NotificationController)

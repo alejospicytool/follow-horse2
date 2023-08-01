@@ -18,7 +18,7 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
-    @section_title = @auction.name
+    @section_title = @auction.name.capitalize
   end
 
   def new
