@@ -80,4 +80,7 @@ Rails.application.routes.draw do
   post 'mensajes', to: 'messages#create', as: 'conversation_messages'
   get 'favorite_horse/:id', to: 'favorites#delete_horse', as: 'favorite_delete_horse'
   get 'favorite_auction/:id', to: 'favorites#delete_auction', as: 'favorite_delete_auction'
+  # Contact routes
+  get '/contact', to: 'contact#index'
+  post '/send_message', to: 'contact#send_message'
 end

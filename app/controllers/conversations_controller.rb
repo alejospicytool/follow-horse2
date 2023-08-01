@@ -31,6 +31,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     @dots = true
     # Establishing the name of the conversation
+    @mensaje_automatico = params[:mensaje_automatico] if params[:mensaje_automatico]
     if @conversation.sender_id == current_user.id
       @user = User.find(@conversation.recipient_id)
       @section_title = @user.nombre + ' ' + @user.apellido
@@ -65,10 +66,11 @@ class ConversationsController < ApplicationController
       puts "Este es el caballo: #{@horse}"
       # Metodo que haga post de un mensaje con la info del caballo
       message_link = horse_show_path(@horse)
-      @mensaje_referencia = Message.new(body: "Hola, estoy interesado en el caballo '#{@horse.name.capitalize}'.", user_id: current_user.id, conversation_id: @conversation.id)
-      @mensaje_referencia.save
+      # @mensaje_referencia = Message.new(body: "Hola, estoy interesado en el caballo '#{@horse.name}'.", user_id: current_user.id, conversation_id: @conversation.id)
+      # @mensaje_referencia.save
+      @mensaje_automatico = "Hola, estoy interesado en el caballo #{@horse.name.capitalize}."
     end
-    redirect_to conversacion_show_path(@conversation)
+    redirect_to conversacion_show_path(@conversation, mensaje_automatico: @mensaje_automatico)
   end
 
   def archivar
