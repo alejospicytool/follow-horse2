@@ -36,6 +36,7 @@
 
 <!-- Scroll into view -->
 <script>
+console.log('cargadooo')
   function scrollToLastMessage() {
     const messagesBox = document.getElementById("messages-box");
     const messages = messagesBox.querySelectorAll(".message-row");
@@ -48,4 +49,13 @@
   window.addEventListener("pageshow", function (event) {
     scrollToLastMessage();
   });
+
 </script>
+<% if @mensaje_automatico.present? %>
+  <script>
+    console.log("entrooooooooo")
+    const messagesBox = document.getElementById("message_body");
+    messagesBox.value = "<%= @mensaje_automatico %>";
+
+  </script>
+<% end %>
