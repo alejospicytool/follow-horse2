@@ -65,7 +65,7 @@ class ConversationsController < ApplicationController
       puts "Este es el caballo: #{@horse}"
       # Metodo que haga post de un mensaje con la info del caballo
       message_link = horse_show_path(@horse)
-      @mensaje_referencia = Message.new(body: "Hola, estoy interesado en el caballo '#{@horse.name}'.", user_id: current_user.id, conversation_id: @conversation.id)
+      @mensaje_referencia = Message.new(body: "Hola, estoy interesado en el caballo '#{@horse.name.capitalize}'.", user_id: current_user.id, conversation_id: @conversation.id)
       @mensaje_referencia.save
     end
     redirect_to conversacion_show_path(@conversation)

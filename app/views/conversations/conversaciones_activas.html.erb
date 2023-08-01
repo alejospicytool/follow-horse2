@@ -21,7 +21,7 @@
               <div class="d-flex w-100 justify-content-between align-items-center">
 
                 <div class="d-flex flex-column" style="margin-left: 20px">
-                  <span class="message-headlin-index"><%= recipient.nombre %> <%= recipient.apellido %></span>
+                  <span class="message-headlin-index"><%= recipient.nombre.capitalize %> <%= recipient.apellido.capitalize %></span>
                   <% if conversation.messages.last.body.length > 100 %>
                     <span class="message-text-index"><%= conversation.messages.last.body.first(35) %>...</span>
                   <% else %>

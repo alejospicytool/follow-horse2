@@ -35,7 +35,7 @@ class HorsesController < ApplicationController
   end
 
   def show
-    @section_title = @horse.name
+    @section_title = @horse.name.capitalize
     @horse = Horse.find(params[:id])
     @horses = Horse.all.where.not(user_id: current_user.id).where.not(id: params[:id].to_i)
     @share_like = 'true'
