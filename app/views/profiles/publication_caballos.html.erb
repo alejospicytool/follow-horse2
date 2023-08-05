@@ -36,10 +36,10 @@
                 <div class="col-4 d-flex justify-content-end align-items-center pr-0">
                   <div class="d-flex align-items-center justify-content-center">
                     <%= button_to favorite_horse_text(horse), favorite_horse_path(horse: horse), class: "horse_heart_index mx-2", remote: true %>
-                    <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)%>">
-                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
-                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
-                    </div>
+                    <%# <div data-controller="share" data-share-url-value="<%= horse_show_path(horse)"> %>
+                      <%#= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%#= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                    <%# </div> %>
                   </div>
                 </div>
               </div>
