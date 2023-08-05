@@ -36,10 +36,10 @@
                 <div class="col-3 d-flex justify-content-end align-items-center pr-0">
                   <div class="d-flex align-items-center justify-content-center">
                     <%= button_to favorite_auction_text(auction), favorite_auction_path(auction: auction), class: "auction_heart_index mx-2", remote: true %>
-                    <div data-controller="share" data-share-url-value="<%= auction_path(auction)%>">
-                      <%= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
-                      <%= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
-                    </div>
+                    <%# <div data-controller="share" data-share-url-value="<%= auction_path(auction)"> %>
+                      <%#= button_to image_tag('share.png'), "", data: {action: "click->share#share" }, style: "border: none; background: none; padding-bottom: 0.188rem;" %>
+                      <%#= content_tag(:span, "", class:"result", data: {share_target: "result" }) %>
+                    <%# </div> %>
                   </div>
                 </div>
               </div>
