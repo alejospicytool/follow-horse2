@@ -76,10 +76,12 @@ Rails.application.routes.draw do
   put 'conversaciones/:id/archivar', to: 'conversations#archivar', as: 'conversacion_archivar'
   put 'conversaciones/:id/desarchivar', to: 'conversations#desarchivar', as: 'conversacion_desarchivar'
   delete 'conversaciones/:id', to: 'conversations#destroy', as: 'conversacion_destroy'
+
   # Messages routes
   post 'mensajes', to: 'messages#create', as: 'conversation_messages'
   get 'favorite_horse/:id', to: 'favorites#delete_horse', as: 'favorite_delete_horse'
   get 'favorite_auction/:id', to: 'favorites#delete_auction', as: 'favorite_delete_auction'
+
   # Contact routes
   get '/contact', to: 'contact#index'
   post '/send_message', to: 'contact#send_message'
