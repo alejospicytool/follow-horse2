@@ -74,12 +74,12 @@
     <% elsif @share_like %>
       <div class="d-flex justify-content-center align-items-center">
           <%= button_to favorite_horse_text(@horse), favorite_horse_path(horse: @horse), class: "horse_heart mx-2", remote: true %>
-          <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)%>">
-            <%= button_to image_tag('share-white.svg'), "", data: {action: "click->share#share"}, style: "border: none; background: none; padding-bottom: 5px;" %>
-            <%= content_tag(:span, "", class:"result", data: {
+          <%# <div data-controller="share" data-share-url-value="<%= horse_show_path(@horse)"> %>
+            <%#= button_to image_tag('share-white.svg'), "", data: {action: "click->share#share"}, style: "border: none; background: none; padding-bottom: 5px;" %>
+            <%#= content_tag(:span, "", class:"result", data: {
               share_target: "result"
             }) %>
-          </div>
+          <%# </div> %>
       </div>
 
     <%# DOTS ICON %>
