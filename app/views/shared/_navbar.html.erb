@@ -14,7 +14,7 @@
           <%= link_to :back, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
-      <% elsif request.path.include?("/conversaciones/") %>
+        <% elsif request.path.include?("/conversaciones/") %>
           <% if @conversation != nil %>
             <%= link_to conversaciones_activas_path, class: "d-flex align-items-center" do %>
               <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
@@ -44,7 +44,11 @@
           <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
+        <% elsif request.path == "/contact" %>
+          <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
+        <% end %>
       <% end %>
 
       <%# SECTION TITLE %>
