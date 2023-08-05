@@ -1,0 +1,47 @@
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal-small {
+  background: white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  position: relative;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 328px;
+  max-height: 351px;
+  padding: 30px;
+}
+
+// Overwriting Bootstrap !!!!
+.modal-content {
+  border: none !important;
+  background: none !important;
+}
+
+.modal-header,
+.modal-body {
+  padding: 0px !important;
+}
+
+.modal-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color: #2B3336;
+}
+
+.modal-span {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #2B3336;
+  line-height: 34px;
+}
+
+.modal-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #207B6E;
+  line-height: 20px;
+}

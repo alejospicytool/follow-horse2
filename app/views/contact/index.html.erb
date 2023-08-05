@@ -1,5 +1,69 @@
-<h1>How can I help you?</h1>
-<%= form_tag send_message_path, method: :post do %>
-  <%= text_area_tag :message, '', rows: 5, cols: 60 %>
-  <%= submit_tag 'Send Message' %>
+<div class="container">
+  <h5 class="section-title pt-3">¿En qué podemos ayudarte?</h5>
+  <span class="text-ayuda">Dejanos tu mensaje y responderemos tu consulta a la brevedad</span>
+  <%= form_tag send_message_path, method: :post do %>
+    <div class="d-flex flex-column">
+      <div class="w-100 justify-content-center mt-4">
+        <%= text_area_tag :message, '', id: "message-input", class: "form-input w-100 p-2", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;", placeholder: "Escribe aquí" %>
+      </div>
+      <div class="w-100 d-flex justify-content-center mt-3">
+        <%= submit_tag 'ENVIAR', class: "btn-submit mt-2", id: "submit-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if params[:mensaje_enviado] %>
+  <%= turbo_frame_tag "modal" do %>
+    <%= tag.div data: { controller: "turbo-modal",
+                        turbo_modal_target: "modal",
+                        action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
+                        class: "modal d-block" do %>
+      <div class="modal-backdrop" style="overflow-y: scroll !important" role="document">
+        <div class="modal-small px-3 py-3">
+          <div class="modal-content">
+            <h5 class="mb-3 mx-auto text-center mt-2" style="line-height: 30px !important;">¡Gracias por dejarnos tu mensaje!</h5>
+            <div class="mt-2 px-4 d-flex flex-column align-items-center">
+              <%= image_tag('message-sent.svg', class: "mb-2") %>
+              <div class="d-flex pt-3 pl-3 pr-3 flex-column">
+                <span class="modal-span text-center">Responderemos tu consulta a la brevedad</span>
+              </div>
+            </div>
+            <div class="d-flex mt-1 p-0">
+              <div class="col-12 d-flex justify-content-end m-0 p-0 pt-3 pb-3" style="cursor: pointer;" data-action= "turbo-modal#hideModal">
+                <%= link_to contact_path,  data: { action: "turbo-modal#hideModal" } do %>
+                  <span class="modal-link pr-1">ACEPTAR</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
+
+<script>
+  // Function to enable/disable button and change background color
+  function updateSubmitButtonState() {
+    const messageInput = document.getElementById("message-input");
+    const submitButton = document.getElementById("submit-button");
+
+    if (messageInput.value.trim() !== "") {
+      submitButton.disabled = false;
+      submitButton.style.backgroundColor = "#207B6E";
+    } else {
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "#808080";
+    }
+  }
+
+  // Run the function when the page loads
+  document.addEventListener("DOMContentLoaded", function() {
+    updateSubmitButtonState();
+  });
+
+  // Run the function whenever the user changes the input
+  const messageInput = document.getElementById("message-input");
+  messageInput.addEventListener("input", updateSubmitButtonState);
+</script>
