@@ -4,10 +4,10 @@
   <%= form_tag send_message_path, method: :post do %>
     <div class="d-flex flex-column">
       <div class="w-100 justify-content-center mt-4">
-        <%= text_area_tag :message, '', id: "message-input", class: "form-input w-100 p-2", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;", placeholder: "Escribe aquí" %>
+        <%= text_area_tag :message, '', id: "message-input", class: "form-input w-100 p-2", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;", placeholder: "Escribe aquí", onchange: "updateSubmitButtonState()" %>
       </div>
       <div class="w-100 d-flex justify-content-center mt-3">
-        <%= submit_tag 'ENVIAR', class: "btn-submit mt-2", id: "submit-button" %>
+        <%= submit_tag 'ENVIAR', class: "btn-submit mt-2", id: "submit-button", disabled: true, style:"background-color: #808080;" %>
       </div>
     </div>
   <% end %>
@@ -46,6 +46,7 @@
 <script>
   // Function to enable/disable button and change background color
   function updateSubmitButtonState() {
+     console.log("updateSubmitButtonState called"); // Debugging line
     const messageInput = document.getElementById("message-input");
     const submitButton = document.getElementById("submit-button");
 
@@ -57,13 +58,4 @@
       submitButton.style.backgroundColor = "#808080";
     }
   }
-
-  // Run the function when the page loads
-  document.addEventListener("DOMContentLoaded", function() {
-    updateSubmitButtonState();
-  });
-
-  // Run the function whenever the user changes the input
-  const messageInput = document.getElementById("message-input");
-  messageInput.addEventListener("input", updateSubmitButtonState);
 </script>
