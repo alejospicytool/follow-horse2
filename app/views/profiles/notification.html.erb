@@ -1,3 +1,14 @@
 <div class="container" style="margin-top: 4.75rem !important;">
-  <span class="section-subtitle mb-3">Tus notificaciones</span>
+  <!-- Content -->
+  <div>
+    <% if @notifications != [] %>
+      <% @notifications.each do |notification| %>
+          <%= render "notification", notification: notification %>
+      <% end %>
+    <% else %>
+      <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+        <span>No hay notificaciones pendientes</span>
+      </div>
+    <% end %>
+  </div>
 </div>
