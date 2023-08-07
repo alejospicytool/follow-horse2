@@ -2,35 +2,32 @@ import { Controller } from "@hotwired/stimulus"
 import { createConsumer } from "@rails/actioncable"
 
 export default class extends Controller {
-  static targets = ['count'];
+  static targets = ["notifications"]
 
   connect() {
     console.log("Connected to notification controller")
 
     this.channel = createConsumer().subscriptions.create(
-      { channel: "NotificationsChannel" },
-      { received: this.handleNotificationUpdate.bind(this)}
+      { channel: "NotificationChannel", id: "notification_channel" },
+      { received: data => this.#insertNotification(data)}
     )
+
+    console.log(`Subscribe to the notification channel.`)
   }
 
-  handleNotificationUpdate(data) {
-    const { conversationId, notificationCount } = data;
-    const target = this.findTargetByConversationId(conversationId);
+  #insertNotification(data) {
+     // Creating the whole message from the `data.message` String
+     const notificationElement = this.#buildNotificationElement(data.notification)
 
-    if (target) {
-      target.textContent = notificationCount;
+     // Inserting the `message` in the DOM
+     this.notificationsTarget.insertAdjacentHTML("beforeend", notificationElement)
+     this.notificationsTarget.scrollTo(0, this.notificationsTarget.scrollHeight)
+    //  let items = document.querySelectorAll(".message-new");
+    //  let last = items[items.length-1];
+    //  last.scrollIntoView();
+   }
 
-      if (notificationCount > 0) {
-        target.parentElement.parentElement.style.display = 'block';
-      } else {
-        target.parentElement.parentElement.style.display = 'none';
-      }
-    }
-  }
-
-  findTargetByConversationId(conversationId) {
-    return this.countTargets.find((target) => {
-      return target.dataset.conversationId === conversationId;
-    });
+   #buildNotificationElement(notification) {
+    return `${notification}`
   }
 }
