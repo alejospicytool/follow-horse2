@@ -27,6 +27,29 @@ class ProfilesController < ApplicationController
 
   def notification
     @section_title = "Notificaciones"
+
+    @notifications_mensajes = Notification.joins(:message)
+      .where(tipo: "mensaje")
+      .where.not(messages: { user_id: current_user.id })
+
+    @notifications_favoritos_horses = Notification.joins(favorite: { horse: :user })
+      .where(tipo: "favorite_horse")
+      .where(users: { id: current_user.id })
+      .where.not(user_id: current_user.id)
+
+    @notifications_favoritos_auctions = Notification.joins(favorite: { auction: :user })
+      .where(tipo: "favorite_auction")
+      .where(users: { id: current_user.id })
+      .where.not(user_id: current_user.id)
+
+    @notifications_horses = Notification.joins(horse: :user)
+      .where(tipo: "publication")
+      .where.not(user_id: current_user.id)
+
+      @notifications = (@notifications_mensajes + @notifications_favoritos_horses + @notifications_favoritos_auctions + @notifications_horses)
+      .uniq
+      .sort_by(&:created_at)
+      .reverse
   end
 
   def publication_caballos
