@@ -2,8 +2,14 @@ class FavoritesController < ApplicationController
   def update_horse
     favorite = Favorite.where(horse: Horse.find(params[:horse]))
     if favorite == []
-      Favorite.create(horse: Horse.find(params[:horse]), user: current_user)
+      @favorite = Favorite.create(horse: Horse.find(params[:horse]), user: current_user)
       @favorite_exists = true
+      @notification = Notification.create(
+        user_id: current_user.id,
+        description: "realizó una nueva publicación.",
+        tipo: "favorite_horse",
+        favorite_id: @favorite.id
+      )
     else
       favorite.destroy_all
       @favorite_exists = false
@@ -23,8 +29,14 @@ class FavoritesController < ApplicationController
   def update_auction
     favorite = Favorite.where(auction: Auction.find(params[:auction]))
     if favorite == []
-      Favorite.create(auction: Auction.find(params[:auction]), user: current_user)
+      @favorite = Favorite.create(auction: Auction.find(params[:auction]), user: current_user)
       @favorite_exists = true
+      @notification = Notification.create(
+        user_id: current_user.id,
+        description: "realizó una nueva publicación.",
+        tipo: "favorite_auction",
+        favorite_id: @favorite.id
+      )
     else
       favorite.destroy_all
       @favorite_exists = false
