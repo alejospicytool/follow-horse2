@@ -17,6 +17,14 @@ class MessagesController < ApplicationController
       )
       head :ok
 
+      @notification = Notification.create(
+        user_id: current_user.id,
+        description: "mensaje sin leer",
+        tipo: "mensaje",
+        message_id: @message.id,
+        conversation_id: @conversation.id
+      )
+
       # Broadcast the updated notification count for all conversations
       # @conv1 = Conversation.where(sender_id: current_user.id).where(archive: true)
       # @conv2 = Conversation.where(recipient_id: current_user.id).where(archive: true)

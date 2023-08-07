@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_20_162736) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_07_134813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,8 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_162736) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "auction_id"
     t.bigint "user_id", null: false
+    t.bigint "auction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "horse_id"
@@ -128,6 +128,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_162736) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "tipo"
+    t.string "description"
+    t.bigint "conversation_id"
+    t.bigint "horse_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "favorite_id"
+    t.bigint "message_id"
+    t.index ["conversation_id"], name: "index_notifications_on_conversation_id"
+    t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
+    t.index ["horse_id"], name: "index_notifications_on_horse_id"
+    t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "comment"
     t.bigint "user_id", null: false
@@ -176,5 +193,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_162736) do
   add_foreign_key "lotes", "auctions"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "conversations"
+  add_foreign_key "notifications", "favorites"
+  add_foreign_key "notifications", "horses"
+  add_foreign_key "notifications", "messages"
+  add_foreign_key "notifications", "users"
   add_foreign_key "reviews", "users"
 end

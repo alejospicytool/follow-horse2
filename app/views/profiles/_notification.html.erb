@@ -1,0 +1,69 @@
+<% if notification.tipo == "publication" %>
+  <div class="user d-flex justify-content-between py-3">
+    <div class="d-flex">
+      <div>
+        <%= image_tag('profile-icon.png') %>
+      </div>
+      <div class="d-flex flex-column justify-content-center" style="margin-left: 1rem;">
+        <span class="subtitle">
+          <strong><%= User.find(notification.user_id).nombre %> <%= User.find(notification.user_id).apellido %></strong> realizó una nueva
+          <%= link_to horse_show_path(notification.horse_id) do %>
+            publicación.
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <%= image_tag('add_notification.svg') %>
+  </div>
+<% elsif notification.tipo == "favorite_horse" %>
+  <div class="user d-flex justify-content-between py-3">
+    <div class="d-flex">
+      <div>
+        <%= image_tag('profile-icon.png') %>
+      </div>
+      <div class="d-flex flex-column justify-content-center" style="margin-left: 1rem;">
+        <span class="subtitle"> A
+          <strong><%= User.find(notification.user_id).nombre %> <%= User.find(notification.user_id).apellido %></strong> le gustó tu
+          <%= link_to horse_show_path(Favorite.find(notification.favorite_id).horse) do %>
+            publicación.
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <%= image_tag('favorite_filled.svg') %>
+  </div>
+<% elsif notification.tipo == "favorite_auction" %>
+  <div class="user d-flex justify-content-between py-3">
+    <div class="d-flex">
+      <div>
+        <%= image_tag('profile-icon.png') %>
+      </div>
+      <div class="d-flex flex-column justify-content-center" style="margin-left: 1rem;">
+        <span class="subtitle"> A
+          <strong><%= User.find(notification.user_id).nombre %> <%= User.find(notification.user_id).apellido %></strong> le gustó tu
+          <%= link_to auction_path(Favorite.find(notification.favorite_id).auction) do %>
+            publicación.
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <%= image_tag('favorite_filled.svg') %>
+  </div>
+<% elsif notification.tipo == "mensaje" %>
+  <div class="user d-flex justify-content-between py-3">
+    <div class="d-flex">
+      <div>
+        <%= image_tag('profile-icon.png') %>
+      </div>
+      <div class="d-flex flex-column justify-content-center" style="margin-left: 1rem;">
+        <span class="subtitle">
+          Tienes un
+          <%= link_to conversacion_show_path(notification.conversation_id) do %>
+            mensaje
+          <% end %> sin leer.
+        </span>
+      </div>
+    </div>
+    <%= image_tag('mensaje_sin_leer.svg') %>
+  </div>
+<% end %>

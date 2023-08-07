@@ -79,7 +79,24 @@ class HorsesController < ApplicationController
         puts "Inicio post to wistia"
         @horse.video = url
         if @horse.save
-          redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+          @notification = Notification.new(
+            user_id: current_user.id,
+            description: "realizó una nueva publicación.",
+            tipo: "publication",
+            horse_id: @horse.id
+          )
+          # NotificationChannel.broadcast_to(
+          #   "notification_channel",
+          #   message: render_to_string(partial: "profiles/notification", locals: { notification: @notification })
+          # )
+          # head :ok
+          if @notification.save
+            redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+          else
+            @section_title = "Añadir caballo"
+            flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+            render :new, status: :unprocessable_entity
+          end
         else
           @section_title = "Añadir caballo"
           flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
@@ -88,7 +105,24 @@ class HorsesController < ApplicationController
       end
     else
       if @horse.save
-        redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+        @notification = Notification.new(
+          user_id: current_user.id,
+          description: "realizó una nueva publicación.",
+          tipo: "publication",
+          horse_id: @horse.id
+        )
+        # NotificationChannel.broadcast_to(
+        #   "notification_channel",
+        #   message: render_to_string(partial: "profiles/notification", locals: { notification: @notification })
+        # )
+        # head :ok
+        if @notification.save
+          redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+        else
+          @section_title = "Añadir caballo"
+          flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+          render :new, status: :unprocessable_entity
+        end
       else
         @section_title = "Añadir caballo"
         flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
