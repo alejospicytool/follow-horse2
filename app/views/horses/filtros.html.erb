@@ -8,8 +8,12 @@
         </div>
         <div class="mb-4">
           <span class="filter-label">Edad</span>
-          <div class="w-100 justify-content-center d-flex">
+          <div class="w-100 justify-content-center align-items-center d-flex">
             <span class="filter_age_before" id="edad">Seleccionar</span>
+            <div class="potro d-flex align-items-center justify-content-center ml-2 hidden" id="potro">
+              <%= image_tag 'potro-icon.svg' %>
+              <span class="ml-1 potro-span">potro</span>
+            </div>
           </div>
           <div class="d-flex justify-content-center">
             <span style="font-size: 14px;">0</span>
@@ -34,11 +38,33 @@
   <% end %>
 </div>
 
+<style>
+  .visible {
+    display: flex;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+</style>
+
 <script>
   function updateTextInput(val) {
     document.getElementById('edad').innerText = `${val} años` ;
     document.getElementById('edad').classList.remove('filter_age_before')
     document.getElementById('edad').classList.add('filter_age_after')
+    var potro = document.getElementById('potro');
+    console.log("val", val)
+    if (parseInt(val) === 0 ) {
+      potro.classList.remove('visible');
+      potro.classList.add('hidden');
+    } else if (parseInt(val) <= 4) {
+      potro.classList.remove('hidden');
+      potro.classList.add('visible');
+    } else {
+      potro.classList.remove('visible');
+      potro.classList.add('hidden');
+    }
   }
 
   function updateInputUbicacion() {
