@@ -112,37 +112,9 @@
           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
             <div class="card-body mb-3 container py-0 px-3" style="margin-top: 20px !important;">
 
-              <% if current_user.admin == true %>
-                <ul style="padding: 0;" class="px-2">
-                  <% @user.reviews.each do |review| %>
-                    <li class="list-group-item mb-3">
-                      <div class="comment-text" style="border-bottom: 2px solid rgba(131, 131, 131, 0.7); padding-bottom: 15px;">
-                        <small >
-                          <% review.rating.times do %>
-                            <i class="fas fa-star review-star-icon"></i>
-                          <% end %>
-                        <%= review.rating %>/5</small><br>
-                        <span> <%= review.comment %> </span><br>
-                        <% if review.approve == true %>
-                          <%= link_to disapprove_review_path(review_id: review.id) do  %>
-                            <span>Aprobado</span>
-                          <% end %>
-                        <% else %>
-                          <%= link_to approve_review_path(review_id: review.id) do  %>
-                            <span>No aprobado</span>
-                          <% end %>
-                        <% end %>
-
-                      </div>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
-
-              <% if current_user.admin == false %>
                 <ul style="padding: 0;" class="px-2">
                   <% @user.reviews.where(approve: true).each do |review| %>
-                    <li class="list-group-item mb-3">
+                    <li class="list-group-item mb-3" style="border: 1px solid rgba(0,0,0,.125) !important;">
                       <div class="comment-text" style="border-bottom: 2px solid rgba(131, 131, 131, 0.7); padding-bottom: 15px;">
                         <small >
                           <% review.rating.times do %>
@@ -154,7 +126,6 @@
                     </li>
                   <% end %>
                 </ul>
-              <% end %>
 
               <div class="horse-titulo container px-2 d-flex flex-column mb-5 py-0">
                 <%= simple_form_for([@user, @review],
