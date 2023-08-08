@@ -64,9 +64,10 @@ Rails.application.routes.draw do
   post 'favorite_auction/:auction', to: 'favorites#update_auction', as: 'favorite_auction'
   get 'gracias_registo', to: 'pages#gracias', as: 'registro_gracias'
 
-  # Admin routes
+  # Reviews routes
   get 'approve_review/:id', to: 'reviews#approve', as: 'approve_review'
   get 'disapprove_review/:id', to: 'reviews#disapprove', as: 'disapprove_review'
+  delete 'reviews/:id', to: 'reviews#destroy', as: 'review_destroy'
 
   # Conversation routes
   get 'conversaciones/activas', to: 'conversations#conversaciones_activas', as: 'conversaciones_activas'
@@ -85,4 +86,11 @@ Rails.application.routes.draw do
   # Contact routes
   get '/contact', to: 'contact#index'
   post '/send_message', to: 'contact#send_message'
+
+  # Admin routes
+  get 'admin/contact/pending', to: 'admin#help_contact_pending', as: 'admin_help_contact_pending'
+  get 'admin/contact/resolved', to: 'admin#help_contact_resolved', as: 'admin_help_contact_resolved'
+  put 'admin/contact/:id', to: 'admin#help_update', as: 'admin_help_update'
+  get 'admin/reviews/pending', to: 'admin#reviews_pending', as: 'admin_reviews_pending'
+  get 'admin/reviews/resolved', to: 'admin#reviews_resolved', as: 'admin_reviews_resolved'
 end
