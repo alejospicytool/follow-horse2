@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_07_134813) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_08_131721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_134813) do
     t.index ["auction_id"], name: "index_favorites_on_auction_id"
     t.index ["horse_id"], name: "index_favorites_on_horse_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "helps", force: :cascade do |t|
+    t.text "message"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "resolved", default: false
+    t.index ["user_id"], name: "index_helps_on_user_id"
   end
 
   create_table "horses", force: :cascade do |t|
@@ -189,6 +198,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_134813) do
   add_foreign_key "favorites", "auctions"
   add_foreign_key "favorites", "horses"
   add_foreign_key "favorites", "users"
+  add_foreign_key "helps", "users"
   add_foreign_key "horses", "users"
   add_foreign_key "lotes", "auctions"
   add_foreign_key "messages", "conversations"
