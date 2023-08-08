@@ -21,7 +21,6 @@ class PagesController < ApplicationController
   def home
     @section_title = "Inicio"
     @navbar_brand = 'true'
-    @search = 'true'
     @user = current_user
     @horses = Horse.select do |horse|
       horse.user.id != current_user.id
