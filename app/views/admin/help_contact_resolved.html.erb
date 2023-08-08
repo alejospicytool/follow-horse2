@@ -1,0 +1,69 @@
+<%= render 'sub_links' %>
+
+<div class="container" style="margin-top: 8rem !important;">
+
+  <span class="section-subtitle mb-3">Consultas Pendientes</span>
+
+  <div class="cards mb-4 mt-3">
+    <div class="row">
+      <% if @consultas != [] %>
+        <% @consultas.each_with_index do |consulta, index| %>
+          <div id="accordion">
+
+            <div id="heading-<%= "#{index}" %>">
+              <button class="w-100 help-card" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= "#{index}" %>" aria-expanded="false" aria-controls="collapse-<%= "#{index}" %>">
+                <div class="user d-flex justify-content-between py-3">
+                  <div class="d-flex">
+                    <%= image_tag('profile-icon.png') %>
+                    <div class="d-flex align-items-center justify-content-start" style="margin-left: 0.5rem;">
+                      <span class="subtitle" style="text-align: start;">
+                        Consulta realizada por
+                        <strong>
+                          <%= consulta.user.nombre %>
+                          <%= consulta.user.apellido %>
+                        </strong>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <small>Realizada el: <%= consulta.created_at.to_date.strftime("%d/%m/%Y") %></small>
+                  </div>
+                  <%= image_tag('arrow-down.svg') %>
+                </div>
+              </button>
+            </div>
+
+            <div id="collapse-<%= "#{index}" %>" class="collapse consultas-card" aria-labelledby="heading-<%= "#{index}" %>" data-bs-parent="#accordion">
+              <div class="card-body mb-3 container py-0 px-3" style="margin-top: 10px !important;">
+                <div class="detalles d-flex justify-content-between py-3" style="border-top: none;">
+                  <div class="d-flex flex-column">
+                    <span class= "subtitle"><strong>Email:</strong> <span class= "text"><%= consulta.user.email %> </span></span>
+                    <span class= "subtitle"><strong>Telefono:</strong> <span class= "text"><%= consulta.user.phone %> </span></span>
+                    <span class= "subtitle"><strong>Perfil:</strong> <span class= "text"><%= link_to 'Ver Perfil', profile_show_path(consulta.user.id) %> </span></span>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  <%= button_to admin_help_update_path(consulta.id), method: :put, class: "btn btn-primary" do %>
+                    Marcar como no resuelto
+                  <% end %>
+                </div>
+
+                <div class="pedigree d-flex flex-column py-3" style="border-bottom: none;">
+                  <span class= "subtitle"><strong>Consulta:</strong></span>
+                  <span class= "text"><%= consulta.message %> </span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      <% else %>
+        <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+          <span>No hay consultas resueltas aun</span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
