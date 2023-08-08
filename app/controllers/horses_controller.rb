@@ -72,7 +72,7 @@ class HorsesController < ApplicationController
       if url == "Excedio el limite de videos"
         puts "--------------------------------"
         puts "Excedio el limite de videos"
-        flash[:alert] = "No se pudo crear el caballo, intente nuevamente sin video"
+        flash[:alert] = "No se pudo crear el caballo, se exedio el limite de videos"
         render :new, status: :unprocessable_entity
       else
         puts "--------------------------------"
@@ -85,11 +85,6 @@ class HorsesController < ApplicationController
             tipo: "publication",
             horse_id: @horse.id
           )
-          # NotificationChannel.broadcast_to(
-          #   "notification_channel",
-          #   message: render_to_string(partial: "profiles/notification", locals: { notification: @notification })
-          # )
-          # head :ok
           if @notification.save
             redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
           else
@@ -111,11 +106,6 @@ class HorsesController < ApplicationController
           tipo: "publication",
           horse_id: @horse.id
         )
-        # NotificationChannel.broadcast_to(
-        #   "notification_channel",
-        #   message: render_to_string(partial: "profiles/notification", locals: { notification: @notification })
-        # )
-        # head :ok
         if @notification.save
           redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
         else
