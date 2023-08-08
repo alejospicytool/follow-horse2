@@ -1,0 +1,24 @@
+<%# Setear @sub_links => desde controller %>
+<div class="sub-links-section">
+  <% if params[:action] == "help_contact_pending" || params[:action] == "help_contact_resolved" %>
+    <% if @sub_links_help %>
+      <% @sub_links_help.each do |sublink| %>
+        <div class="col-6 sub-link <%= sublink[:path].include?(request.fullpath) ? 'sub-link-active' : '' %>" >
+          <%= link_to sublink[:path] do %>
+            <%= sublink[:title].upcase %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% if @sub_links_reviews %>
+      <% @sub_links_reviews.each do |sublink| %>
+        <div class="col-6 sub-link <%= sublink[:path].include?(request.fullpath) ? 'sub-link-active' : '' %>" >
+          <%= link_to sublink[:path] do %>
+            <%= sublink[:title].upcase %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
