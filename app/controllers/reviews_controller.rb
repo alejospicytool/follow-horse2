@@ -40,26 +40,22 @@ class ReviewsController < ApplicationController
   end
 
   def approve
-    review = Review.find(params[:review_id])
+    review = Review.find(params[:id])
     review.approve = true
-    user = User.find(review.user_id)
     if review.save
-      user.update_rating
-      redirect_to profile_show_path(user)
+      redirect_to admin_reviews_pending_path
     else
-      redirecto_to home_path, alert: "No se pudo aprobar la review, intente nuevamente"
+      redirecto_to admin_reviews_pending_path, alert: "No se pudo aprobar la review, intente nuevamente"
     end
   end
 
   def disapprove
-    review = Review.find(params[:review_id])
+    review = Review.find(params[:id])
     review.approve = false
-    user = User.find(review.user_id)
     if review.save
-      user.update_rating
-      redirect_to profile_show_path(user)
+      redirect_to admin_reviews_resolved_path
     else
-      redirecto_to home_path, alert: "No se pudo desaprobar la review, intente nuevamente"
+      redirecto_to admin_reviews_resolved_path, alert: "No se pudo desaprobar la review, intente nuevamente"
     end
   end
 

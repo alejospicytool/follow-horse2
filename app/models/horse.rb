@@ -11,5 +11,5 @@ class Horse < ApplicationRecord
   validates :birthday, presence: true
   validates :alzada, presence: true
   validates :gender, presence: true
-  # validates :video, presence: true
+  validates :video, presence: true
 end

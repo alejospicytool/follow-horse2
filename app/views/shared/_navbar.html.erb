@@ -40,12 +40,12 @@
           <%= link_to active_auctions_path, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
-        <% elsif request.path == "/users/edit" || request.path == "/notificationes" || request.path.include?("favoritos") || request.path.include?("mis_publicaciones")  %>
+        <% elsif request.path == "/users/edit" || request.path == "/notificationes" || request.path.include?("favoritos") || request.path.include?("mis_publicaciones") || request.path == "/contact" || request.path.include?("/admin")  %>
           <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
-        <% elsif request.path == "/contact" %>
-          <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
+        <% else  %>
+          <%= link_to :back, class: "d-flex align-items-center" do %>
             <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
         <% end %>

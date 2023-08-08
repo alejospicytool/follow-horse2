@@ -1,14 +1,12 @@
 <div class="container">
   <h5 class="section-title pt-3">¿En qué podemos ayudarte?</h5>
   <span class="text-ayuda">Dejanos tu mensaje y responderemos tu consulta a la brevedad</span>
-  <%= form_tag send_message_path, method: :post do %>
-    <div class="d-flex flex-column">
-      <div class="w-100 justify-content-center mt-4">
-        <%= text_area_tag :message, '', id: "message-input", class: "form-input w-100 p-2", style: "border-color: #207B6E !important; background-image: none !important; height: 100px !important;", placeholder: "Escribe aquí", onchange: "updateSubmitButtonState()" %>
-      </div>
-      <div class="w-100 d-flex justify-content-center mt-3">
-        <%= submit_tag 'ENVIAR', class: "btn-submit mt-2", id: "submit-button", disabled: true, style:"background-color: #808080;" %>
-      </div>
+  <%= simple_form_for @help, url: send_message_path, method: :post, html: { class: 'd-flex flex-column' } do |f| %>
+    <div class="w-100 justify-content-center mt-4">
+      <%= f.input :message, input_html: { id: 'message-input', class: 'form-input w-100 p-2', style: 'border-color: #207B6E !important; background-image: none !important; height: 100px !important;', placeholder: 'Escribe aquí', onchange: 'updateSubmitButtonState()' }, label: false %>
+    </div>
+    <div class="w-100 d-flex justify-content-center mt-3">
+      <%= f.button :submit, 'ENVIAR', class: 'btn-submit mt-2', id: 'submit-button', disabled: true, style: 'background-color: #808080; color: white; border: none;' %>
     </div>
   <% end %>
 </div>
@@ -55,7 +53,8 @@
       submitButton.style.backgroundColor = "#207B6E";
     } else {
       submitButton.disabled = true;
-      submitButton.style.backgroundColor = "#808080";
+      submitButton.style.backgroundColor = "#727272";
+      submitButton.style.color = "#FFFFFF";
     }
   }
 </script>
