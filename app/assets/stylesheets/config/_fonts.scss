@@ -1,6 +1,7 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&family=Palanquin+Dark:wght@400;500;600;700&display=swap');
 
 
 // To use a font file (.woff) uncomment following lines
@@ -75,8 +76,9 @@
   font-style: normal;
 }
 
-$my-font: "Powerr";
+// $my-font: "Powerr";
+$my-font: 'League Spartan', sans-serif;
 
 // Define fonts for body and headers
 $body-font: 'Roboto', sans-serif;
-$headers-font: $my-font, "Helvetica", "sans-serif";
+$headers-font: $my-font, "sans-serif";

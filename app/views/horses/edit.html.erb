@@ -65,7 +65,8 @@
       label: "Video:",
       input_html: { class: "form-input" },
       label_html: { class: "label-input" },
-      placeholder: "Subi un archivo si queres modificar tu video" %>
+      placeholder: "Subi un archivo si queres modificar tu video",
+      hint: raw("Formatos permitidos: MOV, MPG, AVI, FLV, F4V, MP4, M4V, ASF, WMV, VOB, MOD, 3GP, MKV, DIVX, XVID, WEBM.<br>Por favor cargue videos con formato horizontal") %>
 
     <div class="d-flex justify-content-center">
       <%= f.submit "GUARDAR CAMBIOS", class: "btn-submit mt-4" %>
