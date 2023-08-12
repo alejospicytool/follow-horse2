@@ -63,61 +63,89 @@ class HorsesController < ApplicationController
       @horse.birthday = params[:horse][:birthday].to_date.strftime("%d/%m/%Y")
     end
 
+    allowed_video_formats = %w(
+      video/quicktime
+      video/mpeg
+      video/avi
+      video/x-flv
+      video/x-f4v
+      video/mp4
+      video/x-m4v
+      video/x-ms-asf
+      video/x-ms-wmv
+      video/x-ms-wmx
+      video/x-ms-wvx
+      video/vob
+      video/mod
+      video/3gpp
+      video/3gpp2
+      video/x-matroska
+      video/divx
+      video/xvid
+      video/webm
+    )
+
     if params[:horse][:video] != nil
-      puts "--------------------------------"
-      puts "Inicio post check de url"
-      uploaded_file = horse_params[:video]
-      name = ''
-      url = post_video_to_wistia(name, horse_params[:video])
-      if url == "Excedio el limite de videos"
+      if allowed_video_formats.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
-        puts "Excedio el limite de videos"
-        flash[:alert] = "No se pudo crear el caballo, se exedio el limite de videos"
-        render :new, status: :unprocessable_entity
-      else
-        puts "--------------------------------"
-        puts "Inicio post to wistia"
-        @horse.video = url
-        if @horse.save
-          @notification = Notification.new(
-            user_id: current_user.id,
-            description: "realizó una nueva publicación.",
-            tipo: "publication",
-            horse_id: @horse.id
-          )
-          if @notification.save
-            redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+        puts "Inicio post check de url"
+        uploaded_file = horse_params[:video]
+        name = ''
+        url = post_video_to_wistia(name, horse_params[:video])
+        if url == "Excedio el limite de videos"
+          puts "--------------------------------"
+          puts "Excedio el limite de videos"
+          flash[:alert] = "No se pudo crear el caballo, se exedio el limite de videos"
+          render :new, status: :unprocessable_entity
+        else
+          puts "--------------------------------"
+          puts "Inicio post to wistia"
+          @horse.video = url
+          if @horse.save
+            @notification = Notification.new(
+              user_id: current_user.id,
+              description: "realizó una nueva publicación.",
+              tipo: "publication",
+              horse_id: @horse.id
+            )
+            if @notification.save
+              redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+            else
+              @section_title = "Añadir caballo"
+              flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+              render :new, status: :unprocessable_entity
+            end
           else
             @section_title = "Añadir caballo"
             flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
             render :new, status: :unprocessable_entity
           end
-        else
-          @section_title = "Añadir caballo"
-          flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
-          render :new, status: :unprocessable_entity
-        end
-      end
-    else
-      if @horse.save
-        @notification = Notification.new(
-          user_id: current_user.id,
-          description: "realizó una nueva publicación.",
-          tipo: "publication",
-          horse_id: @horse.id
-        )
-        if @notification.save
-          redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
-        else
-          @section_title = "Añadir caballo"
-          flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
-          render :new, status: :unprocessable_entity
         end
       else
         @section_title = "Añadir caballo"
-        flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+        flash[:alert] = "Por favor cargue un video con formato válido"
         render :new, status: :unprocessable_entity
       end
+    else
+      # if @horse.save
+      #   @notification = Notification.new(
+      #     user_id: current_user.id,
+      #     description: "realizó una nueva publicación.",
+      #     tipo: "publication",
+      #     horse_id: @horse.id
+      #   )
+      #   if @notification.save
+      #     redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+      #   else
+      #     @section_title = "Añadir caballo"
+      #     flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+      #     render :new, status: :unprocessable_entity
+      #   end
+      # else
+        @section_title = "Añadir caballo"
+        flash[:alert] = "Por favor cargue un video para publicar un caballo"
+        render :new, status: :unprocessable_entity
+      # end
     end
   end
 
@@ -127,36 +155,65 @@ class HorsesController < ApplicationController
   end
 
   def update
+
+    allowed_video_formats = %w(
+      video/quicktime
+      video/mpeg
+      video/avi
+      video/x-flv
+      video/x-f4v
+      video/mp4
+      video/x-m4v
+      video/x-ms-asf
+      video/x-ms-wmv
+      video/x-ms-wmx
+      video/x-ms-wvx
+      video/vob
+      video/mod
+      video/3gpp
+      video/3gpp2
+      video/x-matroska
+      video/divx
+      video/xvid
+      video/webm
+    )
+
     # If the video is uploaded
     if horse_params[:video] != nil
-      puts "--------------------------------"
-      puts "Inicio post check de url"
-      name = ''
-      url = post_video_to_wistia(name, horse_params[:video])
-      if url == "Excedio el limite de videos"
-        puts "--------------------ERRROR----------------"
-        puts "Excedio el limite de videos"
-        @section_title = "Editar caballo"
-        @horse = Horse.find(params[:id])
-        flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente sin subir un video"
-        render :edit, status: :unprocessable_entity
-      else
-        @horse.video = url
-        if @horse.save
-          if @horse.update(horse_params.reject { |key, _| key == "video" })
-            redirect_to horse_show_path(@horse), notice: "Caballo editado con éxito"
+      if allowed_video_formats.include?(params[:horse][:video].content_type)
+        puts "--------------------------------"
+        puts "Inicio post check de url"
+        name = ''
+        url = post_video_to_wistia(name, horse_params[:video])
+        if url == "Excedio el limite de videos"
+          puts "--------------------ERRROR----------------"
+          puts "Excedio el limite de videos"
+          @section_title = "Editar caballo"
+          @horse = Horse.find(params[:id])
+          flash.now[:alert] = "No se pudo editar el caballo, el almacenamiento de videos esta lleno"
+          render :edit, status: :unprocessable_entity
+        else
+          @horse.video = url
+          if @horse.save
+            if @horse.update(horse_params.reject { |key, _| key == "video" })
+              redirect_to horse_show_path(@horse), notice: "Caballo editado con éxito"
+            else
+              @section_title = "Editar caballo"
+              @horse = Horse.find(params[:id])
+              flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente"
+              render :edit, status: :unprocessable_entity
+            end
           else
             @section_title = "Editar caballo"
             @horse = Horse.find(params[:id])
             flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente"
             render :edit, status: :unprocessable_entity
           end
-        else
-          @section_title = "Editar caballo"
-          @horse = Horse.find(params[:id])
-          flash.now[:alert] = "No se pudo editar el caballo, intente nuevamente"
-          render :edit, status: :unprocessable_entity
         end
+      else
+        @section_title = "Editar caballo"
+        @horse = Horse.find(params[:id])
+        render :edit, status: :unprocessable_entity, alert: "Por favor cargue un video con formato válido"
       end
     else
       # If no video is uploaded
