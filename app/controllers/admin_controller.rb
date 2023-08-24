@@ -4,6 +4,7 @@ class AdminController < ApplicationController
   def help_contact_pending
     @section_title = "Consultas"
     @consultas = Help.where(resolved: false)
+    @conversation = Conversation.new
   end
 
   def help_contact_resolved

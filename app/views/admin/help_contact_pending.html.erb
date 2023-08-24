@@ -40,6 +40,13 @@
                     <span class= "subtitle"><strong>Email:</strong> <span class= "text"><%= consulta.user.email %> </span></span>
                     <span class= "subtitle"><strong>Telefono:</strong> <span class= "text"><%= consulta.user.phone %> </span></span>
                     <span class= "subtitle"><strong>Perfil:</strong> <span class= "text"><%= link_to 'Ver Perfil', profile_show_path(consulta.user.id) %> </span></span>
+                          <%= simple_form_for @conversation, url: conversaciones_create_path, data: { turbo: false } do |f| %>
+                            <%= hidden_field_tag(:sender_id, current_user.id) %>
+                            <%= hidden_field_tag(:recipient_id, consulta.user.id) %>
+                            <%= f.button :button, class: "btn-submit mt-2" do %>
+                              <span>ENVIAR MENSAJE</span>
+                            <% end %>
+                          <% end %>
                   </div>
                 </div>
 
