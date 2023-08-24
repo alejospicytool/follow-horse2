@@ -21,7 +21,7 @@
                   input_html: { autocomplete: "current-password" },
                   class: "log-in-input",
                   input_html: {style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px;"},
-                  hint: "La contraseña debe tener 8 caracteres como mínimo",
+                  hint: "La contraseña debe tener 6 caracteres como mínimo",
                   hint_html: {style: "font-weight: 400; font-size: 12px; color: #727272;"} %>
       <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       <%= link_to "¿Olvidaste tu contraseña?", new_password_path('user'), :class => "login-link", style: "font-weight: 600; font-size: 14px; line-height: 16px; text-decoration: none; color: #207B6E;" %>
