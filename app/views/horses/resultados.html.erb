@@ -96,8 +96,11 @@
       </div>
     <% else %>
       <div class="cards mb-4 row">
-        <div class="d-flex justify-content-center align-items-center text-center" style="height: 30vh;">
+        <div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 30vh;">
           <span>No hay resultados disponibles para tu busqueda</span>
+          <%= link_to home_path, class: "btn-submit mt-5 d-flex align-items-center justify-content-center" do %>
+            <span>VOLVER AL INICIO</span>
+          <% end %>
         </div>
       </div>
     <% end %>
