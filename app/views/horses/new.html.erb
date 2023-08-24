@@ -25,7 +25,8 @@
     <%# Fecha de nacimiento %>
     <div class= "d-flex align-items-center justify-content-between mt-3" style= "gap:5px;">
       <%= f.label :birthday, "Fecha de nacimiento:",
-                  class: "label-input" %>
+                  class: "label-input"
+                  %>
       <%= f.input :birthday,
                   as: :date,
                   html5: true,
@@ -33,13 +34,14 @@
                   label: false %>
     </div>
     <%# Edad %>
-    <div class= "d-flex align-items-center mt-3">
+    <div class= " align-items-center mt-3 d-none">
       <%= f.label :age, "Edad:",
                   class: "label-input" %>
       <%= f.input :age,
                   label: false,
+                  id: "horse_age",
                   as: :select,
-                  collection: (1...20).to_a,
+                  collection: (0...20).to_a,
                   input_html: {class: "form-input"},
                   prompt: "Seleccionar Edad",
                   wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
@@ -107,3 +109,19 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  const horseBirthday = document.getElementById("horse_birthday");
+  horseBirthday.addEventListener("change", function(event) {
+          const day = event.target.value;
+          const today = new Date();
+          const birthDate = new Date(day);
+          const age = today.getFullYear() - birthDate.getFullYear();
+          const month = today.getMonth() - birthDate.getMonth();
+          if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          const horseAge = document.getElementById("horse_age")
+          horseAge.value = age
+        });
+</script>
