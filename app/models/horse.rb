@@ -9,6 +9,7 @@ class Horse < ApplicationRecord
   validates :height, presence: true
   validates :rider, presence: true
   validates :birthday, presence: true
+  validates :photos, presence: true
   validates :alzada, presence: true
   validates :gender, presence: true
   validates :video, presence: true
