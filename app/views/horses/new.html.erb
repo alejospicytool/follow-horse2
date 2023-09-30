@@ -1,7 +1,7 @@
 <div class="container">
   <%= simple_form_for @horse do |f|%>
     <%# Jinete / Amazona %>
-    <%= f.label :rider, "Jinete/ amazona:",
+    <%= f.label :rider, "Jinete / Amazona:",
                 class: "label-input" %>
     <%= f.input :rider,
                 input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },

@@ -4,13 +4,29 @@ class Horse < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many_attached :photos, dependent: :destroy
 
-  validates :name, presence: true
-  validates :age, presence: true
-  validates :height, presence: true
-  validates :rider, presence: true
-  validates :birthday, presence: true
-  validates :photos, presence: true
-  validates :alzada, presence: true
-  validates :gender, presence: true
-  validates :video, presence: true
+  before_validation :set_age_and_birthday
+  
+  with_options presence: true do
+    validates :name, :age, :birthday, :photos, :gender
+  end
+
+  validate :colt_fields
+
+  private
+
+  def colt_fields
+    if age > 4
+      errors.add(:rider, "No puede estar vacio") if rider.blank?
+      errors.add(:height, "No puede estar vacio") if height.blank?
+      errors.add(:video, "No puede estar vacio") if video.blank?
+    end
+  end
+
+  def set_age_and_birthday
+    if self.birthday
+      self.age = ((Date.today - self.birthday) / 365).to_i
+      self.birthday = self.birthday.strftime("%d/%m/%Y")
+    end
+  end
+
 end

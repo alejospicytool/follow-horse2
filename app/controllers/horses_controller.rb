@@ -57,13 +57,6 @@ class HorsesController < ApplicationController
     @horse = Horse.create(horse_params)
     @horse.user = current_user
 
-    # Check if birthday parameter is empty
-    unless params[:horse][:birthday].empty?
-      # Convert the birthday string to a Date object
-      @horse.birthday = params[:horse][:birthday].to_date.strftime("%d/%m/%Y")
-      @horse.age = ((Date.today - @horse.birthday) / 365).to_i
-    end
-
     allowed_video_formats = %w(
       video/quicktime
       video/mpeg
