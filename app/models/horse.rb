@@ -2,6 +2,7 @@ class Horse < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_one_attached :food_photo, dependent: :destroy
   has_many_attached :photos, dependent: :destroy
 
   before_validation :set_age_and_birthday
@@ -15,6 +16,7 @@ class Horse < ApplicationRecord
   private
 
   def colt_fields
+    # Los potros no necesitan estos campos.
     if age > 4
       errors.add(:rider, "No puede estar vacio") if rider.blank?
       errors.add(:height, "No puede estar vacio") if height.blank?

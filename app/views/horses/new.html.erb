@@ -89,6 +89,12 @@
                 placeholder: "Ingrese link al pedigree",
                 input_html: {class: "form-input"},
                 label_html: {class: "label-input"}%>
+    <%# Foto Pedigree %>
+    <%= f.input :food_photo, as: :file,
+                label:"Imagen de Pedigree:",
+                placeholder: "Click aqui para subir una imagen",
+                input_html: {class: "form-input", multiple: true},
+                label_html: {class: "label-input"}%>
     <%# Photos  %>
     <%= f.input :photos, as: :file,
                 label:"Imagen:",

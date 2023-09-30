@@ -56,11 +56,25 @@
       placeholder: "Ingrese link al pedigree",
       input_html: {class: "form-input"},
       label_html: {class: "label-input"}, value: @horse.pedigree%>
-    <%= f.input :photos, as: :file,
-      label:"Imagen:",
-      placeholder: "Click aqui para subir una imagen",
-      input_html: {class: "form-input", multiple: true},
-      label_html: {class: "label-input"}, value: @horse.photos%>
+    <%# Foto Pedigree %>
+    <%= f.input :food_photo, as: :file,
+              label:"Imagen de Pedigree:",
+              placeholder: "Click aqui para subir una imagen",
+              input_html: {class: "form-input", multiple: true},
+              label_html: {class: "label-input"}, value: @horse.food_photo%>
+<% if @horse.photos.attached? %>
+  <div class="existing-photos">
+    <% @horse.photos.each do |photo| %>
+      <%= image_tag(photo, width: 100, height: 100) %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= f.input :photos, as: :file,
+  label:"Imagen:",
+  placeholder: "Click aqui para subir una imagen",
+  input_html: {class: "form-input", multiple: true},
+  label_html: {class: "label-input"} %>
     <%= f.input :video, as: :file,
       label: "Video:",
       input_html: { class: "form-input" },
