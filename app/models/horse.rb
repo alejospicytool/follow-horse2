@@ -8,7 +8,8 @@ class Horse < ApplicationRecord
   before_validation :set_age_and_birthday
   
   with_options presence: true do
-    validates :name, :age, :birthday, :photos, :gender
+    validates :name, :age, :birthday, :gender
+    validates :photos, on: :create
   end
 
   validate :colt_fields
@@ -20,7 +21,11 @@ class Horse < ApplicationRecord
     if age > 4
       errors.add(:rider, "No puede estar vacio") if rider.blank?
       errors.add(:height, "No puede estar vacio") if height.blank?
-      errors.add(:video, "No puede estar vacio") if video.blank?
+      
+      # Evitar que sea obligatorio el video al editar.
+      if new_record?
+        errors.add(:video, "No puede estar vacio") if video.blank?
+      end
     end
   end
 
