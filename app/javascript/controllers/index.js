@@ -24,3 +24,6 @@ application.register("star-rating", StarRatingController)
 
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)
+
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)

@@ -57,13 +57,6 @@ class HorsesController < ApplicationController
     @horse = Horse.create(horse_params)
     @horse.user = current_user
 
-    # Check if birthday parameter is empty
-    unless params[:horse][:birthday].empty?
-      # Convert the birthday string to a Date object
-      @horse.birthday = params[:horse][:birthday].to_date.strftime("%d/%m/%Y")
-      @horse.age = ((Date.today - @horse.birthday) / 365).to_i
-    end
-
     allowed_video_formats = %w(
       video/quicktime
       video/mpeg
@@ -128,25 +121,9 @@ class HorsesController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      # if @horse.save
-      #   @notification = Notification.new(
-      #     user_id: current_user.id,
-      #     description: "realizó una nueva publicación.",
-      #     tipo: "publication",
-      #     horse_id: @horse.id
-      #   )
-      #   if @notification.save
-      #     redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
-      #   else
-      #     @section_title = "Añadir caballo"
-      #     flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
-      #     render :new, status: :unprocessable_entity
-      #   end
-      # else
-        @section_title = "Añadir caballo"
-        flash[:alert] = "Por favor cargue un video para publicar un caballo"
-        render :new, status: :unprocessable_entity
-      # end
+      @section_title = "Añadir caballo"
+      flash[:alert] = "Por favor cargue un video para publicar un caballo"
+      render :new, status: :unprocessable_entity
     end
   end
 

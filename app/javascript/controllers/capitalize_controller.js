@@ -22,7 +22,9 @@ export default class extends Controller {
   capitalizeFirstLetter(event) {
     const input = event.target;
     const currentValue = input.value;
-    const capitalizedValue = currentValue.charAt(0).toUpperCase() + currentValue.slice(1);
+    const capitalizedValue = currentValue.toLowerCase().split(' ').map(function(word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
     input.value = capitalizedValue;
   }
 }

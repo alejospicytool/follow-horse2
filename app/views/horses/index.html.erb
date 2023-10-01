@@ -5,13 +5,21 @@
       <% @horses.each do |horse| %>
         <div class="col-sm-6 col-lg-4 col-sm-12">
           <div class="card w-100 mb-3">
-            <% if horse.video != nil %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
-                <% url = horse.video %>
-                <% url_path = url.sub("http://", "//") %>
-                <iframe src=<%= url_path %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
-                <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
-              </div>
+            <% if horse.video.present? %>
+                <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
+                  <iframe src="<%= URI.parse(horse.video).tap { |uri| uri.scheme = 'https' }.to_s %>" 
+                    allowfullscreen 
+                    frameborder="0" 
+                    scrolling="no" 
+                    class="wistia_embed" 
+                    name="wistia_embed" 
+                    width="100%" 
+                    height="100%">
+                  </iframe>
+                  <div class="nombre m-0 w-100">
+                    <span><%= horse.name.capitalize %></span>
+                  </div>
+                </div>
             <% else %>
               <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= image_path 'caballo-placeholder-solo.png' %>'); background-repeat: no-repeat; background-position: center; background-size: 300px;">
                 <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>

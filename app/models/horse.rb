@@ -2,15 +2,38 @@ class Horse < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_one_attached :food_photo, dependent: :destroy
   has_many_attached :photos, dependent: :destroy
 
-  validates :name, presence: true
-  validates :age, presence: true
-  validates :height, presence: true
-  validates :rider, presence: true
-  validates :birthday, presence: true
-  validates :photos, presence: true
-  validates :alzada, presence: true
-  validates :gender, presence: true
-  validates :video, presence: true
+  before_validation :set_age_and_birthday
+  
+  with_options presence: true do
+    validates :name, :age, :birthday, :gender
+    validates :photos, on: :create
+  end
+
+  validate :colt_fields
+
+  private
+
+  def colt_fields
+    # Los potros no necesitan estos campos.
+    if age > 4
+      errors.add(:rider, "No puede estar vacio") if rider.blank?
+      errors.add(:height, "No puede estar vacio") if height.blank?
+      
+      # Evitar que sea obligatorio el video al editar.
+      if new_record?
+        errors.add(:video, "No puede estar vacio") if video.blank?
+      end
+    end
+  end
+
+  def set_age_and_birthday
+    if self.birthday
+      self.age = ((Date.today - self.birthday) / 365).to_i
+      self.birthday = self.birthday.strftime("%d/%m/%Y")
+    end
+  end
+
 end

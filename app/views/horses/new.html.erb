@@ -1,7 +1,7 @@
 <div class="container">
   <%= simple_form_for @horse do |f|%>
     <%# Jinete / Amazona %>
-    <%= f.label :rider, "Jinete/ amazona:",
+    <%= f.label :rider, "Jinete / Amazona:",
                 class: "label-input" %>
     <%= f.input :rider,
                 input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
@@ -88,6 +88,12 @@
                 label:"Pedigree:",
                 placeholder: "Ingrese link al pedigree",
                 input_html: {class: "form-input"},
+                label_html: {class: "label-input"}%>
+    <%# Foto Pedigree %>
+    <%= f.input :food_photo, as: :file,
+                label:"Imagen de Pedigree:",
+                placeholder: "Click aqui para subir una imagen",
+                input_html: {class: "form-input", multiple: true},
                 label_html: {class: "label-input"}%>
     <%# Photos  %>
     <%= f.input :photos, as: :file,

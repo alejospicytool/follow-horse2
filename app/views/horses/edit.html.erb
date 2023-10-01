@@ -56,17 +56,24 @@
       placeholder: "Ingrese link al pedigree",
       input_html: {class: "form-input"},
       label_html: {class: "label-input"}, value: @horse.pedigree%>
-    <%= f.input :photos, as: :file,
-      label:"Imagen:",
-      placeholder: "Click aqui para subir una imagen",
-      input_html: {class: "form-input", multiple: true},
-      label_html: {class: "label-input"}, value: @horse.photos%>
-    <%= f.input :video, as: :file,
-      label: "Video:",
-      input_html: { class: "form-input" },
-      label_html: { class: "label-input" },
-      placeholder: "Subi un archivo si queres modificar tu video",
-      hint: raw("Formatos permitidos: MOV, MPG, AVI, FLV, F4V, MP4, M4V, ASF, WMV, VOB, MOD, 3GP, MKV, DIVX, XVID, WEBM.<br>Por favor cargue videos con formato horizontal") %>
+    <%# Foto Pedigree %>
+    <%= f.input :food_photo, as: :file,
+              label:"Imagen de Pedigree:",
+              placeholder: "Click aqui para subir una imagen",
+              input_html: {class: "form-input", multiple: true},
+              label_html: {class: "label-input"}, value: @horse.food_photo%>
+
+<%= f.input :photos, as: :file,
+  label:"Imagen:",
+  placeholder: "Click aqui para subir una imagen",
+  input_html: {class: "form-input", multiple: true},
+  label_html: {class: "label-input"} %>
+<%= f.input :video, as: :file,
+  label: "Video:",
+  input_html: { class: "form-input" },
+  label_html: { class: "label-input" },
+  placeholder: "Subi un archivo si queres modificar tu video",
+  hint: raw("Formatos permitidos: MOV, MPG, AVI, FLV, F4V, MP4, M4V, ASF, WMV, VOB, MOD, 3GP, MKV, DIVX, XVID, WEBM.<br>Por favor cargue videos con formato horizontal") %>
 
     <div class="d-flex justify-content-center">
       <%= f.submit "GUARDAR CAMBIOS", class: "btn-submit mt-4" %>
