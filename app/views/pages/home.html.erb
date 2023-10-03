@@ -16,7 +16,11 @@
               <div class="card-image w-100 h-100 d-flex align-items-center justify-content-center flex-column">
                 <% url = horse.video %>
                 <% url_path = url.sub("http://", "//") %>
-                <%= cl_image_tag horse.photos.first.key, class:"carousel-photo",style: "height: 8.75rem" %>
+                <% if horse&.photos&.first&.key.present? %>
+                  <%= cl_image_tag horse.photos.first.key, class: "carousel-photo", style: "height: 8.75rem" %>
+                <% else %>
+                  <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo", style: "height: 8.75rem" %>
+                <% end %>
                 <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
               </div>
             <% else %>
