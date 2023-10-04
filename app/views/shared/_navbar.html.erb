@@ -12,8 +12,7 @@
       <% else %>
         <% if request.path.include?("/perfiles/") %>
           <%= link_to :back, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.pn
-            g', style: 'margin-right: 1.25rem') %>
+            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
           <% end %>
         <% elsif request.path.include?("/conversaciones/") %>
           <% if @conversation != nil %>

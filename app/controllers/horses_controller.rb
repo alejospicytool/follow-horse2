@@ -156,6 +156,10 @@ class HorsesController < ApplicationController
       video/webm
     )
 
+    if params[:horse][:photos].present?
+      @horse.photos.attach(params[:horse][:photos])
+    end
+
     # If the video is uploaded
     if horse_params[:video] != nil
       if allowed_video_formats.include?(params[:horse][:video].content_type)
@@ -173,7 +177,7 @@ class HorsesController < ApplicationController
         else
           @horse.video = url
           if @horse.save
-            if @horse.update(horse_params.reject { |key, _| key == "video" })
+            if @horse.update(horse_params.reject { |key, _| key == "video" || key == "photos" })
               redirect_to horse_show_path(@horse), notice: "Caballo editado con éxito"
             else
               @section_title = "Editar caballo"
@@ -195,7 +199,7 @@ class HorsesController < ApplicationController
       end
     else
       # If no video is uploaded
-      if @horse.update(horse_params.reject { |key, _| key == "video" })
+      if @horse.update(horse_params.reject { |key, _| key == "video" || key == "photos" })
         redirect_to horse_show_path(@horse)
       else
         @section_title = "Editar caballo"
