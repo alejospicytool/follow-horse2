@@ -112,7 +112,7 @@
 
       <div class="publicaciones mt-3">
         <span class="subtitle">Publicaciones relacionadas</span>
-        <div class="container justify-content-center w-100 h-100">
+        <div class="container justify-content-center">
           <% if @horses != [] %>
             <% @horses.each do |horse| %>
                 <%= render 'shared/horse_card', horse: horse %>
