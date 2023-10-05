@@ -1,19 +1,18 @@
 <div class="card w-100 mb-3">  
-  <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column embed-responsive embed-responsive-16by9">
+  <div class="card-image embed-responsive embed-responsive-16by9">
     <% if horse.video.present? %>
       <% url = horse.video %>
       <% url_path = url.sub("http://", "//") %>
-      <iframe src=<%= url_path %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
-      <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
+      <iframe src=<%= url_path %> class="embed-responsive-item" frameborder="0"></iframe>
+      <div class="nombre m-0 w-100 position-absolute"><span><%= horse.name.capitalize %></span></div>
     <% else %>
       <% if horse&.photos&.first&.present? %>
-        <%= cl_image_tag horse.photos.first.key, class: "carousel-photo", style: "height: 8.75rem" %>
-        <div class="nombre m-0 w-100">
+        <%= cl_image_tag horse.photos.first.key, class: "carousel-photo" %>
+        <div class="nombre m-0 w-100 position-absolute">
           <span><%= horse.name.capitalize %></span>
         </div>
-      </div>
       <% else %>
-          <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo", style: "height: 8.75rem" %>
+          <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo" %>
       <% end %>
     <% end %>
   </div>
