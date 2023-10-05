@@ -112,18 +112,17 @@
 
       <div class="publicaciones mt-3">
         <span class="subtitle">Publicaciones relacionadas</span>
-
-        <% if @horses != [] %>
-          <% @horses.each do |horse| %>
-            <div class="col-sm-6 col-lg-4 col-sm-12">
-              <%= render 'shared/horse_card', horse: horse %>
-            </div>  
+        <div class="container justify-content-center w-100 h-100">
+          <% if @horses != [] %>
+            <% @horses.each do |horse| %>
+                <%= render 'shared/horse_card', horse: horse %>
+            <% end %>
+          <% else %>
+            <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+              <span>No hay recomendaciones disponibles todavia</span>
+            </div>
           <% end %>
-        <% else %>
-          <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
-            <span>No hay recomendaciones disponibles todavia</span>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
