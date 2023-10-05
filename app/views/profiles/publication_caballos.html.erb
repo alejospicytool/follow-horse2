@@ -6,44 +6,7 @@
       <span class="section-subtitle mb-3">Tus publicaciones activas</span>
       <% @horses.each do |horse| %>
         <div class="col-sm-6 col-lg-4 col-sm-12">
-          <div class="card w-100 mb-3">
-
-            <% if horse.video != nil %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
-                <% url = horse.video %>
-                <% url_path = url.sub("http://", "//") %>
-                <iframe src=<%= url_path %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
-                <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
-              </div>
-            <% else %>
-              <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center" style="background-image: url('<%= image_path 'caballo-placeholder-solo.png' %>'); background-repeat: no-repeat; background-position: center; background-size: 300px;">
-                <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
-              </div>
-            <% end %>
-
-            <div class="card-content">
-              <div class="p-2 d-flex">
-                <div class="col-3 p-0 d-flex align-items-center justify-content-center">
-                  <% if horse.age <= 4 %>
-                    <div class="potro d-flex align-items-center justify-content-center">
-                      <%= image_tag 'potro-icon.svg' %>
-                      <span class="ml-1 potro-span">potro</span>
-                    </div>
-                  <% end %>
-                </div>
-                <div class="col-6 d-flex justify-content-center link align-items-center p-0">
-                  <%= link_to horse_show_path(horse.id) do %>
-                    <span>VER MAS</span>
-                  <% end %>
-                </div>
-                <div class="col-3 d-flex justify-content-end align-items-center p-0">
-                  <%= link_to horses_destroy_path(horse.id, mis_publicaciones: "true"), data: { turbo_method: :delete } do %>
-                    <span class="pr-2" style="color: #838383;">ELIMINAR</span>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= render 'shared/horse_card', horse: horse %>
         </div>
       <% end %>
     <% else %>

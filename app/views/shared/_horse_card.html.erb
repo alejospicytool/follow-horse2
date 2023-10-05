@@ -1,0 +1,90 @@
+<div class="card w-100 mb-3">  
+  <div class="card-image w-100 h-100 d-flex align-items-end justify-content-center flex-column">
+    <% if horse.video.present? %>
+      <% url = horse.video %>
+      <% url_path = url.sub("http://", "//") %>
+      <iframe src=<%= url_path %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
+      <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
+    <% else %>
+      <% if horse&.photos&.first&.present? %>
+        <%= cl_image_tag horse.photos.first.key, class: "carousel-photo", style: "height: 8.75rem" %>
+        <div class="nombre m-0 w-100">
+          <span><%= horse.name.capitalize %></span>
+        </div>
+      </div>
+      <% else %>
+          <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo", style: "height: 8.75rem" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="card-content">
+      <div class="p-2 d-flex">
+        <div class="col-3 pl-0 d-flex align-items-center justify-content-center">
+            <% if horse.age <= 4 %>
+              <div class="potro d-flex align-items-center justify-content-center">
+                  <%= image_tag 'potro-icon.svg' %>
+                  <span class="ml-1 potro-span">potro</span>
+              </div>
+            <% end %>
+        </div>
+        <div class="col-6 d-flex justify-content-center link align-items-center">
+            <%= link_to horse_show_path(horse.id) do %>
+            <span>VER MAS</span>
+            <% end %>
+        </div>
+        <div class="col-3 d-flex justify-content-end align-items-center pr-0">
+            <div class="d-flex align-items-center justify-content-center">
+            <%= button_to favorite_horse_text(horse), favorite_horse_path(horse: horse), class: "horse_heart_home mx-2", remote: true %>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  buttons = document.querySelectorAll('.horse_heart_home')
+    buttons.forEach(
+    function(button) {
+      if (button.innerText == "fav"){
+        button.innerHTML = "<i class='fa-solid fa-heart'></i>"
+      } else if (button.innerText == "nofav"){
+        button.innerHTML = "<i class='fa-regular fa-heart'></i>"
+      }
+      button.addEventListener('click', function() {
+        if (button.innerHTML == `<i class="fa-solid fa-heart"></i>`) {
+          button.innerHTML = `<i class="fa-regular fa-heart"></i>`
+        } else if (button.innerHTML == `<i class="fa-regular fa-heart"></i>`){
+          button.innerHTML = `<i class="fa-solid fa-heart"></i>`
+        }
+      })
+    }
+  )
+</script>
+
+<style>
+  .horse_heart{
+    border: none;
+    background: none;
+    padding: 0;
+    color:white;
+    font-size: 1.3rem;
+  }
+
+  .horse_heart_index{
+    border: none;
+    background: none;
+    padding: 0;
+    padding-top: 2px;
+    color: #F2DA84;
+    font-size: 1.3rem;
+  }
+
+  .horse_heart_home{
+    border: none;
+    background: none;
+    padding: 0;
+    padding-top: 2px;
+    color: #F2DA84;
+    font-size: 1.3rem;
+  }
+</style>
