@@ -27,3 +27,6 @@ application.register("turbo-modal", TurboModalController)
 
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
+
+import FavoriteController from "./favorite_controller"
+application.register("favorite", FavoriteController)

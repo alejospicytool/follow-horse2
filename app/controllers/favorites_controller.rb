@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
     end
     respond_to do |format|
       format.html {}
-      format.js {}
+      format.json { render json: { favorite_exists: @favorite_exists } }
     end
   end
 
