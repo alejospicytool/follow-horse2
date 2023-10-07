@@ -1,15 +1,9 @@
 <div class="card w-100 mb-3">  
-  <div class="card-image embed-responsive embed-responsive-16by9">
-    <% if horse.video.present? %>
-      <% url = horse.video %>
-      <% url_path = url.sub("http://", "//") %>
-      <iframe src=<%= url_path %> class="embed-responsive-item" frameborder="0"></iframe>
+  <div class="card-img-top">
+    <% if horse&.photos&.first&.present? %>
+      <%= cl_image_tag horse.photos.first.key, class: "ratio ratio-16x9" %>
     <% else %>
-      <% if horse&.photos&.first&.present? %>
-        <%= cl_image_tag horse.photos.first.key, class: "carousel-photo" %>
-      <% else %>
-          <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo" %>
-      <% end %>
+      <%= image_tag 'caballo-placeholder-solo.png', class: "ratio ratio-16x9" %>
     <% end %>
   </div>
   <div class="card-content">
