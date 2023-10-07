@@ -4,19 +4,16 @@
       <% url = horse.video %>
       <% url_path = url.sub("http://", "//") %>
       <iframe src=<%= url_path %> class="embed-responsive-item" frameborder="0"></iframe>
-      <div class="nombre m-0 w-100 position-absolute"><span><%= horse.name.capitalize %></span></div>
     <% else %>
       <% if horse&.photos&.first&.present? %>
         <%= cl_image_tag horse.photos.first.key, class: "carousel-photo" %>
-        <div class="nombre m-0 w-100 position-absolute">
-          <span><%= horse.name.capitalize %></span>
-        </div>
       <% else %>
           <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo" %>
       <% end %>
     <% end %>
   </div>
   <div class="card-content">
+  <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
       <div class="p-2 d-flex">
         <div class="col-3 pl-0 d-flex align-items-center justify-content-center">
             <% if horse.age <= 4 %>

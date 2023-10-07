@@ -59,19 +59,19 @@ puts "Creating horses"
 photo_url = "https://horse-canada.s3.ca-central-1.amazonaws.com/wp-content/uploads/2020/05/07073733/AustralianStockFeature.jpg"
 photo = Down.download(photo_url)
 
-horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "1.0", birthday: "22/10/2022", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3, video: "http://embed.wistia.com/deliveries/f05edc86686dd1401fac203f004096fb.bin")
+horse1 = Horse.new(name: "Luqui", rider: "Beni", alzada: "21", height: "1.0", birthday: "22/10/2022", gender: "M", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 3, video: "http://embed.wistia.com/deliveries/8f658d72ff14bc7ffb48320fd692aadd.bin")
 horse1.photos.attach(io: File.open(photo.path), filename: 'photo1.jpg', content_type: 'image/jpg')
 horse1.save!
 
-horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "1.5", birthday: "22/10/2019", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 5, video: "http://embed.wistia.com/deliveries/ad85ed31d149d7a4cf8ef9559a22288f.bin")
+horse2 = Horse.new(name: "Valentina", rider: "Maki", alzada: "21", height: "1.5", birthday: "22/10/2019", gender: "F", user_id: user1.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 5, video: "http://embed.wistia.com/deliveries/8f658d72ff14bc7ffb48320fd692aadd.bin")
 horse2.photos.attach(io: File.open(photo.path), filename: 'photo2.jpg', content_type: 'image/jpg')
 horse2.save!
 
-horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "2.0", birthday: "22/10/2018", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2, video: "http://embed.wistia.com/deliveries/55ae5115a46fe6a4292868be702c06d3.bin")
+horse3 = Horse.new(name: "Pedro", rider: "Juan Carlos", alzada: "22", height: "2.0", birthday: "22/10/2018", gender: "M", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 2, video: "http://embed.wistia.com/deliveries/8f658d72ff14bc7ffb48320fd692aadd.bin")
 horse3.photos.attach(io: File.open(photo.path), filename: 'photo3.jpg', content_type: 'image/jpg')
 horse3.save!
 
-horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "1.5", birthday: "22/10/2021", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10, video: "http://embed.wistia.com/deliveries/d69342f6c4e927079fb358327ebbe914.bin")
+horse4 = Horse.new(name: "Juana", rider: "Nestor", alzada: "23", height: "1.5", birthday: "22/10/2021", gender: "F", user_id: user5.id, description: "Descripión caballo texto con info. descripión caballo. Texto con info. Descripión caballo texto con info. Descripión caballo, texto con info.", age: 10, video: "http://embed.wistia.com/deliveries/8f658d72ff14bc7ffb48320fd692aadd.bin")
 horse4.photos.attach(io: File.open(photo.path), filename: 'photo4.jpg', content_type: 'image/jpg')
 horse4.save!
 
