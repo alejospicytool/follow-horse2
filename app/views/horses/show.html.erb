@@ -14,11 +14,10 @@
               <%= cl_image_tag @horse.photos.first.key, class: "carousel-photo", style: "height: 18.75rem;" %>
             </div>
           <% else %>
-            <% else %>
-              <div class="carousel-item active" style="height: 400px !important">
-                <%= image_tag('caballo-placeholder.png', class: "w-100", style: "height: 25rem;") %>
-              </div>
-            <% end %>
+            <div class="carousel-item active" style="height: 400px !important">
+              <%= image_tag('caballo-placeholder.png', class: "w-100", style: "height: 25rem;") %>
+            </div>
+          <% end %>
           
           <% if @horse.video %>
             <div class="carousel-item " style="height: 400px !important">
