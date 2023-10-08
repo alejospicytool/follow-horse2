@@ -1,4 +1,4 @@
-class WistiaIntegration    
+class WistiaService
   ALLOWED_VIDEO_FORMATS = %w(
     video/quicktime video/mpeg video/avi video/x-flv video/x-f4v
     video/mp4 video/x-m4v video/x-ms-asf video/x-ms-wmv video/x-ms-wmx
