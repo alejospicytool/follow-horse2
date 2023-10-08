@@ -1,22 +1,13 @@
 <div class="card w-100 mb-3">  
-  <div class="card-image embed-responsive embed-responsive-16by9">
-    <% if horse.video.present? %>
-      <% url = horse.video %>
-      <% url_path = url.sub("http://", "//") %>
-      <iframe src=<%= url_path %> class="embed-responsive-item" frameborder="0"></iframe>
-      <div class="nombre m-0 w-100 position-absolute"><span><%= horse.name.capitalize %></span></div>
+  <div class="card-img-top ratio ratio-16x9">
+    <% if horse&.photos&.first&.present? %>
+      <%= cl_image_tag horse.photos.first.key %>
     <% else %>
-      <% if horse&.photos&.first&.present? %>
-        <%= cl_image_tag horse.photos.first.key, class: "carousel-photo" %>
-        <div class="nombre m-0 w-100 position-absolute">
-          <span><%= horse.name.capitalize %></span>
-        </div>
-      <% else %>
-          <%= image_tag 'caballo-placeholder-solo.png', class: "carousel-photo" %>
-      <% end %>
+      <%= image_tag 'caballo-placeholder-solo.png' %>
     <% end %>
   </div>
   <div class="card-content">
+  <div class="nombre m-0 w-100"><span><%= horse.name.capitalize %></span></div>
       <div class="p-2 d-flex">
         <div class="col-3 pl-0 d-flex align-items-center justify-content-center">
             <% if horse.age <= 4 %>

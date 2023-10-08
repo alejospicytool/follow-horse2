@@ -86,3 +86,5 @@ gem "dockerfile-rails", ">= 1.4", :group => :development
 gem 'multipart-post'
 
 gem "down", "~> 5.4"
+
+gem "rest-client", "~> 2.1"

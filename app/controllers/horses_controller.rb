@@ -56,31 +56,9 @@ class HorsesController < ApplicationController
   def create
     @horse = Horse.create(horse_params)
     @horse.user = current_user
-
-    allowed_video_formats = %w(
-      video/quicktime
-      video/mpeg
-      video/avi
-      video/x-flv
-      video/x-f4v
-      video/mp4
-      video/x-m4v
-      video/x-ms-asf
-      video/x-ms-wmv
-      video/x-ms-wmx
-      video/x-ms-wvx
-      video/vob
-      video/mod
-      video/3gpp
-      video/3gpp2
-      video/x-matroska
-      video/divx
-      video/xvid
-      video/webm
-    )
-
+    
     if params[:horse][:video] != nil
-      if allowed_video_formats.include?(params[:horse][:video].content_type)
+      if Horse::ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
         uploaded_file = horse_params[:video]
@@ -98,7 +76,7 @@ class HorsesController < ApplicationController
           if @horse.save
             @notification = Notification.new(
               user_id: current_user.id,
-              description: "realizó una nueva publicación.",
+              description: "Publicación creada con éxito.",
               tipo: "publication",
               horse_id: @horse.id
             )
@@ -121,9 +99,19 @@ class HorsesController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      @section_title = "Añadir caballo"
-      flash[:alert] = "Por favor cargue un video para publicar un caballo"
-      render :new, status: :unprocessable_entity
+      if @horse.save
+        @notification = Notification.new(
+          user_id: current_user.id,
+          description: "Publicación creada con éxito.",
+          tipo: "publication",
+          horse_id: @horse.id
+        )
+        redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+      else
+        @section_title = "Añadir caballo"
+        flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -133,36 +121,13 @@ class HorsesController < ApplicationController
   end
 
   def update
-
-    allowed_video_formats = %w(
-      video/quicktime
-      video/mpeg
-      video/avi
-      video/x-flv
-      video/x-f4v
-      video/mp4
-      video/x-m4v
-      video/x-ms-asf
-      video/x-ms-wmv
-      video/x-ms-wmx
-      video/x-ms-wvx
-      video/vob
-      video/mod
-      video/3gpp
-      video/3gpp2
-      video/x-matroska
-      video/divx
-      video/xvid
-      video/webm
-    )
-
     if params[:horse][:photos].present?
       @horse.photos.attach(params[:horse][:photos])
     end
 
     # If the video is uploaded
     if horse_params[:video] != nil
-      if allowed_video_formats.include?(params[:horse][:video].content_type)
+      if Horse::ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
         name = ''

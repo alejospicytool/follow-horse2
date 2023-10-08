@@ -30,5 +30,4 @@ class Horse < ApplicationRecord
       self.birthday = self.birthday.strftime("%d/%m/%Y")
     end
   end
-
 end
