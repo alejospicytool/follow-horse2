@@ -1,9 +1,9 @@
 <div class="card w-100 mb-3">  
-  <div class="card-img-top">
+  <div class="card-img-top ratio ratio-16x9">
     <% if horse&.photos&.first&.present? %>
-      <%= cl_image_tag horse.photos.first.key, class: "ratio ratio-16x9" %>
+      <%= cl_image_tag horse.photos.first.key %>
     <% else %>
-      <%= image_tag 'caballo-placeholder-solo.png', class: "ratio ratio-16x9" %>
+      <%= image_tag 'caballo-placeholder-solo.png' %>
     <% end %>
   </div>
   <div class="card-content">
