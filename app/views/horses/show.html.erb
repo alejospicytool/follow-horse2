@@ -45,7 +45,7 @@
 
         <div class="horse-titulo d-flex flex-column mb-4">
           <div class="d-flex">
-            <span class="titulo mb-2 d-flex mr-2"><%= @horse.name.capitalize %></span>
+            <span class="titulo mb-2 d-flex mr-2"><%= @horse.name %></span>
             <% if @horse.age <= 4 %>
             <div class="pt-1">
               <div class="potro d-flex align-items-center justify-content-center">
@@ -74,8 +74,11 @@
 
         <div class="pedigree d-flex flex-column py-3">
           <span class="subtitle">Pedigree</span>
-          <% if @horse.pedigree != "" %>
-            <a href="">Ver pedigree</a>
+          <% if @horse.pedigree != "" %>  
+            <%= link_to 'Ver pedigree', @horse.pedigree %>
+          <% end %>
+          <% if @horse.food_photo.present? %>
+            <%= link_to 'Ver imagen', @horse.food_photo %>
           <% else %>
             <span class="text">No posee pedigree</span>
           <% end %>

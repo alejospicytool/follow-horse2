@@ -69,7 +69,7 @@ class ConversationsController < ApplicationController
       puts "Este es el caballo: #{@horse}"
       # Metodo que haga post de un mensaje con la info del caballo
       message_link = horse_show_path(@horse)
-      @mensaje_automatico = "Hola, estoy interesado en el caballo #{@horse.name.capitalize}."
+      @mensaje_automatico = "Hola, estoy interesado en el caballo #{@horse.name}."
     end
     redirect_to conversacion_show_path(@conversation, mensaje_automatico: @mensaje_automatico)
   end

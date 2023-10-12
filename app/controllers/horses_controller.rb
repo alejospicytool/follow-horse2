@@ -35,7 +35,7 @@ class HorsesController < ApplicationController
   end
 
   def show
-    @section_title = @horse.name.capitalize
+    @section_title = @horse.name
     @horse = Horse.find(params[:id])
     @horses = Horse.all.where.not(user_id: current_user.id).where.not(id: params[:id].to_i)
     @share_like = 'true'
@@ -56,6 +56,14 @@ class HorsesController < ApplicationController
   def create
     @horse = Horse.create(horse_params)
     @horse.user = current_user
+
+    if params[:horse][:photos].present?
+      @horse.photos.attach(params[:horse][:photos])
+    end
+
+    if params[:horse][:food_photo].present?
+      @horse.food_photo.attach(params[:horse][:food_photo])
+    end
     
     if params[:horse][:video] != nil
       if Horse::ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
@@ -124,6 +132,10 @@ class HorsesController < ApplicationController
     if params[:horse][:photos].present?
       @horse.photos.attach(params[:horse][:photos])
     end
+
+    if params[:horse][:food_photo].present?
+      @horse.food_photo.attach(params[:horse][:food_photo])
+    end    
 
     # If the video is uploaded
     if horse_params[:video] != nil
@@ -268,6 +280,12 @@ class HorsesController < ApplicationController
     end
   end
 
+  def delete_video
+    @horse = Horse.find(params[:id])
+    @horse.video.purge
+    redirect_to edit_horse_path(@horse), notice: "Video eliminado exitosamente."
+  end
+
   private
 
   def set_horse
@@ -275,6 +293,6 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:rider, :name, :description, :birthday, :age, :height, :gender, :alzada, :pedigree, :video, photos: [])
+    params.require(:horse).permit(:rider, :name, :description, :birthday, :age, :height, :gender, :alzada, :pedigree, :pedigree_type, :food_photo, :video, photos: [])
   end
 end

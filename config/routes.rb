@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post 'horses', to: 'horses#create'
   put 'horses/:id', to: 'horses#update', as: "horse_update"
   delete 'horses/:id', to: 'horses#destroy', as: :horses_destroy
+  delete 'horses/:id/delete_video', to: 'horses#delete_video', as: :delete_video_horse
 
   # Auctions routes
   get 'active_auctions', to: 'auctions#active_auctions', as: 'active_auctions'

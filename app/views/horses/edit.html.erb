@@ -9,7 +9,7 @@
       label: "Nombre caballo:",
       input_html: {class: "form-input", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
       label_html: {class: "label-input"},
-      placeholder: "Escribe aquí", value: @horse.name.capitalize %>
+      placeholder: "Escribe aquí", value: @horse.name %>
     <%= f.input :description, as: :text,
       label: "Descripción:",
       input_html: {class: "form-input", style: "height: 5rem !important;", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
@@ -68,8 +68,8 @@
   <%= f.input :food_photo, as: :file,
               label:"Imagen de Pedigree:",
               placeholder: "Click aqui para subir una imagen",
-              input_html: {class: "form-input", multiple: true},
-              label_html: {class: "label-input"}, value: @horse.food_photo %>
+              input_html: {class: "form-input"},
+              label_html: {class: "label-input"} %>
 </div>
 
 
@@ -78,6 +78,8 @@
   placeholder: "Click aqui para subir una imagen",
   input_html: {class: "form-input", multiple: true},
   label_html: {class: "label-input"} %>
+
+
 <%= f.input :video, as: :file,
   label: "Video:",
   input_html: { class: "form-input" },
@@ -85,10 +87,14 @@
   placeholder: "Subi un archivo si queres modificar tu video",
   hint: raw("Formatos permitidos: MOV, MPG, AVI, FLV, F4V, MP4, M4V, ASF, WMV, VOB, MOD, 3GP, MKV, DIVX, XVID, WEBM.<br>Por favor cargue videos con formato horizontal") %>
 
-    <div class="d-flex justify-content-center">
-      <%= f.submit "GUARDAR CAMBIOS", class: "btn-submit mt-4" %>
-    </div>
-  <% end %>
+<% if @horse.video %>
+  <p>Ya existe un video. Podés reemplazarlo subiendo otro archivo.</p>
+<% end %>
+
+  <div class="d-flex justify-content-center">
+    <%= f.submit "GUARDAR CAMBIOS", class: "btn-submit mt-4" %>
+  </div>
+<% end %>
 </div>
 
 <style>
