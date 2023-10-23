@@ -61,7 +61,7 @@ class HorsesController < ApplicationController
       @horse.photos.attach(params[:horse][:photos])
     end
 
-    if params[:horse][:food_photo].present?
+    unless params[:horse][:food_photo].first.blank?
       @horse.food_photo.attach(params[:horse][:food_photo])
     end
     

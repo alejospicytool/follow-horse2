@@ -84,6 +84,10 @@
                   wrapper_html: {style: "width: 100%; margin-left: 20px;"} %>
     </div>
 
+<%= f.label :pedigree_type,label: "Detalle de Pedigree: ", class: "label-input" %>
+<%= f.radio_button :pedigree_type, 'link', checked: true, class: 'pedigree-type' %> Link
+<%= f.radio_button :pedigree_type, 'photo', class: 'pedigree-type' %> Foto
+
 <div id="pedigree-link-input">
   <%= f.input :pedigree,
               label:"Link al Pedigree:",

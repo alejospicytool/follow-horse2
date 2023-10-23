@@ -25,7 +25,7 @@ class Horse < ApplicationRecord
 
   def colt_fields
     # Los potros no necesitan estos campos.
-    if age > 4
+    if age && age > 4
       errors.add(:rider, "No puede estar vacio") if rider.blank?
       errors.add(:height, "No puede estar vacio") if height.blank?
     end
