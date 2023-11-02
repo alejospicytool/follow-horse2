@@ -55,9 +55,12 @@
             </div>
             <% end %>
             <% if @horse.user == current_user %>
-              <div class="ml-2 pt-1">
-                <%= link_to horse_edit_path(@horse) do%>
-                  <i class="fa-solid fa-pen-to-square" style= "color: black; font-size: 20px;"></i>
+              <div class="ml-4 pt-1 d-flex align-items-start">
+                <%= link_to horse_edit_path(@horse) do %>
+                  <i class="fa-solid fa-pen-to-square mr-2" style="color: black; font-size: 24px;"></i>
+                <% end %>
+                <%= button_to horses_destroy_path(@horse), method: :delete, class: "btn d-inline-flex p-0", id: "delete-horse"  do %>
+                  <i class="fa-solid fa-trash" style="color: black; font-size: 20px;"></i>
                 <% end %>
               </div>
             <% end %>
@@ -170,6 +173,16 @@
       })
     }
   )
+
+  const deleteButton = document.getElementById('delete-horse');
+  deleteButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    const confirmDelete = confirm('¿Estás seguro de eliminar el caballo?');
+    if (confirmDelete) {
+      const form = event.currentTarget.closest('form');
+      form.submit();
+    }
+  });
 </script>
 
 <style>

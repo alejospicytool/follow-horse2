@@ -243,11 +243,7 @@ class HorsesController < ApplicationController
   def destroy
     @horse = Horse.find(params[:id])
     if @horse.destroy
-      if params[:mis_publicaciones]
-        redirect_to profile_publication_caballos_path, notice: "Se elimino correctamente la publicacion"
-      else
-        redirect_to horses_path, notice: "Se elimino correctamente la publicacion"
-      end
+      redirect_to profile_publication_caballos_path, notice: "Se elimino correctamente la publicacion"
     else
       render 'mis_publicaciones/caballos', alert: "No se pudo eliminar la publicacion, intente nuevamente"
     end
