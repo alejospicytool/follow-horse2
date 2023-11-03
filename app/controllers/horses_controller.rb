@@ -9,7 +9,7 @@ class HorsesController < ApplicationController
     video/x-ms-wvx video/vob video/mod video/3gpp video/3gpp2
     video/x-matroska video/divx video/xvid video/webm
   )
-  
+
   before_action :set_horse, only: %i[show edit update destroy]
 
   def initialize
@@ -44,7 +44,7 @@ class HorsesController < ApplicationController
   def show
     @section_title = @horse.name
     @horse = Horse.find(params[:id])
-    @horses = Horse.all.where.not(user_id: current_user.id).where.not(id: params[:id].to_i)
+    @horses = Horse.all.where(user_id: @horse.user.id).where.not(id: params[:id].to_i)
     @share_like = 'true'
     @conversation = Conversation.new
     @favorite_exists = Favorite.where(horse: @horse, user: current_user) != []
