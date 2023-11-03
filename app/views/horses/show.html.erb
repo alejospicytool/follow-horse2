@@ -77,14 +77,18 @@
 
         <div class="pedigree d-flex flex-column py-3">
           <span class="subtitle">Pedigree</span>
-          <% if @horse.pedigree != "" %>  
+          <% if @horse.pedigree.present? %>  
             <%= link_to 'Ver pedigree', @horse.pedigree %>
           <% end %>
-          <% if @horse.food_photo.present? %>
+
+          <% if @horse.food_photo.present? %>  
             <%= link_to 'Ver imagen', @horse.food_photo %>
-          <% else %>
+          <% end %>
+
+          <% if @horse.pedigree.blank? && @horse.food_photo.blank? %>
             <span class="text">No posee pedigree</span>
           <% end %>
+
         </div>
 
         <div class="user d-flex py-3">
