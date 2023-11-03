@@ -180,23 +180,6 @@
       }
     }
 
-    if (direccionInput.value === "") {
-      direccionInput.style.borderColor = "#DC3545";
-      text = "Por favor ingrese su direccion.";
-      if (!errorMessage) {
-        direccionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
-      } else {
-        errorMessage.remove();
-        direccionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
-      }
-      return false;
-    } else {
-      direccionInput.style.borderColor = "#207B6E";
-      if(errorMessage) {
-        errorMessage.remove();
-      }
-    }
-
     if (ciudadInput.value === "") {
       ciudadInput.style.borderColor = "#DC3545";
       text = "Por favor ingrese su ciudad.";
@@ -226,40 +209,6 @@
       return false;
     } else {
       provinciaInput.style.borderColor = "#207B6E";
-      if(errorMessage) {
-        errorMessage.remove();
-      }
-    }
-
-    if (paisInput.value === "") {
-      paisInput.style.borderColor = "#DC3545";
-      text = "Por favor ingrese su pais.";
-      if (!errorMessage) {
-        paisInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
-      } else {
-        errorMessage.remove();
-        paisInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
-      }
-      return false;
-    } else {
-      paisInput.style.borderColor = "#207B6E";
-      if(errorMessage) {
-        errorMessage.remove();
-      }
-    }
-
-    if (descriptionInput.value === "") {
-      descriptionInput.style.borderColor = "#DC3545";
-      text = "Por favor ingrese una descripcion.";
-      if (!errorMessage) {
-        descriptionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
-      } else {
-        errorMessage.remove();
-        descriptionInput.parentElement.innerHTML += `<span id= "error-message" class= "mb-3" style="color: #DC3545; font-size: 0.8em;" >${text}</span>`
-      }
-      return false;
-    } else {
-      descriptionInput.style.borderColor = "#207B6E";
       if(errorMessage) {
         errorMessage.remove();
       }
