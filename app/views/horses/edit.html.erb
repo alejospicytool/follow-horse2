@@ -79,6 +79,16 @@
   input_html: {class: "form-input", multiple: true},
   label_html: {class: "label-input"} %>
 
+<% if @horse.photos&.attached? %>
+  <div class="card border-light mb-3 w-100">
+    <div class="card-header">Imágenes cargadas</div>
+    <div class="card-body">
+      <% @horse.photos.each do |photo| %>
+        <%= image_tag(url_for(photo), class: 'horse-photo m-1') %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <%= f.input :video, as: :file,
   label: "Video:",
@@ -88,7 +98,12 @@
   hint: raw("Formatos permitidos: MOV, MPG, AVI, FLV, F4V, MP4, M4V, ASF, WMV, VOB, MOD, 3GP, MKV, DIVX, XVID, WEBM.<br>Por favor cargue videos con formato horizontal") %>
 
 <% if @horse.video %>
-  <p>Ya existe un video. Podés reemplazarlo subiendo otro archivo.</p>
+  <div class="card border-light mb-3 w-100">
+    <div class="card-header">Video cargado</div>
+    <div class="card-body">
+      <iframe src=<%= @horse.video %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="200"></iframe>
+    </div>
+  </div>
 <% end %>
 
   <div class="d-flex justify-content-center">
@@ -101,6 +116,12 @@
   abbr[title="required"] {
   display: none;
   }
+
+  .horse-photo {
+    width: 100px;
+    height: 100px;
+  }
+  
 </style>
 
 

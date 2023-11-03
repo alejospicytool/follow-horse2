@@ -3,6 +3,13 @@ require 'net/http/post/multipart'
 
 class HorsesController < ApplicationController
 
+  ALLOWED_VIDEO_FORMATS = %w(
+    video/quicktime video/mpeg video/avi video/x-flv video/x-f4v
+    video/mp4 video/x-m4v video/x-ms-asf video/x-ms-wmv video/x-ms-wmx
+    video/x-ms-wvx video/vob video/mod video/3gpp video/3gpp2
+    video/x-matroska video/divx video/xvid video/webm
+  )
+  
   before_action :set_horse, only: %i[show edit update destroy]
 
   def initialize
@@ -66,7 +73,7 @@ class HorsesController < ApplicationController
     end
     
     if params[:horse][:video] != nil
-      if Horse::ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
+      if ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
         uploaded_file = horse_params[:video]
@@ -139,7 +146,7 @@ class HorsesController < ApplicationController
 
     # If the video is uploaded
     if horse_params[:video] != nil
-      if Horse::ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
+      if ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
         name = ''
