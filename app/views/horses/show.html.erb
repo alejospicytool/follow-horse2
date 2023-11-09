@@ -9,9 +9,9 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         </ol>
         <div class="carousel-inner">
-          <% if @horse.photos %>
+          <% if @horse&.photos&.first&.exists? %>
             <div class="carousel-item active d-flex align-items-center justify-content-center carousel-photo-div"  style="height: 400px !important">
-              <%= cl_image_tag @horse.photos.first.key, class: "carousel-photo", style: "height: 18.75rem;" %>
+              <%= cl_image_tag @horse&.photos&.first&.key, class: "carousel-photo", style: "height: 18.75rem;" %>
             </div>
           <% else %>
             <div class="carousel-item active" style="height: 400px !important">
