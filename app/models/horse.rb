@@ -39,10 +39,12 @@ class Horse < ApplicationRecord
   end
 
   def ensure_full_url
-    self.pedigree = if pedigree =~ /\Ahttps?:\/\//
-      pedigree
-    else
-    "http://#{pedigree}"
+    unless pedigree.empty?
+      self.pedigree = if pedigree =~ /\Ahttps?:\/\//
+        pedigree
+      else
+      "http://#{pedigree}"
+      end
     end
   end
 end
