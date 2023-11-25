@@ -11,13 +11,22 @@ class RegistrationsController < Devise::RegistrationsController
     edit_user_registration_path
   end
 
-  # def update_resource(resource, account_update_params)
-  #   resource.update(account_update_params)
-  #   after_update_path_for(resource)
-  # end
+  protected
 
-  # def account_update_params
-  #   params.require(:user).permit(:age, :establishment, :phone, :direccion, :ciudad, :provincia, :pais, :description, :password, :password_confirmation, :photo)
-  # end
+  def update_resource(resource, params)
+    if params[:password].present?
+      resource.update_with_password(params)
+    else
+      params.delete(:current_password)  # Remove current_password as it's not an attribute
+      resource.update_without_password(params)
+    end
+  end
+  
+  
+  def account_update_params
+    params.require(:user).permit(:age, :establishment, :phone, :direccion, :ciudad, :provincia, :pais, :description, :password, :password_confirmation, :photo)
+  end
+  
+  
 
 end
