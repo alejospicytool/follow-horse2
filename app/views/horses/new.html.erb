@@ -8,7 +8,7 @@
                 placeholder: "Escribe aquí",
                 label: false %>
     <%# Nombre %>
-    <%= f.label :name, "* Nombre caballo:",
+    <%= f.label :name, "*Nombre caballo:",
                 class: "label-input" %>
     <%= f.input :name,
                 input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
@@ -24,7 +24,7 @@
                 label: false %>
     <%# Fecha de nacimiento %>
     <div class= "d-flex align-items-center justify-content-between mt-3" style= "gap:5px;">
-      <%= f.label :birthday, "* Fecha de nacimiento:",
+      <%= f.label :birthday, "*Fecha de nacimiento:",
                   class: "label-input"
                   %>
       <%= f.input :birthday,
@@ -35,7 +35,7 @@
     </div>
     <%# Edad %>
     <div class= " align-items-center mt-3 d-none">
-      <%= f.label :age, "* Edad:",
+      <%= f.label :age, "*Edad:",
                   class: "label-input" %>
       <%= f.input :age,
                   label: false,
@@ -48,7 +48,7 @@
     </div>
     <%# Sexo %>
     <div class= "d-flex align-items-center mt-3">
-      <%= f.label :gender, "* Sexo:",
+      <%= f.label :gender, "*Sexo:",
                   class: "label-input" %>
       <%= f.input :gender,
                   label: false,
