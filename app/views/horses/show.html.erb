@@ -220,17 +220,14 @@
 </style>
 
 <script>
-
-  $(document).ready(function(){
-    
-    $('video').on('play', function(){
-      $('#carouselExampleIndicators').carousel('pause');
+  
+  const video = document.querySelector("video");
+  
+  video.onplay = (event) => {
+    var element = document.getElementById("carouselExampleIndicators");
+    var myCarousel = new bootstrap.Carousel(element, {
+        interval: false
     });
-
-    $('video').on('ended', function(){
-      $('#carouselExampleIndicators').carousel();
-    });
-    
-  });
+  }
 
 </script>
