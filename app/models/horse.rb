@@ -18,7 +18,8 @@ class Horse < ApplicationRecord
     validates :name, :age, :birthday, :gender
     validates :photos
   end
-
+  
+  ## Removing this validation as stated by the client -  Ezequiel Fernandez - 03-27-2024
   ## validate :colt_fields
 
   private
