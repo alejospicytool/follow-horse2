@@ -4,7 +4,7 @@
 
     <!---------- Carousel ------->
     <div class="foto w-100 h-100 mb-3 d-flex justify-content-center">
-      <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
+      <div id="carouselExampleIndicators" class="carousel slide w-100" data-interval="false">
         <ol class="carousel-indicators" style="z-index: 3 !important;">
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         </ol>
@@ -21,9 +21,7 @@
           
           <% if @horse.video %>
             <div class="carousel-item " style="height: 400px !important">
-              <video controls autoplay width="100%" height="400">
-                <source src=<%= @horse.video %>>
-              </video>
+              <iframe src=<%= @horse.video %> allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="400"></iframe>
             </div>
           <% end %>
           
@@ -218,16 +216,3 @@
     font-size: 1.3rem;
   }
 </style>
-
-<script>
-  
-  const video = document.querySelector("video");
-  
-  video.onplay = (event) => {
-    var element = document.getElementById("carouselExampleIndicators");
-    var myCarousel = new bootstrap.Carousel(element, {
-        interval: false
-    });
-  }
-
-</script>
