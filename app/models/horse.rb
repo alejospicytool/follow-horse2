@@ -19,7 +19,7 @@ class Horse < ApplicationRecord
     validates :photos
   end
 
-  validate :colt_fields
+  ## validate :colt_fields
 
   private
 
