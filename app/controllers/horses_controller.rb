@@ -1,5 +1,6 @@
 require 'net/http'
 require 'net/http/post/multipart'
+require 'cloudinary'
 
 class HorsesController < ApplicationController
 
@@ -73,46 +74,61 @@ class HorsesController < ApplicationController
     end
     
     if params[:horse][:video] != nil
+      
       if ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
-        uploaded_file = horse_params[:video]
+        ## uploaded_file = horse_params[:video]
         name = ''
-        url = post_video_to_wistia(name, horse_params[:video])
-        if url == "Excedio el limite de videos"
+        ## url = post_video_to_wistia(name, horse_params[:video])
+        success, url = post_video_to_cloudinary(name, horse_params[:video])
+        if success
+          
           puts "--------------------------------"
-          puts "Excedio el limite de videos"
-          flash[:alert] = "No se pudo crear el caballo, se exedio el limite de videos"
-          render :new, status: :unprocessable_entity
-        else
-          puts "--------------------------------"
-          puts "Inicio post to wistia"
+          puts "Inicio post to cloudinary"
           @horse.video = url
+
           if @horse.save
+          
             @notification = Notification.new(
               user_id: current_user.id,
               description: "Publicación creada con éxito.",
               tipo: "publication",
               horse_id: @horse.id
             )
+
             if @notification.save
+            
               redirect_to profile_publication_caballos_path, notice: "Caballo creado con éxito"
+            
             else
+            
               @section_title = "Añadir caballo"
               flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
               render :new, status: :unprocessable_entity
+
             end
+          
           else
+
             @section_title = "Añadir caballo"
             flash[:alert] = "No se pudo crear el caballo, intente nuevamente"
             render :new, status: :unprocessable_entity
+
           end
+
+        else
+
+          flash[:alert] = url
+          render :new, status: :unprocessable_entity
+          
         end
       else
         @section_title = "Añadir caballo"
         flash[:alert] = "Por favor cargue un video con formato válido"
         render :new, status: :unprocessable_entity
       end
+
     else
       if @horse.save
         @notification = Notification.new(
@@ -281,6 +297,38 @@ class HorsesController < ApplicationController
       url = "http://embed.wistia.com/deliveries/#{id}.bin"
       return url
     end
+  end
+
+  def post_video_to_cloudinary(name = "", path_to_video)
+    
+    begin
+
+      uploaded_video_response = Cloudinary::Uploader.upload_large(
+        path_to_video, 
+        resource_type: "video",
+        public_id: "sample_video",
+        chunk_size: 6_000_000,
+        eager: [
+          {width: 300, height: 300, crop: "pad", audio_codec: "none"}, 
+          {width: 160, height: 100, crop: "crop", gravity: "south", audio_codec: "none "}], 
+        eager_async: true, 
+        ## eager_notification_url: "http://mysite.example.com/notify_endpoint"
+      )
+
+    rescue Exception => e
+
+      [false, e]
+
+    else
+      puts '================'
+      puts ''
+      puts uploaded_video_response.inspect
+      puts ''
+      puts '================'
+      [true , uploaded_video_response["secure_url"]]
+
+    end
+    
   end
 
   def delete_video
