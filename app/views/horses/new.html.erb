@@ -129,41 +129,79 @@
     <div class="d-flex justify-content-center">
       <%= f.submit "AÑADIR", class: "btn-submit mt-4" %>
     </div>
+    
   <% end %>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class = 'loading-modal'>
+          <br>
+          <i class="fa fa-refresh fa-spin"></i>
+          <br><br>
+          <span>Cargando ... <br><br> Espere unos segundos mientras los datos se cargan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
+
   const horseBirthday = document.getElementById("horse_birthday");
   horseBirthday.addEventListener("change", function(event) {
-          const day = event.target.value;
-          const today = new Date();
-          const birthDate = new Date(day);
-          const age = today.getFullYear() - birthDate.getFullYear();
-          const month = today.getMonth() - birthDate.getMonth();
-          if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-          }
-          const horseAge = document.getElementById("horse_age")
-          horseAge.value = age
-        });
+    const day = event.target.value;
+    const today = new Date();
+    const birthDate = new Date(day);
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    const horseAge = document.getElementById("horse_age")
+    horseAge.value = age
+  });
 
   document.body.addEventListener('click', (event) => {
-  if (event.target.matches('.pedigree-type')) {
-    handleRadioChange(event);
-  }
-});
+    if (event.target.matches('.pedigree-type')) {
+      handleRadioChange(event);
+    }
+  });
 
-function handleRadioChange(event) {
-  const selectedType = event.target.value;
-  const linkInput = document.getElementById('pedigree-link-input');
-  const photoInput = document.getElementById('pedigree-photo-input');
+  function handleRadioChange(event) {
+    const selectedType = event.target.value;
+    const linkInput = document.getElementById('pedigree-link-input');
+    const photoInput = document.getElementById('pedigree-photo-input');
 
-  if (selectedType === 'link') {
-    linkInput.style.display = 'block';
-    photoInput.style.display = 'none';
-  } else if (selectedType === 'photo') {
-    linkInput.style.display = 'none';
-    photoInput.style.display = 'block';
-  }
-};
+    if (selectedType === 'link') {
+      linkInput.style.display = 'block';
+      photoInput.style.display = 'none';
+    } else if (selectedType === 'photo') {
+      linkInput.style.display = 'none';
+      photoInput.style.display = 'block';
+    }
+  };
+
+  document.body.addEventListener('click', (event) => {
+    if (event.target.matches('.btn-submit')) {
+      const spinner = document.getElementById('exampleModalCenter');
+      const spinnerModal = new bootstrap.Modal(spinner);
+      spinnerModal.show();
+    }
+  });
+
 </script>
+
+<style>
+
+.loading-modal {
+  background-color: white;
+  width: 100%;
+  height: 20vh;
+  text-align: center;
+  border-radius: 2%;
+}
+
+</style>

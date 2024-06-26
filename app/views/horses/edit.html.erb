@@ -115,16 +115,39 @@
     <%= f.submit "GUARDAR CAMBIOS", class: "btn-submit mt-4" %>
   </div>
 <% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class = 'loading-modal'>
+        <br>
+        <i class="fa fa-refresh fa-spin"></i>
+        <br><br>
+        <span>Cargando ... <br><br> Espere unos segundos mientras los datos se cargan</span>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <style>
+  
   abbr[title="required"] {
-  display: none;
+    display: none;
   }
 
   .horse-photo {
     width: 100px;
     height: 100px;
+  }
+
+  .loading-modal {
+    background-color: white;
+    width: 100%;
+    height: 20vh;
+    text-align: center;
+    border-radius: 2%;
   }
   
 </style>
@@ -151,5 +174,13 @@ function handleRadioChange(event) {
     photoInput.style.display = 'block';
   }
 }
+
+document.body.addEventListener('click', (event) => {
+  if (event.target.matches('.btn-submit')) {
+    const spinner = document.getElementById('exampleModalCenter');
+    const spinnerModal = new bootstrap.Modal(spinner);
+    spinnerModal.show();
+  }
+});
 
 </script>

@@ -54,7 +54,7 @@
               </div>
             </div>
             <% end %>
-            <% if @horse.user == current_user %>
+            <% if @horse.user == current_user || current_user.admin %>
               <div class="ml-4 pt-1 d-flex align-items-start">
                 <%= link_to horse_edit_path(@horse) do %>
                   <i class="fa-solid fa-pen-to-square mr-2" style="color: black; font-size: 24px;"></i>
