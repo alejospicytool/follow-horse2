@@ -70,9 +70,12 @@
 
         <div class="detalles d-flex flex-column py-3">
           <span class="subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
-          <span class="subtitle">Edad:
-            <span class= "text"><%= @horse.age %> años</span>
-          </span>
+          <span class="subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
+          <span class="subtitle">Fecha de Nacimiento: <span class= "text"><%= @horse.birthday %></span></span>
+          <span class="subtitle">Sexo: <span class= "text"><%= @horse.gender %></span></span>
+          <span class="subtitle">País: <span class= "text"><%= @horse.country %></span></span>
+          <span class="subtitle">Alzada: <span class= "text"><%= @horse.alzada %> años</span></span>
+          <span class="subtitle">Jinete: <span class= "text"><%= @horse.rider %></span></span>
         </div>
 
         <div class="pedigree d-flex flex-column py-3">
@@ -107,15 +110,27 @@
         </div>
 
         <% if @horse.user.id != current_user.id %>
-          <div class="consultar mt-2">
-            <%= simple_form_for @conversation, url: conversaciones_create_path(horse_id: @horse.id), data: { turbo: false } do |f| %>
-              <%= hidden_field_tag(:sender_id, current_user.id) %>
-              <%= hidden_field_tag(:recipient_id, @horse.user_id) %>
-              <%= f.button :button do %>
-                <%= image_tag('message-filled.png') %>
-                <span>CONSULTAR</span>
-              <% end %>
-            <% end %>
+          <div class="msg d-flex py-3">
+            <div class="d-flex w-100 justify-content-around">
+              <div class="col consultar mt-2">
+                <%= simple_form_for @conversation, url: conversaciones_create_path(horse_id: @horse.id), data: { turbo: false } do |f| %>
+                  <%= hidden_field_tag(:sender_id, current_user.id) %>
+                  <%= hidden_field_tag(:recipient_id, @horse.user_id) %>
+                  <%= f.button :button do %>
+                    <%= image_tag('message-filled.png') %>
+                    <span>CONSULTAR</span>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="col consultar">
+                <button>
+                  <a href="https://api.whatsapp.com/send?phone=<%= @horse.user.phone %>">
+                  <span><i class="fab fa-whatsapp"></i></span>
+                  <span>Whatsapp</span>
+                  </a>
+                </button>
+              </div>
+            </div>
           </div>
         <% end %>
 
@@ -214,5 +229,9 @@
     padding-top: 2px;
     color: #F2DA84;
     font-size: 1.3rem;
+  }
+
+  a {
+    color: white;
   }
 </style>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_04_021304) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_26_211046) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_021304) do
     t.string "video"
     t.integer "age"
     t.string "pedigree_type"
+    t.string "country"
     t.index ["user_id"], name: "index_horses_on_user_id"
   end
 

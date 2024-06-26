@@ -12,7 +12,7 @@ class HorsesController < ApplicationController
   )
 
   before_action :set_horse, only: %i[show edit update destroy]
-
+  
   def initialize
     super
     numbers = []
@@ -73,15 +73,16 @@ class HorsesController < ApplicationController
       @horse.food_photo.attach(params[:horse][:food_photo])
     end
     
+    puts @horse.inspect
+    
     if params[:horse][:video] != nil
       
       if ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
-        ## uploaded_file = horse_params[:video]
-        name = ''
-        ## url = post_video_to_wistia(name, horse_params[:video])
-        success, url = post_video_to_cloudinary(name, horse_params[:video])
+        
+        success, url = post_video_to_cloudinary(params[:horse][:video], params[:horse][:name])
+        
         if success
           
           puts "--------------------------------"
@@ -165,8 +166,18 @@ class HorsesController < ApplicationController
       if ALLOWED_VIDEO_FORMATS.include?(params[:horse][:video].content_type)
         puts "--------------------------------"
         puts "Inicio post check de url"
-        name = ''
-        url = post_video_to_wistia(name, horse_params[:video])
+        video_public_id = make_video_public_id(@horse[:name])
+    
+        success = Cloudinary::Uploader.destroy(video_public_id, resource_type: 'video')
+        
+        if success['result'] == 'ok'
+          puts 'EL VIDEO SE ELIMINO EXITOSAMENTE'
+        else
+          puts 'NO SE PUDO ELIMINAR EL VIDEO'
+        end
+
+        url = post_video_to_cloudinary(params[:horse][:video], @horse[:name])
+        
         if url == "Excedio el limite de videos"
           puts "--------------------ERRROR----------------"
           puts "Excedio el limite de videos"
@@ -265,6 +276,13 @@ class HorsesController < ApplicationController
 
   def destroy
     @horse = Horse.find(params[:id])
+    
+    video_public_id = make_video_public_id(@horse[:name])
+    
+    success = Cloudinary::Uploader.destroy(video_public_id, resource_type: 'video')
+
+    puts success
+
     if @horse.destroy
       redirect_to profile_publication_caballos_path, notice: "Se elimino correctamente la publicacion"
     else
@@ -299,14 +317,17 @@ class HorsesController < ApplicationController
     end
   end
 
-  def post_video_to_cloudinary(name = "", path_to_video)
+  def post_video_to_cloudinary(path_to_video, horse_name)
+    Cloudinary.config_from_url("cloudinary://894899123771416:2-xujc6WZoT4bN3bUDOOtTv8YMM@dgmtchxjj")
+    
+    video_public_id = make_video_public_id(horse_name)
     
     begin
 
       uploaded_video_response = Cloudinary::Uploader.upload_large(
         path_to_video, 
         resource_type: "video",
-        public_id: "sample_video",
+        public_id: video_public_id,
         chunk_size: 6_000_000,
         eager: [
           {width: 300, height: 300, crop: "pad", audio_codec: "none"}, 
@@ -337,6 +358,21 @@ class HorsesController < ApplicationController
     redirect_to edit_horse_path(@horse), notice: "Video eliminado exitosamente."
   end
 
+  def make_video_public_id(horse_name)
+    
+    horse_name_parts = horse_name.split(" ")
+    
+    if horse_name_parts.length > 1
+      video_name_parts = horse_name_parts.map(&:downcase)
+      video_name = video_name_parts.join("_")
+    else
+      video_name = horse_name.downcase
+    end
+
+    video_name
+
+  end
+
   private
 
   def set_horse
@@ -344,6 +380,6 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:rider, :name, :description, :birthday, :age, :height, :gender, :alzada, :pedigree, :pedigree_type, :food_photo, :video, photos: [])
+    params.require(:horse).permit(:rider, :name, :country, :description, :birthday, :age, :height, :gender, :alzada, :pedigree, :pedigree_type, :food_photo, :video, photos: [])
   end
 end

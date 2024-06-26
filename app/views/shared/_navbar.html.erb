@@ -10,44 +10,8 @@
 
       <%# BACK FUNCTIONALITY ICON %>
       <% else %>
-        <% if request.path.include?("/perfiles/") %>
-          <%= link_to :back, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
-        <% elsif request.path.include?("/conversaciones/") %>
-          <% if @conversation != nil %>
-            <%= link_to conversaciones_activas_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-          <% else %>
-            <%= link_to home_path, class: "d-flex align-items-center" do %>
-              <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-            <% end %>
-          <% end %>
-        <% elsif request.path == "/horses" || request.path == "/auctions" || request.path == "/potros" || request.path == "/perfiles"  %>
-          <%= link_to home_path, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
-        <% elsif request.path == "/horses/new" || request.path == "/auctions/new" %>
-          <%= link_to add_path, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
-        <% elsif request.path.include?("/horses/") %>
-          <%= link_to horses_path, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
-        <% elsif request.path.include?("/auctions/") %>
-          <%= link_to active_auctions_path, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
-        <% elsif request.path == "/users/edit" || request.path == "/notificationes" || request.path.include?("favoritos") || request.path.include?("mis_publicaciones") || request.path == "/contact" || request.path.include?("/admin")  %>
-          <%= link_to profile_index_path, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
-        <% else  %>
-          <%= link_to :back, class: "d-flex align-items-center" do %>
-            <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-          <% end %>
+        <%= link_to :back, class: "d-flex align-items-center" do %>
+          <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
         <% end %>
       <% end %>
 

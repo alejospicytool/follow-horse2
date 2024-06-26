@@ -14,6 +14,14 @@
                 input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                 placeholder: "Escribe aquí",
                 label: false %>
+    <%# Pais %>
+    <%= f.label :country, "País:",
+                class: "label-input" %>
+    <%= f.input :country,
+                as: :string,
+                input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
+                placeholder: "Escribe aquí",
+                label: false %>
     <%# Descripción %>
     <%= f.label :description, "Descripción:",
                 class: "label-input" %>
