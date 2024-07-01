@@ -25,6 +25,13 @@ class PagesController < ApplicationController
     @horses = Horse.select do |horse|
       horse.user.id != current_user.id
     end
+    
+    @pub_imgs = Pub.all.where(asset_type: "photo")
+    puts "====================="
+    puts ''
+    puts @pub_imgs.inspect
+    puts ''
+    puts "====================="
   end
 
   def search

@@ -94,4 +94,11 @@ Rails.application.routes.draw do
   put 'admin/contact/:id', to: 'admin#help_update', as: 'admin_help_update'
   get 'admin/reviews/pending', to: 'admin#reviews_pending', as: 'admin_reviews_pending'
   get 'admin/reviews/resolved', to: 'admin#reviews_resolved', as: 'admin_reviews_resolved'
+  
+  # Pub routes
+  get 'pubs', to: 'pubs#index'
+  post 'pubs', to: 'pubs#create'
+  post 'pubs/delete_pub_img', to: 'pubs#delete_pub_img', as: 'delete_pub_img'
+  post 'pubs/delete_pub_video', to: 'pubs#delete_pub_video', as: 'delete_pub_video'
+
 end

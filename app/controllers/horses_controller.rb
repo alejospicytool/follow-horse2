@@ -54,6 +54,8 @@ class HorsesController < ApplicationController
       url_path = url.sub("http://", "//")
       @horse.video = url_path
     end
+    
+    @pub_video = Pub.all.where(asset_type: "video")[0]
   end
 
   def new
@@ -64,7 +66,7 @@ class HorsesController < ApplicationController
   def create
     @horse = Horse.create(horse_params)
     @horse.user = current_user
-
+    
     if params[:horse][:photos].present?
       @horse.photos.attach(params[:horse][:photos])
     end

@@ -1,25 +1,52 @@
-<!-- Content -->
-<div class="home container" style="margin-bottom: 0 !important;">
+<div class="main-row">
+  <!-- <div class="col-2 left-pub-panel"></div> -->
+  <% if @pub_imgs != [] %>
+    <% @pub_imgs.each do |pub_img| %>
+      <div class="col-2 left-pub-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+    <% end %>
+  <% end %><!-- Content -->
+  <div class="home container col-8" style="margin-bottom: 0 !important;">
 
-  <div class="title mb-3">
-    <h5 class="section-title">Bienvenido <%= @user.nombre.capitalize %></h5>
-    <span class="section-subtitle">Recomendaciones para ti</span>
-  </div>
+    <div class="title mb-3">
+      <h5 class="section-title">Bienvenido <%= @user.nombre.capitalize %></h5>
+      <span class="section-subtitle">Recomendaciones para ti</span>
+    </div>
 
-  <div class="cards mb-4 row">
-    <% if @horses != [] %>
-      <% @horses.each do |horse| %>
-        <div class="col-sm-6 col-lg-4 col-sm-12">
-          <%= render 'shared/horse_card', horse: horse %>
+    <div class="cards mb-4 row">
+      <% if @horses != [] %>
+        <% @horses.each do |horse| %>
+          <div class="col-sm-6 col-lg-4 col-sm-12">
+            <%= render 'shared/horse_card', horse: horse %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+          <span>No hay recomendaciones disponibles por el momento</span>
         </div>
       <% end %>
-    <% else %>
-      <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
-        <span>No hay recomendaciones disponibles por el momento</span>
-      </div>
-    <% end %>
+    </div>
+    
   </div>
+  <% if @pub_imgs != [] %>
+    <% @pub_imgs.each_with_index do |pub_img, idx| %>
+      <% if idx == 0 %>
+        <div class="col-2 right-pub-panel <%= idx %>-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+      <% else %>
+        <div class="col-2 right-pub-panel <%= idx %>-panel" style="display: block; background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
+
+<% if @pub_imgs != [] %>
+  <% @pub_imgs.each_with_index do |pub_img, idx| %>
+    <% if idx == 0 %>
+      <div class="col-2 bottom-pub-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+    <% else %>
+      <div class="col-2 bottom-pub-panel" style="display: none; background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+    <% end %>
+  <% end %>
+<% end %>
 
 <div class="container w-100 d-flex justify-content-center" style="margin-top: 0 !important; margin-bottom: 4.5rem!important; padding: 0 !important;">
   <div class="lower-menu px-0 w-100">
@@ -53,3 +80,101 @@
 <% if params[:registro] == "ok" %>
   <%= render 'modal-registro' %>
 <% end %>
+
+<style>
+
+@media (min-width: 426px) {
+
+  .bottom-pub-panel {
+    display: none;
+  }
+
+  .left-pub-panel {
+    display: block;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 10%;
+    height: 100vh;
+    background-color: #cccccc;
+  }
+
+  .right-pub-panel {
+    display: block;
+    position: fixed;
+    top: 50px;
+    right: 0;
+    width: 10%;
+    height: 100vh;
+    background-color: #cccccc;
+  }
+
+}
+
+.main-row {
+  position: relative;
+}
+
+@media (max-width: 425px) {
+
+  .right-pub-panel .left-pub-panel {
+    display: none;
+  }
+
+  .bottom-pub-panel {
+    display: block;
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    height: 15vh;
+    background-color: #cccccc;
+    z-index: 1000;
+  }
+
+}
+
+
+
+</style>
+
+<script>
+
+  left_panels = document.getElementsByClassName('left-pub-panel');
+  right_panels = document.getElementsByClassName('right-pub-panel');
+  bottom_panels = document.getElementsByClassName('bottom-pub-panel');
+  panel_no = document.getElementsByClassName('right-pub-panel').length;
+
+  let panel_array = [left_panels, right_panels, bottom_panels]
+  let active = 4;
+
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    setInterval(() => {
+      
+      setTimeout(() => {
+        
+        if (active > 0) {
+          active = active - 1;
+          panel_array.forEach((panel) => {
+            panel[active].style.display = 'block';
+            panel[active+1].style.display = 'none';
+          });
+        } else {
+          active = 4
+          panel_array.forEach((panel) => {
+            panel[active].style.display = 'block';
+            panel[0].style.display = 'none';
+          });
+        }
+        // left_panels[active].style.display = 'block';
+        // right_panels[active].style.display = 'block';
+        // bottom_panels[active].style.display = 'block';
+        // left_panels[active - 1].style.display = 'none';
+        // right_panels[active - 1].style.display = 'none';
+        // bottom_panels[active - 1].style.display = 'none';
+      }, 500)
+    }, 5000)
+
+  });
+
+</script>

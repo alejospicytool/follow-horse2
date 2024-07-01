@@ -10,7 +10,7 @@
       input_html: {class: "form-input", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
       label_html: {class: "label-input"},
       placeholder: "Escribe aquí", value: @horse.name %>
-    <%= f.input :country, as: :string,
+    <%= f.input :country, as: :select, collection: ["Argentina", "Chile", "Mexico", "Uruguay"],
       label: "País:",
       input_html: {class: "form-input", "data-controller": "capitalize", "data-action": "input->capitalize#capitalizeFirstLetter"},
       label_html: {class: "label-input"},

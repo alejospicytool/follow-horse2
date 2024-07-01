@@ -1,0 +1,91 @@
+<div class="horses-index container">
+    <div class="cards mb-4 row">
+        <h2>Imágenes</h2>
+        <hr>
+        <% if @pub_imgs != [] %>
+            <h3>Publicaciones Activas</h3>
+            <% @pub_imgs.each_with_index do |pub_img, idx| %>
+                <div class="col-sm-6 col-lg-4 col-sm-12">
+                    <div class="card w-100 mb-3">  
+                        <div class="card-img-top ratio ratio-16x9">
+                            <%= image_tag pub_img["url"] %>
+                        </div>
+                        <div class="card-content">
+                            <div class="pl-0 d-flex align-items-center justify-content-center">
+                                <%= form_with(url: delete_pub_img_path, method: "post") do %>
+                                    <%= hidden_field_tag 'asset_id', "#{pub_img["id"]}" %>
+                                    <%= submit_tag("Eliminar")%>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% else %>
+            <div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 30vh;">
+                <span>No hay imágenes disponibles todavía</span>
+                <%= link_to home_path, class: "btn-submit mt-5 d-flex align-items-center justify-content-center" do %>
+                    <span>VOLVER AL INICIO</span>
+                <% end %>
+            </div>
+        <% end %>
+        <hr>
+        <%= simple_form_for @new_pub do |f| %>
+            <%= f.input :photos, as: :file,
+                label:"Imagen:",
+                placeholder: "Click aqui para subir una imagen",
+                input_html: {class: "form-input", multiple: true},
+                label_html: {class: "label-input"}%>
+
+            <div class="d-flex justify-content-center">
+                <%= f.submit "AÑADIR", class: "btn-submit mt-4" %>
+            </div>
+        <% end %>
+        
+        <hr>
+        <h2>Video</h2>
+        <hr>
+        <% if @pub_video != [] %>
+            <h3>Publicaciones Activas</h3>
+            <div class="col-sm-6 col-lg-4 col-sm-12">
+                <div class="card w-100 mb-3">  
+                    <div class="card-img-top ratio ratio-16x9">
+                        <video width="100%" height="100%" id="main_video" controls>
+                            <source src=<%= @pub_video[0].url %> type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <div class="pl-0 d-flex align-items-center justify-content-center">
+                            <%= form_with(url: delete_pub_video_path, method: "post") do %>
+                                <%= submit_tag("Eliminar")%>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% else %>
+            <div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 30vh;">
+                <span>No hay imágenes disponibles todavía</span>
+                <%= link_to home_path, class: "btn-submit mt-5 d-flex align-items-center justify-content-center" do %>
+                    <span>VOLVER AL INICIO</span>
+                <% end %>
+            </div>
+        <% end %>
+        <hr>
+        <%= simple_form_for @new_pub do |f| %>
+            <%= f.input :video, as: :file,
+                label: "Video:",
+                input_html: { class: "form-input" },
+                label_html: { class: "label-input" },
+                placeholder: "Click here to upload a video",
+                required: false,
+                hint: raw("Formatos permitidos: MOV, MPG, AVI, FLV, F4V, MP4, M4V, ASF, WMV, VOB, MOD, 3GP, MKV, DIVX, XVID, WEBM.<br>Por favor cargue videos con formato horizontal") %>
+
+            <div class="d-flex justify-content-center">
+                <%= f.submit "AÑADIR", class: "btn-submit mt-4" %>
+            </div>
+        <% end %>
+    </div>
+</div>
+

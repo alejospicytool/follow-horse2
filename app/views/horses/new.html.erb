@@ -18,7 +18,8 @@
     <%= f.label :country, "País:",
                 class: "label-input" %>
     <%= f.input :country,
-                as: :string,
+                as: :select,
+                collection: ['Argentina', 'Chile', 'Mexico', 'Uruguay'],
                 input_html: { class: "form-input", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter" },
                 placeholder: "Escribe aquí",
                 label: false %>

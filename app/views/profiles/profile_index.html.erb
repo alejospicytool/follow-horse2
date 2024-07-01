@@ -53,6 +53,15 @@
         <% end %>
         <% if current_user.admin == true %>
           <li class="d-flex justify-content-between py-4">
+            <%= link_to pubs_path, class:"d-flex justify-content-between align-items-center" do %>
+              <div class="d-flex justify-content-start align-items-center">
+                <%= image_tag('ayuda.svg', style: "height: 22px; margin-right: 14px;") %>
+                <span>Publicidad</span>
+              </div>
+              <%= image_tag('arrow-right-white.png') %>
+            <% end %>
+          </li>
+          <li class="d-flex justify-content-between py-4">
             <%= link_to admin_help_contact_pending_path, class:"d-flex justify-content-between align-items-center" do %>
               <div class="d-flex justify-content-start align-items-center">
                 <%= image_tag('ayuda.svg', style: "height: 22px; margin-right: 14px;") %>
