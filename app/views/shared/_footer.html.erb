@@ -3,19 +3,19 @@
     <div class="d-flex align-items-center flex-column justify-content-center text-center footer-box  <%= request.path.include?("/home") ? "active" : ""%>">
       <%= link_to home_path do %>
         <%= image_tag('home.png') %>
-        <p>Inicio</p>
+        <p class="description">Inicio</p>
       <% end %>
     </div>
     <div class="d-flex align-items-center flex-column justify-content-center text-center footer-box <%= request.path.include?("/search") ? "active" : ""%>">
       <%= link_to search_path do %>
         <%= image_tag('search.png') %>
-        <p>Buscar</p>
+        <p class="description">Buscar</p>
       <% end %>
     </div>
     <div class="d-flex align-items-center flex-column justify-content-center text-center footer-box <%= request.path.include?("/add") ? "active" : ""%>">
       <%= link_to add_path do %>
         <%= image_tag('agregar.png') %>
-        <p>Añadir</p>
+        <p class="description">Añadir</p>
       <% end %>
     </div>
     <div class="msg-container d-flex align-items-center flex-column justify-content-center text-center footer-box <%= request.path.include?("/conversaciones/") ? "active" : ""%>">
@@ -26,18 +26,18 @@
       <% end %>
       <%= link_to conversaciones_activas_path do %>
         <%= image_tag('mensajes.png') %>
-        <p>Mensajes</p>
+        <p class="description">Mensajes</p>
       <% end %>
     </div>
     <div class="d-flex align-items-center flex-column justify-content-center text-center footer-box <%= request.path.include?("/perfiles") ? "active" : ""%>">
       <%= link_to profile_index_path do %>
         <%= image_tag('perfil.png') %>
-        <p>Mi Perfil</p>
+        <p class="description">Mi Perfil</p>
       <% end %>
     </div>
     <div class="d-flex align-items-center flex-column justify-content-center text-center footer-box">
       <span><a href="https://api.whatsapp.com/send?phone=59894020261"><i class="fab fa-whatsapp"></i></a></span>
-      <p>Contactanos</p>
+      <p class="description">Contactanos</p>
     </div>
   </div>
 
@@ -151,6 +151,24 @@
 .icon:hover .tooltip::before {
   background: var(--color);
   color: white;
+}
+
+@media (max-width: 425px) {
+  .description {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .description {
+    font-size: 9px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .description {
+    font-size: 8px !important;
+  }
 }
 
 </style>

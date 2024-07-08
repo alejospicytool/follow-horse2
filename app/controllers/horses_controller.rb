@@ -320,7 +320,6 @@ class HorsesController < ApplicationController
   end
 
   def post_video_to_cloudinary(path_to_video, horse_name)
-    Cloudinary.config_from_url("cloudinary://894899123771416:2-xujc6WZoT4bN3bUDOOtTv8YMM@dgmtchxjj")
     
     video_public_id = make_video_public_id(horse_name)
     

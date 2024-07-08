@@ -22,12 +22,12 @@
           <% if @horse.video %>
 
             <div class="carousel-item" style="height: 400px !important">
-              <video width="100%" height="100%" id="main_video" controls>
+              <video width="100%" height="100%" id="main_video" controls playsinline>
                 <source src=<%= @horse.video %> type="video/mp4">
                 Your browser does not support the video tag.
               </video>
               <% if !@pub_video.nil? %>
-                <%= video_tag(@pub_video["url"], id: "pub_video", controls: true, width: "100%", height: "100%", style: "display: none") %>
+                <%= video_tag(@pub_video["url"], id: "pub_video", controls: true, width: "100%", height: "100%", style: "display: none", playsinline: true) %>
               <% end %>
             </div>
             
@@ -77,18 +77,26 @@
         </div>
 
         <div class="detalles d-flex flex-column py-3">
-          <span class="subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
+          <% if @horse.height.present? %>
+            <span class="subtitle">Altura: <span class= "text"><%= @horse.height %>m</span></span>
+          <% end %>
           <span class="subtitle">Edad: <span class= "text"><%= @horse.age %> años</span></span>
           <span class="subtitle">Fecha de Nacimiento: <span class= "text"><%= @horse.birthday %></span></span>
           <span class="subtitle">Sexo: <span class= "text"><%= @horse.gender %></span></span>
-          <span class="subtitle">País: <span class= "text"><%= @horse.country %></span></span>
-          <span class="subtitle">Alzada: <span class= "text"><%= @horse.alzada %> años</span></span>
-          <span class="subtitle">Jinete: <span class= "text"><%= @horse.rider %></span></span>
+          <% if @horse.country.present? %>
+            <span class="subtitle">País: <span class= "text"><%= @horse.country %></span></span>
+          <% end %>
+          <% if @horse.alzada.present? %>
+            <span class="subtitle">Alzada: <span class= "text"><%= @horse.alzada %></span></span>
+          <% end %>
+          <% if @horse.rider.present? %>
+            <span class="subtitle">Jinete: <span class= "text"><%= @horse.rider %></span></span>
+          <% end %>
         </div>
 
         <div class="pedigree d-flex flex-column py-3">
           <span class="subtitle">Pedigree</span>
-          <% if @horse.pedigree.present? %>  
+          <% if @horse.pedigree.present? %>
             <%= link_to 'Ver pedigree', @horse.pedigree %>
           <% end %>
 
