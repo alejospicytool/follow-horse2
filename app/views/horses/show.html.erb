@@ -22,9 +22,9 @@
           <% if @horse.video %>
 
             <div class="carousel-item" style="height: 400px !important">
-              <video width="100%" height="100%" id="main_video" src=<%= @horse.video %> type="video/mp4" controls muted playsInline></video>
+              <video width="100%" height="100%" id="main_video" src=<%= @horse.video %> type="video/mp4" controls muted playsInline style="background: white;"></video>
               <% if !@pub_video.nil? %>
-                <%= video_tag(@pub_video["url"], id: "pub_video", controls: true, width: "100%", height: "100%", style: "display: none", playsinline: true, muted: true) %>
+                <%= video_tag(@pub_video["url"], id: "pub_video", controls: true, width: "100%", height: "100%", style: "display:none; background: white;", playsinline: true, muted: true) %>
               <% end %>
             </div>
             
