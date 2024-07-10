@@ -253,7 +253,10 @@
     main_video.play();  
   }
 
-  document.addEventListener("DOMContentLoaded", init, false);
+  window.onload = (event) => {
+    // alert('YASSSSS');
+    init();
+  };
 
 </script>
 
