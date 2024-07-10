@@ -223,7 +223,8 @@
   var main_video = document.getElementById("main_video");
   var pub_video = document.getElementById("pub_video");
   var video_url = document.getElementById("video_url");
-  
+  var carousel_right_arrow = document.getElementsByClassName("carousel-control-next")[0];
+  var arrow_click_counter = 0;
   // pub_video.style.display = "none";
 
   function init() {
@@ -252,6 +253,18 @@
     pub_video.style.display = "none";
     main_video.style.display = "block";
     main_video.play();  
+  }
+
+  carousel_right_arrow.onclick = function(){
+    if(arrow_click_counter == 0){
+      alert('IM IN');
+      main_video.setAttribute('src', video_url.value);
+      main_video.load();
+      if (pub_video != null){
+        main_video.addEventListener("click", play_clicked, false);
+      }
+      arrow_click_counter += 1;
+    }
   }
 
 </script>
