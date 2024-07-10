@@ -220,8 +220,6 @@
 
 <script>
 
-  document.addEventListener("DOMContentLoaded", init, false);
-
   var main_video = document.getElementById("main_video");
   var pub_video = document.getElementById("pub_video");
   var video_url = document.getElementById("video_url");
@@ -229,6 +227,7 @@
   // pub_video.style.display = "none";
 
   function init() {
+    alert('INIT');
     // assign src to video tag
     main_video.setAttribute('src', video_url.value);
     main_video.load();
@@ -255,6 +254,8 @@
     main_video.style.display = "block";
     main_video.play();  
   }
+
+  init();
 
 </script>
 
