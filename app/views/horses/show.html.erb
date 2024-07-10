@@ -231,6 +231,7 @@
   function init() {
     // assign src to video tag
     main_video.setAttribute('src', video_url.value);
+    main_video.load();
     if (pub_video != null){
       main_video.addEventListener("click", play_clicked, false);
     }
