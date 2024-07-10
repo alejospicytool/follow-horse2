@@ -136,7 +136,7 @@
                   <% end %>
                 <% end %>
               </div>
-              <div class="col consultar">
+              <div class="col consultar mt-2">
                 <button>
                   <a href="https://api.whatsapp.com/send?phone=<%= @horse.user.phone %>">
                   <span><i class="fab fa-whatsapp"></i></span>
@@ -227,7 +227,6 @@
   // pub_video.style.display = "none";
 
   function init() {
-    alert('INIT');
     // assign src to video tag
     main_video.setAttribute('src', video_url.value);
     main_video.load();
@@ -254,8 +253,6 @@
     main_video.style.display = "block";
     main_video.play();  
   }
-
-  init();
 
 </script>
 
