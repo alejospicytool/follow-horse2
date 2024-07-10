@@ -23,7 +23,7 @@
 
             <div class="carousel-item" style="height: 400px !important">
               <input type="hidden" id="video_url" value="<%= @horse.video %>" />
-              <video width="100%" height="100%" id="main_video" type="video/mp4" controls muted playsinline style="background: white;"></video>
+              <video width="100%" height="100%" id="main_video" src="<%= @horse.video %>" type="video/mp4" controls muted playsinline style="background: white;"></video>
               <% if !@pub_video.nil? %>
                 <%= video_tag(@pub_video["url"], id: "pub_video", controls: true, width: "100%", height: "100%", style: "display:none; background: white;", playsinline: true, muted: true) %>
               <% end %>
@@ -220,15 +220,17 @@
 
 <script>
 
+  document.addEventListener("DOMContentLoaded", init, false);
+  
   var main_video = document.getElementById("main_video");
   var pub_video = document.getElementById("pub_video");
-  var video_url = document.getElementById("video_url");
+  // var video_url = document.getElementById("video_url");
   // pub_video.style.display = "none";
 
   function init() {
     // assign src to video tag
-    main_video.setAttribute('src', video_url.value);
-    main_video.load();
+    // main_video.setAttribute('src', video_url.value);
+    // main_video.load();
     if (pub_video != null){
       main_video.addEventListener("click", play_clicked, false);
     }
@@ -253,10 +255,7 @@
     main_video.play();  
   }
 
-  window.onload = (event) => {
-    // alert('YASSSSS');
-    init();
-  };
+  
 
 </script>
 
