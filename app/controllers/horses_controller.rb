@@ -1,6 +1,7 @@
 require 'net/http'
 require 'net/http/post/multipart'
 require 'cloudinary'
+require 'browser'
 
 class HorsesController < ApplicationController
 
@@ -56,6 +57,9 @@ class HorsesController < ApplicationController
     end
     
     @pub_video = Pub.all.where(asset_type: "video")[0]
+    puts '=============='
+    puts browser.safari?(">17")
+    puts '=============='
   end
 
   def new
