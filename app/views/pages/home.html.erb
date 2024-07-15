@@ -29,22 +29,14 @@
   </div>
   <% if @pub_imgs != [] %>
     <% @pub_imgs.each_with_index do |pub_img, idx| %>
-      <% if idx == 0 %>
-        <div class="col-2 right-pub-panel <%= idx %>-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
-      <% else %>
-        <div class="col-2 right-pub-panel <%= idx %>-panel" style="display: block; background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
-      <% end %>
+      <div class="col-2 right-pub-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
     <% end %>
   <% end %>
 </div>
 
 <% if @pub_imgs != [] %>
   <% @pub_imgs.each_with_index do |pub_img, idx| %>
-    <% if idx == 0 %>
-      <div class="col-2 bottom-pub-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
-    <% else %>
-      <div class="col-2 bottom-pub-panel" style="display: none; background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
-    <% end %>
+    <div class="bottom-pub-panel" style="background-image: url('<%= pub_img["url"] %>'); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
   <% end %>
 <% end %>
 
