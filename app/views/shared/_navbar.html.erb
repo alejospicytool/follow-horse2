@@ -10,9 +10,7 @@
 
       <%# BACK FUNCTIONALITY ICON %>
       <% else %>
-        <%= link_to :back, class: "d-flex align-items-center" do %>
-          <%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %>
-        <% end %>
+        <a href="javascript:history.back()"><%= image_tag('arrow_forward.png', style: 'margin-right: 1.25rem') %></a>
       <% end %>
 
       <%# SECTION TITLE %>
