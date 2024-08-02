@@ -4,6 +4,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "followhorse-62b4d57d2b9e.herokuapp.com/" }
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   ## config.action_mailer.smtp_settings = {
   ##   address: 'smtp.outlook.com', # Replace with your SMTP server address
   ##   port: 587,                # Replace with the appropriate SMTP port
@@ -15,7 +17,7 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'localhost',
-    user_name: 'followhorse@gmail.com',
+    user_name: 'followhhorse@gmail.com',
     password: ENV['SMTP_FOLLOW'],
     authentication: 'plain',
     enable_starttls_auto: true,
