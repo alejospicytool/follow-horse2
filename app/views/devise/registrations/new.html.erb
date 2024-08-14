@@ -1,3 +1,4 @@
+
 <!-- NAVBAR -->
 <div class="navbar navbar-top navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
@@ -60,6 +61,8 @@
                   label: false,
                   class: "log-in-input",
                   input_html: {autocomplete: "pais", style: "border-bottom: 4px solid #207B6E; height: 56px; border-radius: 4px; background: rgba(94, 153, 112, 0.06);", "data-controller": "capitalize", "data-action": "keyup->capitalize#capitalizeFirstLetter"} %>
+      <%= f.input :country_code, as: :select, 
+                  collection: @country_codes %>
       <%= f.input :phone, as: :numeric,
                   required: true,
                   autofocus: true,

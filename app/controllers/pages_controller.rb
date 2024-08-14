@@ -27,11 +27,6 @@ class PagesController < ApplicationController
     end
     
     @pub_imgs = Pub.all.where(asset_type: "photo")
-    puts "====================="
-    puts ''
-    puts @pub_imgs.inspect
-    puts ''
-    puts "====================="
   end
 
   def search

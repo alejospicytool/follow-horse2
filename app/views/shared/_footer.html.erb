@@ -19,7 +19,7 @@
       <% end %>
     </div>
     <div class="msg-container d-flex align-items-center flex-column justify-content-center text-center footer-box <%= request.path.include?("/conversaciones/") ? "active" : ""%>">
-      <% if @total_msgs > 0 %>
+      <% if current_user && @total_msgs > 0 %>
         <div class='indicator'>
           <div class='noti-count'><%= @total_msgs%></div>
         </div>

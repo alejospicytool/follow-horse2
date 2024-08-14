@@ -1,5 +1,8 @@
-<h2>Olvidó su contraseña?</h2>
 
+<div class="d-flex flex-column align-items-center justify-content-center mt-4 mb-3">
+  <%= image_tag 'logo-chico-color.png', class:"mb-2" %>
+  <h2>Olvidó su contraseña?</h2>
+</div>
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false", method: :post }) do |f| %>
   <%= f.error_notification %>
 
