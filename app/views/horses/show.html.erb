@@ -22,7 +22,7 @@
           <% if @horse.video %>
 
             <div class="carousel-item" style="height: 400px !important">
-              <% if browser.safari?("<17") %>
+              <% if !browser.safari?("<17") %>
                 <input type="hidden" id="video_url" value="<%= @horse.video %>" />
                 <video width="100%" height="100%" id="main_video" src="<%= @horse.video %>" type="video/mp4" controls muted playsinline style="background: white;"></video>
               <% else %>
@@ -191,12 +191,12 @@
     }
   )
 
-  function iframeclick() {
-    document.getElementById("theiframe").contentWindow.document.body.onclick = function() {
-      // document.getElementById("theiframe").contentWindow.location.reload();
-      console.log('clickeaste');
-    }
-  }
+  // function iframeclick() {
+  //   document.getElementById("theiframe").contentWindow.document.body.onclick = function() {
+  //     // document.getElementById("theiframe").contentWindow.location.reload();
+  //     console.log('clickeaste');
+  //   }
+  // }
   
 </script>
 
