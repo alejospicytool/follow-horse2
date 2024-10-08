@@ -26,7 +26,7 @@
           <span class="metros">metros</span>
         </div>
         <div class="mb-4">
-          <%= f.input :ubicacion, collection: @ubicaciones, as: :select, input_html: { multiple: false, class: "filter-icon-input-before", onchange: "updateInputUbicacion();"}, prompt: "Seleccionar ubicación", label: "Ubicación", wrapper_html: {style: "margin-bottom: 0 !important;"}, label_html: {class: "filter-label"} %>
+          <%= f.input :pais, collection: @paises, as: :select, input_html: { multiple: false, class: "filter-icon-input-before", onchange: "updateInputUbicacion();"}, prompt: "Seleccionar país", label: "País", wrapper_html: {style: "margin-bottom: 0 !important;"}, label_html: {class: "filter-label"} %>
           <div class="input-border-before" id="border-ubicacion"></div>
         </div>
       </div>

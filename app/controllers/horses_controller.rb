@@ -230,7 +230,7 @@ class HorsesController < ApplicationController
     @filtro = Filtro.new
     @horses = Horse.all.where.not(user_id: current_user.id)
     @jinetes = @horses.map { |horse| horse.rider }.uniq
-    @ubicaciones = @horses.map { |horse| User.find(horse.user_id).ciudad }.uniq
+    @paises = @horses.map { |horse| horse.country }.uniq
     @section_title = "Caballos - Filtros"
   end
 
@@ -238,8 +238,8 @@ class HorsesController < ApplicationController
     jinete = params[:filtro][:jinete]
     edad = params[:filtro][:edad]
     altura = params[:filtro][:altura]
-    ubicacion = params[:filtro][:ubicacion]
-    redirect_to horses_results_path(filtro: "OK", jinete: jinete, edad: edad, altura: altura, ubicacion: ubicacion)
+    pais = params[:filtro][:pais]
+    redirect_to horses_results_path(filtro: "OK", jinete: jinete, edad: edad, altura: altura, pais: pais)
   end
 
   def resultados
@@ -270,11 +270,11 @@ class HorsesController < ApplicationController
         end
       end
       # Filtro por Ubicacion
-      if params[:ubicacion] != ""
+      if params[:pais] != ""
         if @horses
-          @horses = @horses.where(user_id: User.where(ciudad: params[:ubicacion]).pluck(:id))
+          @horses = @horses.where(country: params[:pais])
         else
-          @horses = @horses_all.where(user_id: User.where(ciudad: params[:ubicacion]).pluck(:id))
+          @horses = @horses_all.where(country: params[:pais])
         end
       end
     end
@@ -333,7 +333,6 @@ class HorsesController < ApplicationController
         path_to_video, 
         resource_type: "video",
         public_id: video_public_id,
-        chunk_size: 6_000_000,
         eager: [
           {width: 300, height: 300, crop: "pad", audio_codec: "none"}, 
           {width: 160, height: 100, crop: "crop", gravity: "south", audio_codec: "none "}], 

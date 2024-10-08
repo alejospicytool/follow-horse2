@@ -3,7 +3,7 @@
   <div class="col-lg-6 col-sm-10 col-md-8 col- px-0" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
 
     <div class="foto w-100 h-100 mb-3">
-      <% if @user.photo %>
+      <% if @user.photo.key != nil %>
         <%= cl_image_tag @user.photo.key, class: "w-100", style: "height: 18.75rem;" %>
       <% else %>
         <%= image_tag('caballo.jpeg', class: "w-100", style: "height: 18.75rem;") %>

@@ -22,10 +22,10 @@ class PagesController < ApplicationController
     @section_title = "Inicio"
     @navbar_brand = 'true'
     @user = current_user
-    @horses = Horse.select do |horse|
-      horse.user.id != current_user.id
-    end
-    
+    ## @horses = Horse.select do |horse|
+    ##   horse.user.id != current_user.id
+    ## end
+    @horses = Horse.all.where.not(user_id: current_user.id).order("created_at DESC")
     @pub_imgs = Pub.all.where(asset_type: "photo")
   end
 
